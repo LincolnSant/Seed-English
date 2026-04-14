@@ -1,0 +1,13 @@
+/* ── TeacherDashboard.css ──────────────────────────────── */
+.td-root {
+  display: flex;
+  min-height: 100vh;
+  background: #F7F3EE;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.td-main {
+  flex: 1;
+  overflow-y: auto;
+  min-width: 0;
+}

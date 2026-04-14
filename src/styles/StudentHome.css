@@ -1,0 +1,159 @@
+:root {
+  --ink:        #1A1612;
+  --sage:       #5C7A5E;
+  --sage-light: #E8F0E9;
+  --warm:       #C8956C;
+  --warm-light: #F5E8DC;
+  --cream:      #F7F3EE;
+  --muted:      #8A7F74;
+  --border:     rgba(26,22,18,0.10);
+}
+
+/* ── Top bar ───────────────────────────────────────────── */
+.sh-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.sh-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.5px;
+}
+.sh-logo span { color: var(--sage); font-style: italic; }
+
+.sh-topbar-right { display: flex; align-items: center; gap: 16px; }
+.sh-user { display: flex; align-items: center; gap: 10px; color: rgba(247,243,238,.7); font-size: 14px; }
+.sh-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+}
+.sh-logout {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(247,243,238,.6);
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.sh-logout:hover { background: rgba(255,255,255,.14); color: var(--cream); }
+
+/* ── Body ──────────────────────────────────────────────── */
+.sh-body { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+/* ── Hero ──────────────────────────────────────────────── */
+.sh-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 16px;
+}
+.sh-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.sh-hero p { font-size: 15px; color: var(--muted); }
+
+.sh-level-badge {
+  background: var(--sage-light);
+  color: var(--sage);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Stats ─────────────────────────────────────────────── */
+.sh-stats {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 32px;
+  margin-bottom: 40px;
+  gap: 32px;
+}
+.sh-stat { text-align: center; flex: 1; }
+.sh-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.sh-stat-label { font-size: 12px; color: var(--muted); }
+.sh-stat-divider { width: 1px; height: 40px; background: var(--border); }
+
+/* ── Section ───────────────────────────────────────────── */
+.sh-section { margin-bottom: 36px; }
+.sh-section-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+/* ── Cards ─────────────────────────────────────────────── */
+.sh-cards { display: flex; flex-direction: column; gap: 10px; }
+.sh-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+  width: 100%;
+}
+.sh-card:hover {
+  border-color: var(--sage);
+  box-shadow: 0 4px 16px rgba(92,122,94,.12);
+  transform: translateY(-1px);
+}
+.sh-card-quiz:hover {
+  border-color: var(--warm);
+  box-shadow: 0 4px 16px rgba(200,149,108,.12);
+}
+
+.sh-card-icon { font-size: 24px; flex-shrink: 0; }
+.sh-card-body { flex: 1; }
+.sh-card-type { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+.sh-card-title { font-size: 15px; font-weight: 500; color: var(--ink); }
+.sh-card-arrow { color: var(--sage); font-size: 18px; flex-shrink: 0; }
+.sh-card-quiz .sh-card-arrow { color: var(--warm); }
+
+/* ── Empty ─────────────────────────────────────────────── */
+.sh-empty {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--muted);
+}
+.sh-empty-icon { font-size: 48px; margin-bottom: 16px; }
+.sh-empty-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 8px; }
+.sh-empty p { font-size: 15px; line-height: 1.6; }

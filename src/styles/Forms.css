@@ -1,0 +1,179 @@
+:root {
+  --ink:        #1A1612;
+  --sage:       #5C7A5E;
+  --sage-light: #E8F0E9;
+  --cream:      #F7F3EE;
+  --muted:      #8A7F74;
+  --border:     rgba(26,22,18,0.10);
+  --danger:     #C0392B;
+}
+
+.ef-form {
+  background: #fff;
+  border: 1.5px solid var(--sage);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ef-form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ef-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ef-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.ef-field input,
+.ef-field textarea {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  resize: vertical;
+}
+.ef-field input:focus,
+.ef-field textarea:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(92,122,94,.1);
+}
+.ef-field input::placeholder,
+.ef-field textarea::placeholder { color: rgba(138,127,116,.5); }
+
+/* Type selector */
+.ef-type-grid {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.ef-type-btn {
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+}
+.ef-type-btn:hover { border-color: var(--sage); color: var(--sage); }
+.ef-type-btn.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+.ef-type-btn.small { padding: 6px 12px; font-size: 12px; }
+
+/* Question block */
+.ef-question-block {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ef-question-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ef-question-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.ef-question-type-row { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+
+.ef-remove-q {
+  background: none; border: none;
+  color: var(--muted); font-size: 14px;
+  cursor: pointer; padding: 4px 8px;
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.ef-remove-q:hover { color: var(--danger); background: rgba(192,57,43,.08); }
+
+/* Options */
+.ef-options { display: flex; flex-direction: column; gap: 8px; }
+.ef-option-row { display: flex; align-items: center; gap: 8px; }
+.ef-correct-btn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: all .2s;
+}
+.ef-correct-btn.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+.ef-option-row input { flex: 1; }
+
+/* True/False */
+.ef-tf-row { display: flex; gap: 10px; }
+.ef-tf-btn {
+  flex: 1; padding: 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.ef-tf-btn.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+
+/* Add question */
+.ef-add-question {
+  align-self: flex-start;
+  background: none;
+  border: 1.5px dashed var(--border);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.ef-add-question:hover { border-color: var(--sage); color: var(--sage); }
+
+/* Actions */
+.ef-form-actions {
+  display: flex; gap: 10px; justify-content: flex-end;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.ef-btn-cancel {
+  background: none;
+  border: 1.5px solid var(--border);
+  padding: 10px 20px; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.ef-btn-cancel:hover { border-color: var(--ink); color: var(--ink); }
+
+.ef-btn-save {
+  background: var(--ink);
+  color: #fff; border: none;
+  padding: 10px 24px; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: background .2s;
+}
+.ef-btn-save:hover { background: var(--sage); }
