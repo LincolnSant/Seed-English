@@ -38,8 +38,11 @@ export default function TeacherStudentProfile({
     setEditingQuiz(null);
   }
 
+  const [levelOpen, setLevelOpen] = useState(false);
+
   async function handleLevelChange(level) {
     setSavingLevel(true);
+    setLevelOpen(false);
     await onUpdateLevel(level);
     setSavingLevel(false);
   }
@@ -54,16 +57,33 @@ export default function TeacherStudentProfile({
           <div>
             <h1>{student.name}</h1>
             <div className="tsp-meta">
-              {/* Level selector */}
-              <div className="level-selector-wrap"><span className="level-selector-label">Nível:</span><select
-                className={`level-badge level-${(student.level ?? '').toLowerCase()} level-select`}
-                value={student.level ?? ''}
-                onChange={(e) => handleLevelChange(e.target.value)}
-                disabled={savingLevel}
-              >
-                <option value="">Sem nível</option>
-                {LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
-              </select></div>
+              <div className="level-selector-wrap">
+                <span className="level-selector-label">Nível:</span>
+                <div className="level-dropdown">
+                  <button
+                    className={`level-dropdown-btn level-${(student.level ?? 'sem').toLowerCase()}`}
+                    onClick={() => setLevelOpen(!levelOpen)}
+                    disabled={savingLevel}
+                  >
+                    {student.level ?? 'Sem nível'}
+                    <span className="level-dropdown-arrow">▾</span>
+                  </button>
+                  {levelOpen && (
+                    <div className="level-dropdown-menu">
+                      <button onClick={() => handleLevelChange('')}>Sem nível</button>
+                      {LEVELS.map((l) => (
+                        <button
+                          key={l}
+                          className={student.level === l ? 'active' : ''}
+                          onClick={() => handleLevelChange(l)}
+                        >
+                          {l}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
               <span>{student.email}</span>
             </div>
           </div>
