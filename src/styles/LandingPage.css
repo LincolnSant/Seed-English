@@ -26,7 +26,7 @@
 
 /* ─── Logo ────────────────────────────────────────────── */
 .lp-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 22px;
   font-weight: 700;
   color: var(--ink);
@@ -147,7 +147,7 @@
 }
 
 .lp-hero-left h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(42px, 5vw, 62px);
   font-weight: 700;
   line-height: 1.1;
@@ -184,7 +184,7 @@
   border-top: 1px solid var(--border);
 }
 .stat-num {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 28px;
   font-weight: 700;
   color: var(--ink);
@@ -350,7 +350,7 @@
   margin-bottom: 16px;
 }
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 700;
   letter-spacing: -1px;
@@ -385,7 +385,7 @@
   font-size: 20px;
 }
 .feature-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -412,7 +412,7 @@
   background: radial-gradient(ellipse at 50% 50%, rgba(92,122,94,.25) 0%, transparent 70%);
 }
 .lp-cta h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 700;
   letter-spacing: -1.5px;
@@ -522,7 +522,7 @@
   min-width: 180px;
 }
 .lp-step-num {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 40px;
   font-weight: 700;
   color: #3a5c3c;
