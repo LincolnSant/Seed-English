@@ -171,3 +171,13 @@
   .sh-stat-num { font-size: 20px; }
   .sh-stat-divider { height: 32px; }
 }
+
+/* ── Test card ─────────────────────────────────────────── */
+.sh-card-test { border-color: var(--border); }
+.sh-card-test:hover { border-color: #C8956C; box-shadow: 0 4px 16px rgba(200,149,108,.12); }
+.sh-card-done { opacity: 0.75; }
+.sh-card-done .sh-card-arrow { color: var(--sage); }
+.sh-card-score {
+  font-size: 11px; color: var(--sage); font-weight: 500; margin-top: 3px;
+}
+.sh-card-score-test { color: #A0522D; }

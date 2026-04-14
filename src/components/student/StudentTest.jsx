@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../styles/StudentQuiz.css';
 
-export default function StudentQuiz({ quiz, onBack, onComplete }) {
+export default function StudentTest({ test, onBack, onComplete, existingResult }) {
   const [current,   setCurrent]   = useState(0);
   const [selected,  setSelected]  = useState(null);
   const [submitted, setSubmitted] = useState(false);
@@ -9,8 +9,38 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
   const [finished,  setFinished]  = useState(false);
   const [saved,     setSaved]     = useState(false);
 
-  const question = quiz.questions[current];
-  const total    = quiz.questions.length;
+  const question = test.questions[current];
+  const total    = test.questions.length;
+
+  // Already completed
+  if (existingResult) {
+    const pct = Math.round((existingResult.score / existingResult.total) * 100);
+    return (
+      <div className="sq-root">
+        <div className="sq-inner">
+          <button className="sq-back" onClick={onBack}>← Voltar</button>
+          <div className="sq-finished">
+            <div className="sq-finished-icon">📋</div>
+            <h1>Test já realizado</h1>
+            <p>{test.title}</p>
+            <div className="sq-score">
+              <span className="sq-score-num">{existingResult.grade}</span>
+              <span className="sq-score-total">/10</span>
+            </div>
+            <div className="sq-score-bar-wrap">
+              <div className="sq-score-bar" style={{ width: `${pct}%` }} />
+            </div>
+            <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>
+              {existingResult.score}/{existingResult.total} acertos
+            </p>
+            <div className="sq-finished-actions">
+              <button className="sq-btn-primary" onClick={onBack}>← Voltar ao início</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   function isCorrect(q, answer) {
     if (q.type === 'fill-blank') return answer?.trim().toLowerCase() === q.correct?.toString().toLowerCase();
@@ -19,7 +49,8 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
 
   function handleSubmit() {
     if (selected === null || selected === '') return;
-    setResults((prev) => [...prev, isCorrect(question, selected)]);
+    const correct = isCorrect(question, selected);
+    setResults((prev) => [...prev, correct]);
     setSubmitted(true);
   }
 
@@ -29,7 +60,7 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
       setFinished(true);
       if (!saved) {
         setSaved(true);
-        await onComplete?.(quiz.id, score, total);
+        await onComplete(test.id, score, total);
       }
     } else {
       setCurrent((p) => p + 1);
@@ -40,22 +71,26 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
 
   if (finished) {
     const score = results.filter(Boolean).length;
+    const grade = parseFloat(((score / total) * 10).toFixed(1));
     const pct   = Math.round((score / total) * 100);
     return (
       <div className="sq-root">
         <div className="sq-inner">
           <button className="sq-back" onClick={onBack}>← Voltar</button>
           <div className="sq-finished">
-            <div className="sq-finished-icon">{pct >= 70 ? '🎉' : '📖'}</div>
-            <h1>{pct >= 70 ? 'Muito bem!' : 'Continue praticando!'}</h1>
-            <p>{quiz.title}</p>
+            <div className="sq-finished-icon">{grade >= 6 ? '🎉' : '📖'}</div>
+            <h1>{grade >= 6 ? 'Aprovado!' : 'Continue estudando!'}</h1>
+            <p>{test.title}</p>
             <div className="sq-score">
-              <span className="sq-score-num">{score}</span>
-              <span className="sq-score-total">/{total} corretas</span>
+              <span className="sq-score-num">{grade}</span>
+              <span className="sq-score-total">/10</span>
             </div>
             <div className="sq-score-bar-wrap">
               <div className="sq-score-bar" style={{ width: `${pct}%` }} />
             </div>
+            <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>
+              {score}/{total} acertos
+            </p>
             <div className="sq-finished-actions">
               <button className="sq-btn-primary" onClick={onBack}>← Voltar ao início</button>
             </div>
@@ -70,7 +105,7 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
       <div className="sq-inner">
         <button className="sq-back" onClick={onBack}>← Voltar ao início</button>
         <div className="sq-header">
-          <div className="sq-quiz-title">{quiz.title}</div>
+          <div className="sq-quiz-title">{test.title}</div>
           <div className="sq-progress-row">
             <div className="sq-progress-bar-wrap">
               <div className="sq-progress-fill" style={{ width: `${(current / total) * 100}%` }} />
@@ -80,7 +115,7 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
         </div>
 
         <div className="sq-card">
-          <div className="sq-question-num">Pergunta {current + 1}</div>
+          <div className="sq-question-num">Questão {current + 1}</div>
           <div className="sq-question-prompt">{question.prompt}</div>
 
           {question.type === 'multiple-choice' && (
@@ -150,7 +185,7 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
             </button>
           ) : (
             <button className="sq-btn-primary" onClick={handleNext}>
-              {current + 1 >= total ? 'Ver resultado →' : 'Próxima pergunta →'}
+              {current + 1 >= total ? 'Ver resultado →' : 'Próxima questão →'}
             </button>
           )}
         </div>

@@ -410,3 +410,52 @@
   .tsp-root { padding: 24px 16px; }
   .tsp-student-info { flex-wrap: wrap; }
 }
+
+/* ── Performance tab ───────────────────────────────────── */
+.tsp-perf-section { margin-bottom: 32px; }
+.tsp-perf-section-title {
+  font-size: 14px; font-weight: 600; color: var(--ink);
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.tsp-perf-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 18px; margin-bottom: 8px;
+}
+.tsp-perf-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.tsp-perf-date { font-size: 12px; color: var(--muted); }
+.tsp-perf-scores { display: flex; align-items: center; gap: 12px; }
+.tsp-perf-grade {
+  font-size: 18px; font-weight: 700; color: var(--sage);
+  background: var(--sage-light); padding: 4px 12px; border-radius: 100px;
+}
+.tsp-perf-pct {
+  font-size: 18px; font-weight: 700; color: var(--sage);
+  background: var(--sage-light); padding: 4px 12px; border-radius: 100px;
+}
+.tsp-perf-acertos { font-size: 13px; color: var(--muted); }
+
+/* ── Test result in card ───────────────────────────────── */
+.tsp-test-result {
+  display: flex; align-items: center; gap: 12px; margin-top: 8px;
+}
+.tsp-test-grade {
+  font-size: 16px; font-weight: 700; color: var(--sage);
+  background: var(--sage-light); padding: 3px 10px; border-radius: 100px;
+}
+.tsp-test-score { font-size: 13px; color: var(--muted); }
+.tsp-test-date  { font-size: 12px; color: var(--muted); }
+.tsp-test-pending { font-size: 13px; color: var(--muted); margin-top: 6px; font-style: italic; }
+
+/* ── ef-hint ───────────────────────────────────────────── */
+.ef-hint {
+  font-size: 12px; color: var(--muted);
+  background: var(--cream); border-radius: 8px;
+  padding: 8px 12px; margin-top: 4px; line-height: 1.5;
+}
+.ef-hint-banner {
+  font-size: 13px; color: #A0522D;
+  background: #FDF0E8; border: 1px solid #F5C4A0;
+  border-radius: 10px; padding: 10px 14px;
+}

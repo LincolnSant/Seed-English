@@ -6,28 +6,26 @@ import TeacherSidebar        from '../teacher/TeacherSidebar';
 import TeacherHome           from '../teacher/TeacherHome';
 import TeacherStudents       from '../teacher/TeacherStudents';
 import TeacherStudentProfile from '../teacher/TeacherStudentProfile';
-import '../../styles/TeacherDashboard.css';
 import { SkeletonTeacherHome } from '../ui/Skeleton';
+import '../../styles/TeacherDashboard.css';
 
 export default function TeacherDashboard() {
   const navigate = useNavigate();
   const { signOut } = useAuth();
-  const { students, loading, saveContent, deleteContent, saveQuiz, deleteQuiz, updateLevel } = useTeacherData();
+  const {
+    students, loading,
+    saveContent, deleteContent,
+    saveQuiz, deleteQuiz,
+    saveTest, deleteTest,
+    updateLevel,
+  } = useTeacherData();
 
-  const [section, setSection]               = useState('home');
+  const [section, setSection]                 = useState('home');
   const [selectedStudent, setSelectedStudent] = useState(null);
 
-  function openStudent(student) {
-    setSelectedStudent(student);
-    setSection('student-profile');
-  }
+  function openStudent(student) { setSelectedStudent(student); setSection('student-profile'); }
+  async function handleLogout() { await signOut(); navigate('/login'); }
 
-  async function handleLogout() {
-    await signOut();
-    navigate('/login');
-  }
-
-  // Keep selectedStudent in sync with latest data
   const currentStudent = selectedStudent
     ? students.find((s) => s.id === selectedStudent.id) ?? selectedStudent
     : null;
@@ -52,6 +50,8 @@ export default function TeacherDashboard() {
             onDeleteContent={(id) => deleteContent(currentStudent.id, id)}
             onSaveQuiz={(q)     => saveQuiz(currentStudent.id, q)}
             onDeleteQuiz={(id)  => deleteQuiz(currentStudent.id, id)}
+            onSaveTest={(t)     => saveTest(currentStudent.id, t)}
+            onDeleteTest={(id)  => deleteTest(currentStudent.id, id)}
             onUpdateLevel={(l)  => updateLevel(currentStudent.id, l)}
           />
         );
@@ -62,14 +62,8 @@ export default function TeacherDashboard() {
 
   return (
     <div className="td-root">
-      <TeacherSidebar
-        active={section}
-        onChange={setSection}
-        onLogout={handleLogout}
-      />
-      <main className="td-main">
-        {renderSection()}
-      </main>
+      <TeacherSidebar active={section} onChange={setSection} onLogout={handleLogout} />
+      <main className="td-main">{renderSection()}</main>
     </div>
   );
 }
