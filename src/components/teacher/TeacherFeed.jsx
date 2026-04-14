@@ -62,9 +62,9 @@ export default function TeacherFeed({ teacherId, teacherName }) {
     }
   }
 
-  const canPost = mode === 'text' ? text.trim().length > 0
-                : mode === 'image' ? !!imageFile
-                : videoUrl.trim().length > 0;
+  const canPost = mode === 'text'  ? text.trim().length > 0
+               : mode === 'image' ? !!imageFile
+               : videoUrl.trim().length > 0;
 
   return (
     <div className="tf-root">
@@ -95,17 +95,6 @@ export default function TeacherFeed({ teacherId, teacherName }) {
             </div>
           )}
 
-          {/* Caption for image/video */}
-          {(mode === 'image' || mode === 'video') && (
-            <input
-              className="tf-caption-input"
-              type="text"
-              placeholder="Adicionar legenda (opcional)..."
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
-            />
-          )}
-
           {/* Video URL input */}
           {mode === 'video' && (
             <input
@@ -114,6 +103,17 @@ export default function TeacherFeed({ teacherId, teacherName }) {
               placeholder="Cole o link do YouTube aqui..."
               value={videoUrl}
               onChange={(e) => setVideoUrl(e.target.value)}
+            />
+          )}
+
+          {/* Caption — only for image/video */}
+          {(mode === 'image' || mode === 'video') && (
+            <input
+              className="tf-caption-input"
+              type="text"
+              placeholder="Adicionar legenda (opcional)..."
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
             />
           )}
 
