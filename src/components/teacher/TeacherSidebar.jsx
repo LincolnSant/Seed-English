@@ -28,7 +28,7 @@ export default function TeacherSidebar({ active, onChange, onLogout }) {
         <div className="ts-profile">
           <div className="ts-avatar">LP</div>
           <div>
-            <div className="ts-profile-name">Lydia Pereira</div>
+            <div className="ts-profile-name">Lydia Andery</div>
             <div className="ts-profile-role">Professora</div>
           </div>
         </div>
