@@ -114,3 +114,47 @@
   .ts-nav-icon { font-size: 20px; }
   .ts-bottom { display: none; }
 }
+
+/* ── Avatar color picker ───────────────────────────────── */
+.ts-avatar-wrap {
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.ts-avatar-edit {
+  position: absolute;
+  bottom: -2px; right: -4px;
+  font-size: 10px;
+  background: #fff;
+  border-radius: 50%;
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.ts-avatar-wrap:hover .ts-avatar-edit { opacity: 1; }
+
+.ts-color-picker {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  background: #2a2724;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.ts-color-swatch {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s;
+}
+.ts-color-swatch:hover { transform: scale(1.15); }
+.ts-color-swatch.active { border-color: #fff; }
