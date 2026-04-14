@@ -43,9 +43,9 @@ export default function TeacherDashboard() {
             student={currentStudent}
             onBack={() => setSection('students')}
             onSaveContent={(c)  => saveContent(currentStudent.id, c)}
-            onDeleteContent={(id) => deleteContent(id)}
+            onDeleteContent={(id) => deleteContent(currentStudent.id, id)}
             onSaveQuiz={(q)     => saveQuiz(currentStudent.id, q)}
-            onDeleteQuiz={(id)  => deleteQuiz(id)}
+            onDeleteQuiz={(id)  => deleteQuiz(currentStudent.id, id)}
             onUpdateLevel={(l)  => updateLevel(currentStudent.id, l)}
           />
         );

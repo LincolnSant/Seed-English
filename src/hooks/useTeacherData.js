@@ -14,7 +14,12 @@ export function useTeacherData() {
       .select('*, contents(*), quizzes(*, questions(*))')
       .eq('role', 'student')
       .order('name');
-    setStudents((data ?? []).map((s) => ({
+    setStudents(normalize(data ?? []));
+    setLoading(false);
+  }
+
+  function normalize(data) {
+    return data.map((s) => ({
       ...s,
       initials: s.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase(),
       quizzes: (s.quizzes ?? []).map((q) => ({
@@ -23,50 +28,71 @@ export function useTeacherData() {
           .sort((a, b) => a.position - b.position)
           .map((q) => ({ ...q, options: q.options ?? [] })),
       })),
-    })));
-    setLoading(false);
+    }));
+  }
+
+  // ── Optimistic update helper ──────────────────────────
+  function updateStudentLocal(studentId, updater) {
+    setStudents((prev) =>
+      prev.map((s) => s.id === studentId ? updater(s) : s)
+    );
   }
 
   // ── Contents ──────────────────────────────────────────
   async function saveContent(studentId, content) {
     if (content.id) {
-      const { error } = await supabase
-        .from('contents')
+      // Optimistic update
+      updateStudentLocal(studentId, (s) => ({
+        ...s,
+        contents: s.contents.map((c) => c.id === content.id ? content : c),
+      }));
+      await supabase.from('contents')
         .update({ type: content.type, title: content.title, body: content.body })
         .eq('id', content.id);
-      if (error) throw error;
     } else {
-      const { error } = await supabase
-        .from('contents')
-        .insert({ student_id: studentId, type: content.type, title: content.title, body: content.body });
+      const { data, error } = await supabase.from('contents')
+        .insert({ student_id: studentId, type: content.type, title: content.title, body: content.body })
+        .select()
+        .single();
       if (error) throw error;
+      // Optimistic: add new content with real id
+      updateStudentLocal(studentId, (s) => ({
+        ...s,
+        contents: [...s.contents, data],
+      }));
     }
-    await fetchStudents();
   }
 
-  async function deleteContent(id) {
+  async function deleteContent(studentId, id) {
+    updateStudentLocal(studentId, (s) => ({
+      ...s,
+      contents: s.contents.filter((c) => c.id !== id),
+    }));
     await supabase.from('contents').delete().eq('id', id);
-    await fetchStudents();
   }
 
   // ── Quizzes ───────────────────────────────────────────
   async function saveQuiz(studentId, quiz) {
     if (quiz.id) {
-      // Update quiz title
       await supabase.from('quizzes').update({ title: quiz.title }).eq('id', quiz.id);
-      // Delete old questions and re-insert
       await supabase.from('questions').delete().eq('quiz_id', quiz.id);
       await insertQuestions(quiz.id, quiz.questions);
+      updateStudentLocal(studentId, (s) => ({
+        ...s,
+        quizzes: s.quizzes.map((q) => q.id === quiz.id ? { ...quiz } : q),
+      }));
     } else {
-      const { data, error } = await supabase
-        .from('quizzes')
+      const { data, error } = await supabase.from('quizzes')
         .insert({ student_id: studentId, title: quiz.title })
         .select()
         .single();
       if (error) throw error;
       await insertQuestions(data.id, quiz.questions);
+      updateStudentLocal(studentId, (s) => ({
+        ...s,
+        quizzes: [...s.quizzes, { ...data, questions: quiz.questions }],
+      }));
     }
-    await fetchStudents();
   }
 
   async function insertQuestions(quizId, questions) {
@@ -82,17 +108,17 @@ export function useTeacherData() {
     await supabase.from('questions').insert(rows);
   }
 
-  async function deleteQuiz(id) {
+  async function deleteQuiz(studentId, id) {
+    updateStudentLocal(studentId, (s) => ({
+      ...s,
+      quizzes: s.quizzes.filter((q) => q.id !== id),
+    }));
     await supabase.from('quizzes').delete().eq('id', id);
-    await fetchStudents();
   }
 
   // ── Level ─────────────────────────────────────────────
   async function updateLevel(studentId, level) {
-    // Atualiza local imediatamente pra evitar piscao
-    setStudents((prev) =>
-      prev.map((s) => s.id === studentId ? { ...s, level } : s)
-    );
+    updateStudentLocal(studentId, (s) => ({ ...s, level }));
     await supabase.from('profiles').update({ level }).eq('id', studentId);
   }
 
