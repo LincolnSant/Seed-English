@@ -50,7 +50,6 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
 
   function handleSubmit() {
     if (selected === null || selected === '') return;
-    setResults((prev) => [...prev, isCorrect(question, selected)]);
     setSubmitted(true);
   }
 

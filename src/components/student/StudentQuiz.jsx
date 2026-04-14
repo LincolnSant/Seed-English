@@ -19,7 +19,6 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
 
   function handleSubmit() {
     if (selected === null || selected === '') return;
-    setResults((prev) => [...prev, isCorrect(question, selected)]);
     setSubmitted(true);
   }
 
