@@ -146,7 +146,7 @@ export default function RegisterPage() {
             <div className="form-group">
               <label htmlFor="code">Código de convite</label>
               <input
-                id="code" type="text" placeholder="Ex: LYDIA2026"
+                id="code" type="text" placeholder="Digite seu código de convite"
                 value={code} onChange={(e) => setCode(e.target.value)}
                 required style={{ textTransform: 'uppercase', letterSpacing: 2 }}
               />
