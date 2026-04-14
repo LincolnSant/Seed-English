@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import '../../styles/StudentHome.css';
 
 const CONTENT_TYPE_LABEL = {
@@ -16,11 +17,14 @@ export default function StudentHome({
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
 
-  const totalItems = (student.contents?.length ?? 0) +
-                     (student.quizzes?.length  ?? 0) +
-                     (student.tests?.length    ?? 0);
+  const tabs = [
+    { key: 'classes',  label: '📚 Classes',  count: student.contents?.length ?? 0 },
+    { key: 'homework', label: '✏️ Homework', count: student.quizzes?.length  ?? 0 },
+    { key: 'tests',    label: '📋 Tests',    count: student.tests?.length    ?? 0 },
+  ];
 
-  // Score geral de homework
+  const [activeTab, setActiveTab] = useState('classes');
+
   const hwResults  = student.homeworkResults ?? [];
   const tstResults = student.testResults     ?? [];
   const totalDone  = hwResults.length + tstResults.length;
@@ -43,10 +47,11 @@ export default function StudentHome({
       </header>
 
       <div className="sh-body">
+        {/* Hero */}
         <div className="sh-hero">
           <div className="sh-hero-text">
             <h1>{greeting}, {student.name?.split(' ')[0]}!</h1>
-            <p>Você tem <strong>{totalItems} itens</strong> disponíveis. Escolha por onde começar.</p>
+            <p>Bem-vindo de volta. O que vamos estudar hoje?</p>
           </div>
           {student.level && <div className="sh-level-badge">{student.level}</div>}
         </div>
@@ -78,93 +83,122 @@ export default function StudentHome({
           )}
         </div>
 
-        {/* Classes */}
-        {(student.contents?.length ?? 0) > 0 && (
-          <section className="sh-section">
-            <div className="sh-section-title">📚 Classes</div>
-            <div className="sh-cards">
-              {student.contents.map((c) => {
-                const meta = CONTENT_TYPE_LABEL[c.type] ?? { icon: '📄', label: c.type };
-                return (
-                  <button key={c.id} className="sh-card" onClick={() => onOpenContent(c)}>
-                    <div className="sh-card-icon">{meta.icon}</div>
-                    <div className="sh-card-body">
-                      <div className="sh-card-type">{meta.label}</div>
-                      <div className="sh-card-title">{c.title}</div>
-                    </div>
-                    <div className="sh-card-arrow">→</div>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
+        {/* Tabs */}
+        <div className="sh-tabs">
+          {tabs.map((t) => (
+            <button
+              key={t.key}
+              className={`sh-tab ${activeTab === t.key ? 'active' : ''}`}
+              onClick={() => setActiveTab(t.key)}
+            >
+              {t.label}
+              <span className="sh-tab-count">{t.count}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* CLASSES */}
+        {activeTab === 'classes' && (
+          <div className="sh-tab-content">
+            {(student.contents?.length ?? 0) === 0 ? (
+              <div className="sh-empty">
+                <div className="sh-empty-icon">📭</div>
+                <div className="sh-empty-title">Nenhuma aula ainda</div>
+                <p>Sua professora ainda não adicionou aulas para você.</p>
+              </div>
+            ) : (
+              <div className="sh-cards">
+                {student.contents.map((c) => {
+                  const meta = CONTENT_TYPE_LABEL[c.type] ?? { icon: '📄', label: c.type };
+                  return (
+                    <button key={c.id} className="sh-card" onClick={() => onOpenContent(c)}>
+                      <div className="sh-card-icon">{meta.icon}</div>
+                      <div className="sh-card-body">
+                        <div className="sh-card-type">{meta.label}</div>
+                        <div className="sh-card-title">{c.title}</div>
+                      </div>
+                      <div className="sh-card-arrow">→</div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         )}
 
-        {/* Homework */}
-        {(student.quizzes?.length ?? 0) > 0 && (
-          <section className="sh-section">
-            <div className="sh-section-title">✏️ Homework</div>
-            <div className="sh-cards">
-              {student.quizzes.map((q) => {
-                const results = (student.homeworkResults ?? []).filter((r) => r.quiz_id === q.id);
-                const last    = results[0];
-                return (
-                  <button key={q.id} className="sh-card sh-card-quiz" onClick={() => onOpenQuiz(q)}>
-                    <div className="sh-card-icon">✏️</div>
-                    <div className="sh-card-body">
-                      <div className="sh-card-type">{q.questions?.length ?? 0} questão(ões)</div>
-                      <div className="sh-card-title">{q.title}</div>
-                      {last && (
-                        <div className="sh-card-score">
-                          Última: {last.score}/{last.total} ({Math.round(last.score/last.total*100)}%)
+        {/* HOMEWORK */}
+        {activeTab === 'homework' && (
+          <div className="sh-tab-content">
+            {(student.quizzes?.length ?? 0) === 0 ? (
+              <div className="sh-empty">
+                <div className="sh-empty-icon">✏️</div>
+                <div className="sh-empty-title">Nenhum homework ainda</div>
+                <p>Sua professora ainda não adicionou homeworks para você.</p>
+              </div>
+            ) : (
+              <div className="sh-cards">
+                {student.quizzes.map((q) => {
+                  const results = hwResults.filter((r) => r.quiz_id === q.id);
+                  const last    = results[0];
+                  return (
+                    <button key={q.id} className="sh-card sh-card-quiz" onClick={() => onOpenQuiz(q)}>
+                      <div className="sh-card-icon">✏️</div>
+                      <div className="sh-card-body">
+                        <div className="sh-card-type">{q.questions?.length ?? 0} questão(ões)</div>
+                        <div className="sh-card-title">{q.title}</div>
+                        {last && (
+                          <div className="sh-card-score">
+                            Última: {last.score}/{last.total} ({Math.round(last.score / last.total * 100)}%)
+                          </div>
+                        )}
+                      </div>
+                      <div className="sh-card-arrow">→</div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TESTS */}
+        {activeTab === 'tests' && (
+          <div className="sh-tab-content">
+            {(student.tests?.length ?? 0) === 0 ? (
+              <div className="sh-empty">
+                <div className="sh-empty-icon">📋</div>
+                <div className="sh-empty-title">Nenhum test ainda</div>
+                <p>Sua professora ainda não adicionou tests para você.</p>
+              </div>
+            ) : (
+              <div className="sh-cards">
+                {student.tests.map((t) => {
+                  const done   = hasCompletedTest(t.id);
+                  const result = getTestResult(t.id);
+                  return (
+                    <button
+                      key={t.id}
+                      className={`sh-card sh-card-test ${done ? 'sh-card-done' : ''}`}
+                      onClick={() => onOpenTest(t)}
+                    >
+                      <div className="sh-card-icon">📋</div>
+                      <div className="sh-card-body">
+                        <div className="sh-card-type">
+                          {t.questions?.length ?? 0} questão(ões) · {done ? 'Realizado' : 'Uma tentativa'}
                         </div>
-                      )}
-                    </div>
-                    <div className="sh-card-arrow">→</div>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
-        {/* Tests */}
-        {(student.tests?.length ?? 0) > 0 && (
-          <section className="sh-section">
-            <div className="sh-section-title">📋 Tests</div>
-            <div className="sh-cards">
-              {student.tests.map((t) => {
-                const done   = hasCompletedTest(t.id);
-                const result = getTestResult(t.id);
-                return (
-                  <button
-                    key={t.id}
-                    className={`sh-card sh-card-test ${done ? 'sh-card-done' : ''}`}
-                    onClick={() => onOpenTest(t)}
-                  >
-                    <div className="sh-card-icon">📋</div>
-                    <div className="sh-card-body">
-                      <div className="sh-card-type">{t.questions?.length ?? 0} questão(ões) · {done ? 'Realizado' : 'Uma tentativa'}</div>
-                      <div className="sh-card-title">{t.title}</div>
-                      {result && (
-                        <div className="sh-card-score sh-card-score-test">
-                          Nota: {result.grade}/10 · {result.score}/{result.total} acertos
-                        </div>
-                      )}
-                    </div>
-                    <div className="sh-card-arrow">{done ? '✓' : '→'}</div>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
-        {totalItems === 0 && (
-          <div className="sh-empty">
-            <div className="sh-empty-icon">📭</div>
-            <div className="sh-empty-title">Nenhum conteúdo ainda</div>
-            <p>Sua professora ainda não adicionou conteúdos para você. Volte em breve!</p>
+                        <div className="sh-card-title">{t.title}</div>
+                        {result && (
+                          <div className="sh-card-score sh-card-score-test">
+                            Nota: {result.grade}/10 · {result.score}/{result.total} acertos
+                          </div>
+                        )}
+                      </div>
+                      <div className="sh-card-arrow">{done ? '✓' : '→'}</div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
       </div>
