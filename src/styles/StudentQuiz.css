@@ -29,7 +29,7 @@
 /* ── Header ────────────────────────────────────────────── */
 .sq-header { margin-bottom: 28px; }
 .sq-quiz-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 22px; font-weight: 700;
   color: var(--ink); letter-spacing: -0.5px;
   margin-bottom: 14px;
@@ -177,7 +177,7 @@
 }
 .sq-finished-icon { font-size: 56px; margin-bottom: 16px; }
 .sq-finished h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 32px; font-weight: 700;
   color: var(--ink); letter-spacing: -0.8px;
   margin-bottom: 8px;
@@ -189,7 +189,7 @@
   margin-bottom: 16px;
 }
 .sq-score-num {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 56px; font-weight: 700; color: var(--sage); line-height: 1;
 }
 .sq-score-total { font-size: 20px; color: var(--muted); }

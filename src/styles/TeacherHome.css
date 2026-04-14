@@ -32,7 +32,7 @@
   margin-bottom: 36px;
 }
 .th-header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.8px;
@@ -55,7 +55,7 @@
 }
 .th-stat-icon { font-size: 24px; margin-bottom: 12px; }
 .th-stat-num {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: var(--ink);
@@ -71,7 +71,7 @@
   margin-bottom: 16px;
 }
 .th-section-header h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 20px;
   font-weight: 700;
   color: var(--ink);
@@ -117,7 +117,7 @@
 .tstudents-root { padding: 48px; }
 .tstudents-header { margin-bottom: 32px; }
 .tstudents-header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 32px; font-weight: 700;
   letter-spacing: -0.8px; color: var(--ink);
   margin-bottom: 6px;
@@ -220,7 +220,7 @@
   font-size: 18px; font-weight: 600; flex-shrink: 0;
 }
 .tsp-student-info h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 28px; font-weight: 700;
   letter-spacing: -0.5px; color: var(--ink);
   margin-bottom: 6px;
