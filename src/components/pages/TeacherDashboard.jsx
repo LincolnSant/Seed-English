@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useTeacherData } from '../../hooks/useTeacherData';
 import TeacherSidebar        from '../teacher/TeacherSidebar';
 import TeacherHome           from '../teacher/TeacherHome';
+import TeacherFeed           from '../teacher/TeacherFeed';
 import TeacherStudents       from '../teacher/TeacherStudents';
 import TeacherStudentProfile from '../teacher/TeacherStudentProfile';
 import { SkeletonTeacherHome } from '../ui/Skeleton';
@@ -11,7 +12,7 @@ import '../../styles/TeacherDashboard.css';
 
 export default function TeacherDashboard() {
   const navigate = useNavigate();
-  const { signOut } = useAuth();
+  const { profile, signOut } = useAuth();
   const {
     students, loading,
     saveContent, deleteContent,
@@ -55,6 +56,8 @@ export default function TeacherDashboard() {
             onUpdateLevel={(l)  => updateLevel(currentStudent.id, l)}
           />
         );
+      case 'feed':
+        return <TeacherFeed teacherId={profile?.id} />;
       default:
         return <TeacherHome students={students} onGoStudents={() => setSection('students')} onOpenStudent={openStudent} />;
     }

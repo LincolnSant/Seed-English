@@ -3,3 +3,34 @@
   background: #F7F3EE;
   font-family: 'DM Sans', sans-serif;
 }
+
+/* ── Main tab bar ──────────────────────────────────────── */
+.sd-main-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,.08);
+  border-radius: 100px;
+  padding: 3px;
+}
+.sd-main-tab {
+  padding: 6px 18px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  color: rgba(247,243,238,.6);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+}
+.sd-main-tab.active {
+  background: #fff;
+  color: #1A1612;
+}
+.sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.9); }
+
+@media (max-width: 768px) {
+  .sd-main-tabs { gap: 2px; }
+  .sd-main-tab  { padding: 6px 12px; font-size: 12px; }
+}

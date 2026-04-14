@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useStudentData } from '../../hooks/useStudentData';
+import StudentFeed    from '../student/StudentFeed';
 import StudentHome    from '../student/StudentHome';
 import StudentContent from '../student/StudentContent';
 import StudentQuiz    from '../student/StudentQuiz';
@@ -19,6 +20,7 @@ export default function StudentDashboard() {
     hasCompletedTest, getTestResult,
   } = useStudentData(profile?.id);
 
+  const [mainTab, setMainTab] = useState('feed'); // 'feed' | 'study'
   const [section,  setSection]  = useState('home');
   const [selected, setSelected] = useState(null);
 
@@ -37,9 +39,36 @@ export default function StudentDashboard() {
     contents, quizzes, tests, homeworkResults, testResults,
   };
 
+  // Inside content/quiz/test — no tab bar
+  if (section === 'content') return <StudentContent content={selected} onBack={goHome} />;
+  if (section === 'quiz')    return <StudentQuiz quiz={selected} onBack={goHome} onComplete={saveHomeworkResult} />;
+  if (section === 'test')    return <StudentTest test={selected} onBack={goHome} onComplete={saveTestResult} existingResult={getTestResult(selected?.id)} />;
+
   return (
     <div className="sd-root">
-      {section === 'home' && (
+      {/* Top nav with two main tabs */}
+      <header className="sh-topbar">
+        <div className="sh-logo">Seed <span>English</span></div>
+        <div className="sd-main-tabs">
+          <button className={`sd-main-tab ${mainTab === 'feed' ? 'active' : ''}`} onClick={() => setMainTab('feed')}>
+            Feed
+          </button>
+          <button className={`sd-main-tab ${mainTab === 'study' ? 'active' : ''}`} onClick={() => setMainTab('study')}>
+            Estudar
+          </button>
+        </div>
+        <div className="sh-topbar-right">
+          <div className="sh-user">
+            <div className="sh-avatar">{student.initials}</div>
+            <span>{student.name}</span>
+          </div>
+          <button className="sh-logout" onClick={handleLogout}>Sair</button>
+        </div>
+      </header>
+
+      {mainTab === 'feed' ? (
+        <StudentFeed student={student} onLogout={handleLogout} hideTopbar />
+      ) : (
         <StudentHome
           student={student}
           onOpenContent={openContent}
@@ -48,18 +77,7 @@ export default function StudentDashboard() {
           onLogout={handleLogout}
           hasCompletedTest={hasCompletedTest}
           getTestResult={getTestResult}
-        />
-      )}
-      {section === 'content' && <StudentContent content={selected} onBack={goHome} />}
-      {section === 'quiz' && (
-        <StudentQuiz quiz={selected} onBack={goHome} onComplete={saveHomeworkResult} />
-      )}
-      {section === 'test' && (
-        <StudentTest
-          test={selected}
-          onBack={goHome}
-          onComplete={saveTestResult}
-          existingResult={getTestResult(selected?.id)}
+          hideTopbar
         />
       )}
     </div>

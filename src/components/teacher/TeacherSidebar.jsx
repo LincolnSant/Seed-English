@@ -3,6 +3,7 @@ import '../../styles/TeacherSidebar.css';
 const NAV = [
   { key: 'home',     icon: '⊞', label: 'Visão geral' },
   { key: 'students', icon: '👤', label: 'Alunos' },
+  { key: 'feed',     icon: '📢', label: 'Feed' },
 ];
 
 export default function TeacherSidebar({ active, onChange, onLogout }) {

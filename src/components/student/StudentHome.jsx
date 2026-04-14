@@ -10,7 +10,7 @@ const CONTENT_TYPE_LABEL = {
   music:     { icon: '🎵', label: 'Música' },
 };
 
-export default function StudentHome({
+export default function StudentHome({ hideTopbar = false,
   student, onOpenContent, onOpenQuiz, onOpenTest, onLogout,
   hasCompletedTest, getTestResult,
 }) {
@@ -35,7 +35,7 @@ export default function StudentHome({
 
   return (
     <div className="sh-root">
-      <header className="sh-topbar">
+      {!hideTopbar && <header className="sh-topbar">
         <div className="sh-logo">Seed <span>English</span></div>
         <div className="sh-topbar-right">
           <div className="sh-user">
@@ -44,7 +44,7 @@ export default function StudentHome({
           </div>
           <button className="sh-logout" onClick={onLogout}>Sair</button>
         </div>
-      </header>
+      </header>}
 
       <div className="sh-body">
         {/* Hero */}
