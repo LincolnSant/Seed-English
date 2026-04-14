@@ -67,3 +67,26 @@
   cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0;
 }
 .sc-done:hover { color: #1A1612; }
+
+.sc-pdf-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sc-pdf-wrap iframe {
+  width: 100%;
+  height: 600px;
+  border-radius: 12px;
+  border: 1px solid rgba(26,22,18,0.10);
+}
+.sc-pdf-link {
+  color: #5C7A5E;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+}
+.sc-pdf-link:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .sc-pdf-wrap iframe { height: 400px; }
+}
