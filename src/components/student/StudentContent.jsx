@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import '../../styles/StudentContent.css';
 
 const CONTENT_TYPE_LABEL = {
@@ -37,6 +38,7 @@ function getDriveEmbedUrl(url) {
 }
 
 export default function StudentContent({ content, onBack }) {
+  const [expanded, setExpanded] = useState(false);
   const meta   = CONTENT_TYPE_LABEL[content.type] ?? { icon: '📄', label: content.type };
   const ytId   = content.type === 'video' ? getYouTubeId(content.body) : null;
   const driveUrl = content.type === 'pdf'  ? getDriveEmbedUrl(content.body) : null;
@@ -68,15 +70,21 @@ export default function StudentContent({ content, onBack }) {
           {/* PDF via Google Drive embed */}
           {content.type === 'pdf' && driveUrl && (
             <div className="sc-pdf-wrap">
+              <div className="sc-pdf-toolbar">
+                <a href={content.body} target="_blank" rel="noreferrer" className="sc-pdf-link">
+                  📄 Abrir no Google Drive →
+                </a>
+                <button className="sc-pdf-expand" onClick={() => setExpanded(!expanded)}>
+                  {expanded ? '⤓ Recolher' : '⤢ Expandir'}
+                </button>
+              </div>
               <iframe
                 src={driveUrl}
                 title={content.title}
                 frameBorder="0"
                 allowFullScreen
+                className={expanded ? 'sc-pdf-iframe expanded' : 'sc-pdf-iframe'}
               />
-              <a href={content.body} target="_blank" rel="noreferrer" className="sc-pdf-link">
-                📄 Abrir no Google Drive →
-              </a>
             </div>
           )}
           {content.type === 'pdf' && !driveUrl && (
