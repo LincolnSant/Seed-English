@@ -89,8 +89,11 @@ export function useTeacherData() {
 
   // ── Level ─────────────────────────────────────────────
   async function updateLevel(studentId, level) {
+    // Atualiza local imediatamente pra evitar piscao
+    setStudents((prev) =>
+      prev.map((s) => s.id === studentId ? { ...s, level } : s)
+    );
     await supabase.from('profiles').update({ level }).eq('id', studentId);
-    await fetchStudents();
   }
 
   return { students, loading, saveContent, deleteContent, saveQuiz, deleteQuiz, updateLevel, refetch: fetchStudents };
