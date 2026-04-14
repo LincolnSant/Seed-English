@@ -282,3 +282,12 @@
   background: var(--sage-light);
   color: var(--sage);
 }
+
+/* ── Sub-tabs mobile ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .sh-subtabs { gap: 6px; }
+  .sh-subtab  { padding: 7px 12px; font-size: 12px; }
+
+  .sh-card       { padding: 14px 16px; }
+  .sh-card-title { font-size: 14px; }
+}

@@ -185,3 +185,27 @@
   .ef-question-header { flex-wrap: wrap; }
   .ef-question-type-row { flex-wrap: wrap; }
 }
+
+/* ── Mobile fixes for forms ────────────────────────────── */
+@media (max-width: 768px) {
+  .ef-form { padding: 16px; gap: 16px; }
+  .ef-form-title { font-size: 16px; }
+
+  .ef-type-grid { gap: 6px; }
+  .ef-type-btn  { padding: 7px 10px; font-size: 12px; }
+
+  .ef-question-block { padding: 14px; gap: 12px; }
+  .ef-question-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ef-question-type-row { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+  .ef-type-btn.small { flex: 1; text-align: center; }
+
+  .ef-tf-row { gap: 8px; }
+  .ef-tf-btn  { padding: 12px 8px; font-size: 13px; }
+
+  .ef-form-actions { flex-direction: column-reverse; gap: 8px; }
+  .ef-btn-cancel,
+  .ef-btn-save { width: 100%; text-align: center; padding: 12px; }
+
+  .ef-add-question { width: 100%; text-align: center; }
+  .ef-hint-banner  { font-size: 12px; }
+}

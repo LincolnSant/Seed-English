@@ -372,3 +372,28 @@
   transition: color .2s;
 }
 .tf-remove-video:hover { color: #C0392B; }
+
+/* ── Mobile feed fixes ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .tf-root { padding: 16px; }
+  .tf-header h1 { font-size: 22px; }
+
+  .tf-compose-twitter { padding: 14px; gap: 10px; }
+  .tf-compose-avatar  { width: 34px; height: 34px; font-size: 12px; }
+  .tf-compose-textarea { font-size: 15px; }
+
+  .tf-toolbar-btn { width: 32px; height: 32px; font-size: 16px; }
+  .tf-post-btn    { padding: 8px 18px; font-size: 13px; }
+
+  .fp-root { border-radius: 12px; }
+  .fp-video-wrap { border-radius: 0; }
+  .fp-image { border-radius: 0; }
+  .fp-header { padding: 12px 14px 10px; }
+  .fp-text   { padding: 0 14px 12px; font-size: 14px; }
+  .fp-caption { padding: 4px 14px 12px; }
+  .fp-actions { padding: 6px 10px 10px; }
+  .fp-comments { padding: 10px 14px 14px; }
+
+  .feed-body { padding: 16px 12px 80px; }
+  .feed-header h2 { font-size: 20px; }
+}

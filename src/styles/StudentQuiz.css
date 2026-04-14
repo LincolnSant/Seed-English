@@ -203,3 +203,22 @@
   border-radius: 4px; transition: width .8s ease;
 }
 .sq-finished-actions { display: flex; justify-content: center; }
+
+/* ── Mobile fixes ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sq-root  { padding: 24px 16px 60px; }
+  .sq-inner { max-width: 100%; }
+
+  .sq-card           { padding: 20px 16px; }
+  .sq-question-prompt { font-size: 17px; }
+
+  .sq-option { padding: 12px 14px; font-size: 14px; }
+  .sq-tf-options { gap: 10px; }
+  .sq-tf-btn { padding: 14px 10px; font-size: 14px; }
+
+  .sq-finished { padding: 32px 16px; }
+  .sq-score-num { font-size: 44px; }
+
+  .sq-actions { justify-content: stretch; }
+  .sq-btn-primary { width: 100%; text-align: center; }
+}

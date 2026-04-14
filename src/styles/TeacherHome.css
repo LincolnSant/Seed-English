@@ -459,3 +459,28 @@
   background: #FDF0E8; border: 1px solid #F5C4A0;
   border-radius: 10px; padding: 10px 14px;
 }
+
+/* ── Mobile fixes for tabs and forms ──────────────────── */
+@media (max-width: 768px) {
+  /* Student profile tabs — scroll horizontally */
+  .tsp-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tsp-tabs::-webkit-scrollbar { display: none; }
+  .tsp-tab { padding: 10px 14px; font-size: 13px; white-space: nowrap; }
+
+  /* Performance rows */
+  .tsp-perf-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .tsp-perf-scores { flex-direction: row; }
+
+  /* Test result */
+  .tsp-test-result { flex-wrap: wrap; }
+
+  /* Content cards */
+  .tsp-content-card { padding: 14px 16px; }
+  .tsp-content-top  { flex-wrap: wrap; gap: 8px; }
+  .tsp-card-actions { flex-wrap: wrap; gap: 4px; }
+}
