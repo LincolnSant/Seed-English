@@ -26,7 +26,7 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
   const liked        = post.post_likes?.some((l) => l.user_id === currentUserId);
   const likeCount    = post.post_likes?.length ?? 0;
   const commentCount = post.post_comments?.length ?? 0;
-  const ytId         = post.type === 'video' ? getYouTubeId(post.content) : null;
+  const ytId         = (post.type === 'video' || post.type === 'mixed') ? getYouTubeId(post.content) : null;
 
   async function handleComment(e) {
     e.preventDefault();
@@ -51,34 +51,31 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
         )}
       </div>
 
-      {/* Text content — always shown if exists */}
+      {/* Text */}
       {post.type === 'text' && post.content && (
         <p className="fp-text">{post.content}</p>
       )}
 
-      {/* Image */}
-      {post.type === 'image' && (
-        <>
-          <img src={post.content} alt="Post" className="fp-image" />
-          {post.caption && <p className="fp-caption">{post.caption}</p>}
-        </>
+      {/* Image — shown for image and mixed posts */}
+      {(post.type === 'image' || post.type === 'mixed') && post.image_url && (
+        <img src={post.image_url} alt="Post" className="fp-image" />
+      )}
+      {post.type === 'image' && !post.image_url && post.content && (
+        <img src={post.content} alt="Post" className="fp-image" />
       )}
 
-      {/* Video */}
-      {post.type === 'video' && ytId && (
-        <>
-          <div className="fp-video-wrap">
-            <iframe src={`https://www.youtube.com/embed/${ytId}`} title="Video" allowFullScreen frameBorder="0" />
-          </div>
-          {post.caption && <p className="fp-caption">{post.caption}</p>}
-        </>
+      {/* Video — shown for video and mixed posts */}
+      {(post.type === 'video' || post.type === 'mixed') && ytId && (
+        <div className="fp-video-wrap">
+          <iframe src={`https://www.youtube.com/embed/${ytId}`} title="Video" allowFullScreen frameBorder="0" />
+        </div>
       )}
-      {post.type === 'video' && !ytId && (
-        <>
-          <a href={post.content} target="_blank" rel="noreferrer" className="fp-link">🎬 Assistir vídeo →</a>
-          {post.caption && <p className="fp-caption">{post.caption}</p>}
-        </>
+      {(post.type === 'video' || post.type === 'mixed') && !ytId && post.content && (
+        <a href={post.content} target="_blank" rel="noreferrer" className="fp-link">🎬 Assistir vídeo →</a>
       )}
+
+      {/* Caption */}
+      {post.caption && <p className="fp-caption">{post.caption}</p>}
 
       {/* Actions */}
       <div className="fp-actions">
