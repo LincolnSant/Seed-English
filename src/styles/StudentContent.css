@@ -75,9 +75,12 @@
 }
 .sc-pdf-wrap iframe {
   width: 100%;
-  height: 600px;
+  height: 80vh;
+  min-height: 500px;
   border-radius: 12px;
   border: 1px solid rgba(26,22,18,0.10);
+  resize: vertical;
+  overflow: auto;
 }
 .sc-pdf-link {
   color: #5C7A5E;
@@ -88,5 +91,5 @@
 .sc-pdf-link:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
-  .sc-pdf-wrap iframe { height: 400px; }
+  .sc-pdf-wrap iframe { height: 70vh; min-height: 400px; }
 }
