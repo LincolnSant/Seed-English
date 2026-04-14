@@ -63,6 +63,7 @@ export default function TeacherStudentProfile({
                   <button
                     className={`level-dropdown-btn level-${(student.level ?? 'sem').toLowerCase()}`}
                     onClick={() => setLevelOpen(!levelOpen)}
+                    onBlur={() => setTimeout(() => setLevelOpen(false), 150)}
                     disabled={savingLevel}
                   >
                     {student.level ?? 'Sem nível'}
@@ -70,12 +71,12 @@ export default function TeacherStudentProfile({
                   </button>
                   {levelOpen && (
                     <div className="level-dropdown-menu">
-                      <button onClick={() => handleLevelChange('')}>Sem nível</button>
+                      <button onMouseDown={(e) => { e.preventDefault(); handleLevelChange(''); }}>Sem nível</button>
                       {LEVELS.map((l) => (
                         <button
                           key={l}
                           className={student.level === l ? 'active' : ''}
-                          onClick={() => handleLevelChange(l)}
+                          onMouseDown={(e) => { e.preventDefault(); handleLevelChange(l); }}
                         >
                           {l}
                         </button>
