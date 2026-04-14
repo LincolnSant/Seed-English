@@ -24,14 +24,18 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
   }
 
   async function handleNext() {
+    const currentCorrect = isCorrect(question, selected);
+    const allResults     = [...results, currentCorrect];
+
     if (current + 1 >= total) {
-      const score = [...results, isCorrect(question, selected)].filter(Boolean).length;
+      const score = allResults.filter(Boolean).length;
       setFinished(true);
       if (!saved) {
         setSaved(true);
-        await onComplete?.(quiz.id, score, total);
+        await onComplete?.(quiz.id, score, allResults.length);
       }
     } else {
+      setResults(allResults);
       setCurrent((p) => p + 1);
       setSelected(null);
       setSubmitted(false);

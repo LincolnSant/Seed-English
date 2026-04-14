@@ -55,7 +55,8 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
   }
 
   async function handleNext() {
-    const allResults = [...results, isCorrect(question, selected)];
+    const currentCorrect = isCorrect(question, selected);
+    const allResults     = [...results, currentCorrect];
 
     if (current + 1 >= total) {
       const score = allResults.filter(Boolean).length;
@@ -63,9 +64,10 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
       setFinished(true);
       if (!saved) {
         setSaved(true);
-        await onComplete(test.id, score, total);
+        await onComplete(test.id, score, allResults.length);
       }
     } else {
+      setResults(allResults);
       setCurrent((p) => p + 1);
       setSelected(null);
       setSubmitted(false);
