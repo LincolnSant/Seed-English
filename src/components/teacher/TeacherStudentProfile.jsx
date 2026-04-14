@@ -55,7 +55,7 @@ export default function TeacherStudentProfile({
             <h1>{student.name}</h1>
             <div className="tsp-meta">
               {/* Level selector */}
-              <select
+              <div className="level-selector-wrap"><span className="level-selector-label">Nível:</span><select
                 className={`level-badge level-${(student.level ?? '').toLowerCase()} level-select`}
                 value={student.level ?? ''}
                 onChange={(e) => handleLevelChange(e.target.value)}
@@ -63,7 +63,7 @@ export default function TeacherStudentProfile({
               >
                 <option value="">Sem nível</option>
                 {LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
-              </select>
+              </select></div>
               <span>{student.email}</span>
             </div>
           </div>
