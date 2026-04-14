@@ -39,6 +39,13 @@ function getDriveEmbedUrl(url) {
 
 export default function StudentContent({ content, onBack }) {
   const [expanded, setExpanded] = useState(false);
+
+  function handlePdfMouseEnter() {
+    document.body.style.overflow = 'hidden';
+  }
+  function handlePdfMouseLeave() {
+    document.body.style.overflow = '';
+  }
   const meta   = CONTENT_TYPE_LABEL[content.type] ?? { icon: '📄', label: content.type };
   const ytId   = content.type === 'video' ? getYouTubeId(content.body) : null;
   const driveUrl = content.type === 'pdf'  ? getDriveEmbedUrl(content.body) : null;
@@ -84,6 +91,8 @@ export default function StudentContent({ content, onBack }) {
                 frameBorder="0"
                 allowFullScreen
                 className={expanded ? 'sc-pdf-iframe expanded' : 'sc-pdf-iframe'}
+                onMouseEnter={handlePdfMouseEnter}
+                onMouseLeave={handlePdfMouseLeave}
               />
             </div>
           )}
