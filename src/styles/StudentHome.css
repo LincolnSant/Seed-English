@@ -11,6 +11,9 @@
 
 /* ── Top bar ───────────────────────────────────────────── */
 .sh-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -160,7 +163,10 @@
 
 /* ── Mobile fixes ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .sh-topbar { padding: 16px 20px; }
+  .sh-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50; padding: 16px 20px; }
   .sh-topbar .sh-user span { display: none; }
   .sh-body { padding: 32px 16px 60px; }
   .sh-hero { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -234,4 +240,45 @@
 @media (max-width: 768px) {
   .sh-tabs { gap: 0; overflow-x: auto; }
   .sh-tab  { padding: 10px 14px; font-size: 13px; }
+}
+
+/* ── Sub-tabs (Classes) ────────────────────────────────── */
+.sh-subtabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.sh-subtab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+}
+.sh-subtab:hover { border-color: var(--sage); color: var(--sage); }
+.sh-subtab.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  font-weight: 500;
+}
+.sh-subtab-count {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255,255,255,.2);
+  padding: 1px 6px;
+  border-radius: 100px;
+}
+.sh-subtab:not(.active) .sh-subtab-count {
+  background: var(--sage-light);
+  color: var(--sage);
 }
