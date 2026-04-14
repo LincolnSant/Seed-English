@@ -7,6 +7,7 @@ import TeacherHome           from '../teacher/TeacherHome';
 import TeacherStudents       from '../teacher/TeacherStudents';
 import TeacherStudentProfile from '../teacher/TeacherStudentProfile';
 import '../../styles/TeacherDashboard.css';
+import { SkeletonTeacherHome } from '../ui/Skeleton';
 
 export default function TeacherDashboard() {
   const navigate = useNavigate();
@@ -31,7 +32,12 @@ export default function TeacherDashboard() {
     ? students.find((s) => s.id === selectedStudent.id) ?? selectedStudent
     : null;
 
-  if (loading) return <div className="app-loading">Carregando...</div>;
+  if (loading) return (
+    <div className="td-root">
+      <div style={{ width: 230, minWidth: 230, background: '#1A1612' }} />
+      <main className="td-main"><SkeletonTeacherHome /></main>
+    </div>
+  );
 
   function renderSection() {
     switch (section) {

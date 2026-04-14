@@ -1,0 +1,110 @@
+/* ── Skeleton base ─────────────────────────────────────── */
+.skeleton-block {
+  background: linear-gradient(
+    90deg,
+    rgba(26,22,18,0.06) 25%,
+    rgba(26,22,18,0.10) 50%,
+    rgba(26,22,18,0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Student skeleton ──────────────────────────────────── */
+.sk-student {
+  min-height: 100vh;
+  background: #F7F3EE;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.sk-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: #1A1612;
+}
+
+.sk-topbar .skeleton-block {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.08) 25%,
+    rgba(255,255,255,0.14) 50%,
+    rgba(255,255,255,0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.sk-body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.sk-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.sk-stats {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(26,22,18,0.10);
+  border-radius: 16px;
+  padding: 20px 32px;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.sk-stat { flex: 1; }
+
+.sk-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid rgba(26,22,18,0.10);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+}
+
+/* ── Teacher skeleton ──────────────────────────────────── */
+.sk-teacher {
+  padding: 48px;
+  background: #F7F3EE;
+  min-height: 100vh;
+}
+
+.sk-teacher-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.sk-teacher-stat {
+  background: #fff;
+  border: 1px solid rgba(26,22,18,0.10);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.sk-student-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid rgba(26,22,18,0.10);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}

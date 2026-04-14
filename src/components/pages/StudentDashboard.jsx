@@ -6,6 +6,7 @@ import StudentHome    from '../student/StudentHome';
 import StudentContent from '../student/StudentContent';
 import StudentQuiz    from '../student/StudentQuiz';
 import '../../styles/StudentDashboard.css';
+import { SkeletonStudentHome } from '../ui/Skeleton';
 
 export default function StudentDashboard() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function StudentDashboard() {
     navigate('/login');
   }
 
-  if (loading) return <div className="app-loading">Carregando...</div>;
+  if (loading) return <SkeletonStudentHome />;
 
   const student = {
     ...profile,
