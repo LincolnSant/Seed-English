@@ -497,3 +497,66 @@
   .lp-cta         { padding: 60px 24px; }
   .lp-footer      { flex-direction: column; gap: 12px; text-align: center; }
 }
+
+/* ── btn-primary como link ─────────────────────────────── */
+.btn-primary-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* ── Como funciona / Steps ─────────────────────────────── */
+.lp-how {
+  padding: 100px 48px;
+  background: var(--cream);
+}
+.lp-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 0;
+  flex-wrap: wrap;
+}
+.lp-step {
+  flex: 1;
+  min-width: 180px;
+}
+.lp-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--sage-light);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.lp-step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.lp-step-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.lp-step-arrow {
+  font-size: 24px;
+  color: var(--sage);
+  padding-top: 40px;
+  flex-shrink: 0;
+}
+
+/* ── CTA link ──────────────────────────────────────────── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .lp-how { padding: 60px 24px; }
+  .lp-step-arrow { display: none; }
+  .lp-steps { gap: 32px; }
+}

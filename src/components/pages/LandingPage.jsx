@@ -1,21 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import '../../styles/LandingPage.css';
 
+const WHATSAPP = 'https://wa.me/5511970618992?text=Olá%20Lydia!%20Tenho%20interesse%20nas%20suas%20aulas%20de%20inglês.';
+
 export default function LandingPage() {
   const navigate = useNavigate();
+
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   return (
     <div className="lp-root">
       <nav className="lp-nav">
         <div className="lp-logo">english<span>flow</span></div>
         <div className="lp-nav-links">
-          <a href="#">Como funciona</a>
-          <a href="#">Conteúdos</a>
-          <a href="#">Planos</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdos</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
           <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
         </div>
       </nav>
 
+      {/* HERO */}
       <section className="lp-hero">
         <div className="lp-hero-left">
           <div className="lp-tag">Plataforma de inglês</div>
@@ -25,8 +32,12 @@ export default function LandingPage() {
             da sua professora — tudo em um só lugar.
           </p>
           <div className="lp-actions">
-            <button className="btn-primary" onClick={() => navigate('/cadastro')}>Começar agora →</button>
-            <button className="btn-secondary">Ver como funciona</button>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-primary btn-primary-link">
+              Falar com a professora →
+            </a>
+            <button className="btn-secondary" onClick={() => scrollTo('como-funciona')}>
+              Ver como funciona
+            </button>
           </div>
           <div className="lp-stats">
             <div className="stat-item">
@@ -77,7 +88,33 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="lp-features">
+      {/* COMO FUNCIONA */}
+      <section className="lp-how" id="como-funciona">
+        <div className="section-label">Como funciona</div>
+        <div className="section-title">Simples, direto e <em>personalizado pra você</em></div>
+        <div className="lp-steps">
+          <div className="lp-step">
+            <div className="lp-step-num">01</div>
+            <div className="lp-step-title">Fale com a professora</div>
+            <p className="lp-step-desc">Entre em contato pelo WhatsApp e conheça os planos disponíveis.</p>
+          </div>
+          <div className="lp-step-arrow">→</div>
+          <div className="lp-step">
+            <div className="lp-step-num">02</div>
+            <div className="lp-step-title">Crie sua conta</div>
+            <p className="lp-step-desc">Receba seu código de acesso e crie sua conta na plataforma.</p>
+          </div>
+          <div className="lp-step-arrow">→</div>
+          <div className="lp-step">
+            <div className="lp-step-num">03</div>
+            <div className="lp-step-title">Comece a aprender</div>
+            <p className="lp-step-desc">Acesse seus conteúdos e quiz personalizados a qualquer hora.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section className="lp-features" id="conteudos">
         <div className="section-label">O que você encontra aqui</div>
         <div className="section-title">Tudo que você precisa para <em>evoluir de verdade</em></div>
         <div className="features-grid">
@@ -95,12 +132,17 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="lp-cta">
+      {/* CTA */}
+      <section className="lp-cta" id="contato">
         <h2>Pronto para<br /><em>evoluir no inglês?</em></h2>
-        <p>Entre em contato com a professora e crie sua conta hoje.</p>
+        <p>Fale com a professora e comece sua jornada hoje.</p>
         <div className="cta-actions">
-          <button className="btn-cta" onClick={() => navigate('/cadastro')}>Criar minha conta</button>
-          <button className="btn-cta-outline">Falar com a professora</button>
+          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-cta">
+            Falar pelo WhatsApp →
+          </a>
+          <button className="btn-cta-outline" onClick={() => navigate('/login')}>
+            Já tenho conta
+          </button>
         </div>
       </section>
 

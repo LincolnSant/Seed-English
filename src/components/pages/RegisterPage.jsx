@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import '../../styles/RegisterPage.css';
 
+const WHATSAPP = 'https://wa.me/5511970618992?text=Olá%20Lydia!%20Tenho%20interesse%20nas%20suas%20aulas%20de%20inglês.';
+
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [name,     setName]     = useState('');
   const [email,    setEmail]    = useState('');
   const [password, setPassword] = useState('');
   const [confirm,  setConfirm]  = useState('');
+  const [code,     setCode]     = useState('');
   const [loading,  setLoading]  = useState(false);
   const [error,    setError]    = useState('');
 
@@ -27,6 +30,20 @@ export default function RegisterPage() {
 
     setLoading(true);
 
+    // 1. Verifica código de convite
+    const { data: invite, error: inviteError } = await supabase
+      .from('invite_codes')
+      .select('id, active')
+      .eq('code', code.trim().toUpperCase())
+      .single();
+
+    if (inviteError || !invite || !invite.active) {
+      setError('Código de convite inválido. Fale com a professora para obter o seu.');
+      setLoading(false);
+      return;
+    }
+
+    // 2. Cria o usuário
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -41,7 +58,7 @@ export default function RegisterPage() {
       return;
     }
 
-    // Atualiza o perfil com o nome (trigger já criou com role=student)
+    // 3. Atualiza perfil
     if (data.user) {
       await supabase
         .from('profiles')
@@ -77,6 +94,12 @@ export default function RegisterPage() {
               <span>Acompanhe sua evolução a cada aula</span>
             </div>
           </div>
+          <div className="rp-whatsapp">
+            Não tem código?{' '}
+            <a href={WHATSAPP} target="_blank" rel="noreferrer">
+              Fale com a professora →
+            </a>
+          </div>
         </div>
       </div>
 
@@ -84,7 +107,7 @@ export default function RegisterPage() {
         <div className="rp-form-wrap">
           <div className="rp-form-header">
             <h2>Criar minha conta</h2>
-            <p>Preencha os dados abaixo para começar</p>
+            <p>Preencha os dados e insira seu código de convite</p>
           </div>
 
           <form className="rp-form" onSubmit={handleSubmit} noValidate>
@@ -120,13 +143,21 @@ export default function RegisterPage() {
                 required autoComplete="new-password"
               />
             </div>
+            <div className="form-group">
+              <label htmlFor="code">Código de convite</label>
+              <input
+                id="code" type="text" placeholder="Ex: LYDIA2026"
+                value={code} onChange={(e) => setCode(e.target.value)}
+                required style={{ textTransform: 'uppercase', letterSpacing: 2 }}
+              />
+            </div>
 
             {error && <div className="form-error" role="alert">{error}</div>}
 
             <button
               type="submit"
               className="btn-login"
-              disabled={loading || !name || !email || !password || !confirm}
+              disabled={loading || !name || !email || !password || !confirm || !code}
             >
               {loading ? <span className="btn-spinner" /> : 'Criar conta →'}
             </button>
