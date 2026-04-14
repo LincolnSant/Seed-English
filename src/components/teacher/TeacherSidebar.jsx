@@ -8,7 +8,7 @@ const NAV = [
 export default function TeacherSidebar({ active, onChange, onLogout }) {
   return (
     <aside className="ts-root">
-      <div className="ts-logo">english<span>flow</span></div>
+      <div className="ts-logo">Seed <span>English</span></div>
 
       <nav className="ts-nav">
         {NAV.map((item) => (
@@ -27,7 +27,7 @@ export default function TeacherSidebar({ active, onChange, onLogout }) {
         <div className="ts-profile">
           <div className="ts-avatar">LP</div>
           <div>
-            <div className="ts-profile-name">Lydia Andery</div>
+            <div className="ts-profile-name">Lydia Pereira</div>
             <div className="ts-profile-role">Professora</div>
           </div>
         </div>

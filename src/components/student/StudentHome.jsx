@@ -21,7 +21,7 @@ export default function StudentHome({ student, onOpenContent, onOpenQuiz, onLogo
 
       {/* Top bar */}
       <header className="sh-topbar">
-        <div className="sh-logo">english<span>flow</span></div>
+        <div className="sh-logo">Seed <span>English</span></div>
         <div className="sh-topbar-right">
           <div className="sh-user">
             <div className="sh-avatar">{student.initials}</div>

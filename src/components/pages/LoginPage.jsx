@@ -46,7 +46,7 @@ export default function LoginPage() {
         <div className="login-left-inner">
           <button className="login-back" onClick={() => navigate('/')}>← Voltar</button>
           <div className="login-brand">
-            <div className="login-logo">english<span>flow</span></div>
+            <div className="login-logo">Seed <span>English</span></div>
             <p className="login-brand-desc">
               Sua jornada no inglês começa aqui. Acesse sua conta e continue de onde parou.
             </p>
