@@ -11,3 +11,8 @@
   overflow-y: auto;
   min-width: 0;
 }
+
+@media (max-width: 768px) {
+  .td-root { flex-direction: column; }
+  .td-main { padding-bottom: 80px; }
+}

@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/LandingPage.css';
 
-const WHATSAPP = 'https://wa.me/5511970618992?text=Olá%20Lydia!%20Tenho%20interesse%20nas%20suas%20aulas%20de%20inglês.';
+const WHATSAPP = 'https://wa.me/5511970618992?text=Ol%C3%A1%20Lydia!%20Tenho%20interesse%20nas%20suas%20aulas%20de%20ingl%C3%AAs.';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   function scrollTo(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenu(false);
   }
 
   return (
@@ -20,9 +23,21 @@ export default function LandingPage() {
           <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
           <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
         </div>
+        <button className="lp-mobile-menu-btn" onClick={() => setMobileMenu(!mobileMenu)}>
+          {mobileMenu ? '✕' : '☰'}
+        </button>
       </nav>
 
-      {/* HERO */}
+      {mobileMenu && (
+        <div className="lp-mobile-menu">
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdos</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
+          <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
+          <button className="btn-secondary" onClick={() => navigate('/cadastro')}>Criar conta</button>
+        </div>
+      )}
+
       <section className="lp-hero">
         <div className="lp-hero-left">
           <div className="lp-tag">Plataforma de inglês</div>
@@ -88,7 +103,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* COMO FUNCIONA */}
       <section className="lp-how" id="como-funciona">
         <div className="section-label">Como funciona</div>
         <div className="section-title">Simples, direto e <em>personalizado pra você</em></div>
@@ -113,7 +127,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* FEATURES */}
       <section className="lp-features" id="conteudos">
         <div className="section-label">O que você encontra aqui</div>
         <div className="section-title">Tudo que você precisa para <em>evoluir de verdade</em></div>
@@ -132,7 +145,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="lp-cta" id="contato">
         <h2>Pronto para<br /><em>evoluir no inglês?</em></h2>
         <p>Fale com a professora e comece sua jornada hoje.</p>

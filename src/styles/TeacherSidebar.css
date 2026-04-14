@@ -93,3 +93,24 @@
   transition: border-color .2s, color .2s;
 }
 .ts-logout:hover { border-color: rgba(255,255,255,.3); color: var(--cream); }
+
+@media (max-width: 768px) {
+  .ts-root {
+    width: 100%;
+    min-width: unset;
+    min-height: unset;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+    position: fixed;
+    bottom: 0; top: unset;
+    border-top: 1px solid rgba(255,255,255,.08);
+    z-index: 100;
+    height: 64px;
+  }
+  .ts-logo { display: none; }
+  .ts-nav { flex-direction: row; gap: 0; flex: 1; justify-content: center; }
+  .ts-nav-item { flex-direction: column; gap: 2px; padding: 8px 16px; font-size: 10px; border-radius: 8px; }
+  .ts-nav-icon { font-size: 20px; }
+  .ts-bottom { display: none; }
+}

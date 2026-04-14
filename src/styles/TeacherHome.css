@@ -398,3 +398,15 @@
 }
 .level-dropdown-menu button:hover { background: var(--sage-light); color: var(--sage); }
 .level-dropdown-menu button.active { background: var(--sage-light); color: var(--sage); font-weight: 500; }
+
+@media (max-width: 768px) {
+  .th-root { padding: 24px 16px; }
+  .th-stats { grid-template-columns: 1fr; gap: 10px; }
+  .th-header h1 { font-size: 24px; }
+  .tstudents-root { padding: 24px 16px; }
+  .tstudents-filters { flex-direction: column; align-items: stretch; }
+  .tstudents-search { width: 100%; }
+  .tstudents-row-right span:not(.tstudents-arrow) { display: none; }
+  .tsp-root { padding: 24px 16px; }
+  .tsp-student-info { flex-wrap: wrap; }
+}

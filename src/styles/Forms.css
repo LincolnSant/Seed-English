@@ -177,3 +177,11 @@
   cursor: pointer; transition: background .2s;
 }
 .ef-btn-save:hover { background: var(--sage); }
+
+@media (max-width: 768px) {
+  .ef-form { padding: 20px 16px; }
+  .ef-type-grid { gap: 6px; }
+  .ef-type-btn { padding: 7px 10px; font-size: 12px; }
+  .ef-question-header { flex-wrap: wrap; }
+  .ef-question-type-row { flex-wrap: wrap; }
+}
