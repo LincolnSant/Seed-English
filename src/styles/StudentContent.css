@@ -72,6 +72,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overscroll-behavior: contain;
 }
 .sc-pdf-wrap iframe {
   width: 100%;
@@ -81,6 +82,8 @@
   border: 1px solid rgba(26,22,18,0.10);
   resize: vertical;
   overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 .sc-pdf-link {
   color: #5C7A5E;
