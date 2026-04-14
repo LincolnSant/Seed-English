@@ -5,14 +5,15 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
   const [current,   setCurrent]   = useState(0);
   const [selected,  setSelected]  = useState(null);
   const [submitted, setSubmitted] = useState(false);
-  const [results,   setResults]   = useState([]);
+  const [results,   setResults]   = useState([]); // bool per question
   const [finished,  setFinished]  = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
   const [saved,     setSaved]     = useState(false);
 
-  const question = test.questions[current];
   const total    = test.questions.length;
+  const question = test.questions[current];
 
-  // Already completed
+  // ── Already completed ─────────────────────────────────
   if (existingResult) {
     const pct = Math.round((existingResult.score / existingResult.total) * 100);
     return (
@@ -49,14 +50,16 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
 
   function handleSubmit() {
     if (selected === null || selected === '') return;
-    const correct = isCorrect(question, selected);
-    setResults((prev) => [...prev, correct]);
+    setResults((prev) => [...prev, isCorrect(question, selected)]);
     setSubmitted(true);
   }
 
   async function handleNext() {
+    const allResults = [...results, isCorrect(question, selected)];
+
     if (current + 1 >= total) {
-      const score = [...results, isCorrect(question, selected)].filter(Boolean).length;
+      const score = allResults.filter(Boolean).length;
+      setFinalScore(score);
       setFinished(true);
       if (!saved) {
         setSaved(true);
@@ -69,10 +72,10 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
     }
   }
 
+  // ── Finished screen ───────────────────────────────────
   if (finished) {
-    const score = results.filter(Boolean).length;
-    const grade = parseFloat(((score / total) * 10).toFixed(1));
-    const pct   = Math.round((score / total) * 100);
+    const grade = parseFloat(((finalScore / total) * 10).toFixed(1));
+    const pct   = Math.round((finalScore / total) * 100);
     return (
       <div className="sq-root">
         <div className="sq-inner">
@@ -89,7 +92,7 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
               <div className="sq-score-bar" style={{ width: `${pct}%` }} />
             </div>
             <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>
-              {score}/{total} acertos
+              {finalScore}/{total} acertos
             </p>
             <div className="sq-finished-actions">
               <button className="sq-btn-primary" onClick={onBack}>← Voltar ao início</button>
@@ -100,10 +103,12 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
     );
   }
 
+  // ── Question screen ───────────────────────────────────
   return (
     <div className="sq-root">
       <div className="sq-inner">
         <button className="sq-back" onClick={onBack}>← Voltar ao início</button>
+
         <div className="sq-header">
           <div className="sq-quiz-title">{test.title}</div>
           <div className="sq-progress-row">
