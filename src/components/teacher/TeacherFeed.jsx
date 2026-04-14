@@ -1,29 +1,70 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useFeed }   from '../../hooks/useFeed';
 import FeedPost      from '../shared/FeedPost';
+import { supabase }  from '../../lib/supabase';
 import '../../styles/Feed.css';
 
-const POST_TYPES = [
-  { value: 'text',  label: '📝 Texto' },
-  { value: 'video', label: '🎬 Vídeo (YouTube)' },
-  { value: 'image', label: '🖼️ Imagem (link)' },
-];
+function getInitials(name) {
+  return (name ?? '').split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase();
+}
 
-export default function TeacherFeed({ teacherId }) {
+export default function TeacherFeed({ teacherId, teacherName }) {
   const { posts, loading, createPost, deletePost, toggleLike, addComment, deleteComment } = useFeed(teacherId);
 
-  const [type,       setType]       = useState('text');
-  const [content,    setContent]    = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [text,        setText]        = useState('');
+  const [caption,     setCaption]     = useState('');
+  const [videoUrl,    setVideoUrl]    = useState('');
+  const [mode,        setMode]        = useState('text'); // 'text' | 'image' | 'video'
+  const [imageFile,   setImageFile]   = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [submitting,  setSubmitting]  = useState(false);
+  const fileRef = useRef();
 
-  async function handlePost(e) {
-    e.preventDefault();
-    if (!content.trim()) return;
-    setSubmitting(true);
-    await createPost(type, content.trim());
-    setContent('');
-    setSubmitting(false);
+  function handleImageSelect(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
   }
+
+  function resetForm() {
+    setText(''); setCaption(''); setVideoUrl('');
+    setImageFile(null); setImagePreview(null);
+    setMode('text');
+  }
+
+  async function handlePost() {
+    if (submitting) return;
+    setSubmitting(true);
+
+    try {
+      if (mode === 'text') {
+        if (!text.trim()) return;
+        await createPost('text', text.trim(), null, null);
+
+      } else if (mode === 'image') {
+        if (!imageFile) return;
+        // Upload to Supabase Storage
+        const ext      = imageFile.name.split('.').pop();
+        const path     = `${teacherId}/${Date.now()}.${ext}`;
+        const { error } = await supabase.storage.from('post-images').upload(path, imageFile);
+        if (error) throw error;
+        const { data: { publicUrl } } = supabase.storage.from('post-images').getPublicUrl(path);
+        await createPost('image', publicUrl, caption.trim() || null, null);
+
+      } else if (mode === 'video') {
+        if (!videoUrl.trim()) return;
+        await createPost('video', videoUrl.trim(), caption.trim() || null, null);
+      }
+      resetForm();
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  const canPost = mode === 'text' ? text.trim().length > 0
+                : mode === 'image' ? !!imageFile
+                : videoUrl.trim().length > 0;
 
   return (
     <div className="tf-root">
@@ -32,45 +73,85 @@ export default function TeacherFeed({ teacherId }) {
         <p>Publique conteúdos para todos os seus alunos</p>
       </div>
 
-      {/* Compose */}
-      <form className="tf-compose" onSubmit={handlePost}>
-        <div className="tf-compose-type">
-          {POST_TYPES.map((t) => (
-            <button type="button" key={t.value}
-              className={`tf-type-btn ${type === t.value ? 'active' : ''}`}
-              onClick={() => setType(t.value)}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+      {/* Twitter-style compose */}
+      <div className="tf-compose-twitter">
+        <div className="tf-compose-avatar">{getInitials(teacherName)}</div>
+        <div className="tf-compose-right">
 
-        {type === 'text' ? (
+          {/* Text area always visible */}
           <textarea
-            className="tf-textarea"
-            placeholder="O que você quer compartilhar com seus alunos?"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows={4}
-            required
+            className="tf-compose-textarea"
+            placeholder="O que você quer compartilhar?"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows={3}
           />
-        ) : (
-          <input
-            className="tf-input"
-            type="url"
-            placeholder={type === 'video' ? 'https://youtube.com/watch?v=...' : 'https://link-da-imagem.com/foto.jpg'}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          />
-        )}
 
-        <div className="tf-compose-actions">
-          <button type="submit" className="tf-post-btn" disabled={submitting || !content.trim()}>
-            {submitting ? 'Publicando...' : 'Publicar'}
-          </button>
+          {/* Image preview */}
+          {mode === 'image' && imagePreview && (
+            <div className="tf-image-preview-wrap">
+              <img src={imagePreview} alt="preview" className="tf-image-preview" />
+              <button className="tf-remove-image" onClick={() => { setImageFile(null); setImagePreview(null); }}>✕</button>
+            </div>
+          )}
+
+          {/* Caption for image/video */}
+          {(mode === 'image' || mode === 'video') && (
+            <input
+              className="tf-caption-input"
+              type="text"
+              placeholder="Adicionar legenda (opcional)..."
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+            />
+          )}
+
+          {/* Video URL input */}
+          {mode === 'video' && (
+            <input
+              className="tf-caption-input"
+              type="url"
+              placeholder="Cole o link do YouTube aqui..."
+              value={videoUrl}
+              onChange={(e) => setVideoUrl(e.target.value)}
+            />
+          )}
+
+          {/* Bottom toolbar */}
+          <div className="tf-toolbar">
+            <div className="tf-toolbar-actions">
+              <button
+                className={`tf-toolbar-btn ${mode === 'image' ? 'active' : ''}`}
+                onClick={() => { setMode(mode === 'image' ? 'text' : 'image'); fileRef.current?.click(); }}
+                title="Adicionar foto"
+              >
+                🖼️
+              </button>
+              <button
+                className={`tf-toolbar-btn ${mode === 'video' ? 'active' : ''}`}
+                onClick={() => setMode(mode === 'video' ? 'text' : 'video')}
+                title="Adicionar vídeo"
+              >
+                🎬
+              </button>
+              <input
+                ref={fileRef}
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={handleImageSelect}
+              />
+            </div>
+            <button
+              className="tf-post-btn"
+              onClick={handlePost}
+              disabled={submitting || !canPost}
+            >
+              {submitting ? 'Publicando...' : 'Publicar'}
+            </button>
+          </div>
         </div>
-      </form>
+      </div>
 
       {/* Feed */}
       <div className="tf-feed">

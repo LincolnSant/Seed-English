@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../../styles/Feed.css';
 
 function getYouTubeId(url) {
-  const match = url.match(/(?:v=|youtu\.be\/|shorts\/)([^&?\s]+)/);
+  const match = url?.match(/(?:v=|youtu\.be\/|shorts\/)([^&?\s]+)/);
   return match ? match[1] : null;
 }
 
@@ -39,6 +39,7 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
 
   return (
     <div className="fp-root">
+      {/* Header */}
       <div className="fp-header">
         <div className="fp-avatar">{getInitials(post.author?.name)}</div>
         <div className="fp-meta">
@@ -50,19 +51,36 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
         )}
       </div>
 
-      {post.type === 'text' && <p className="fp-text">{post.content}</p>}
+      {/* Text content — always shown if exists */}
+      {post.type === 'text' && post.content && (
+        <p className="fp-text">{post.content}</p>
+      )}
 
+      {/* Image */}
+      {post.type === 'image' && (
+        <>
+          <img src={post.content} alt="Post" className="fp-image" />
+          {post.caption && <p className="fp-caption">{post.caption}</p>}
+        </>
+      )}
+
+      {/* Video */}
       {post.type === 'video' && ytId && (
-        <div className="fp-video-wrap">
-          <iframe src={`https://www.youtube.com/embed/${ytId}`} title="Video" allowFullScreen frameBorder="0" />
-        </div>
+        <>
+          <div className="fp-video-wrap">
+            <iframe src={`https://www.youtube.com/embed/${ytId}`} title="Video" allowFullScreen frameBorder="0" />
+          </div>
+          {post.caption && <p className="fp-caption">{post.caption}</p>}
+        </>
       )}
       {post.type === 'video' && !ytId && (
-        <a href={post.content} target="_blank" rel="noreferrer" className="fp-link">🎬 Assistir vídeo →</a>
+        <>
+          <a href={post.content} target="_blank" rel="noreferrer" className="fp-link">🎬 Assistir vídeo →</a>
+          {post.caption && <p className="fp-caption">{post.caption}</p>}
+        </>
       )}
 
-      {post.type === 'image' && <img src={post.content} alt="Post" className="fp-image" />}
-
+      {/* Actions */}
       <div className="fp-actions">
         <button className={`fp-action-btn ${liked ? 'liked' : ''}`} onClick={() => onToggleLike(post.id)}>
           {liked ? '❤️' : '🤍'} {likeCount > 0 && <span>{likeCount}</span>}
@@ -72,6 +90,7 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
         </button>
       </div>
 
+      {/* Comments */}
       {showComments && (
         <div className="fp-comments">
           {commentCount === 0 && <div className="fp-no-comments">Nenhum comentário ainda.</div>}

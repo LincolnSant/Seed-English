@@ -57,7 +57,7 @@ export default function TeacherDashboard() {
           />
         );
       case 'feed':
-        return <TeacherFeed teacherId={profile?.id} />;
+        return <TeacherFeed teacherId={profile?.id} teacherName={profile?.name} />;
       default:
         return <TeacherHome students={students} onGoStudents={() => setSection('students')} onOpenStudent={openStudent} />;
     }

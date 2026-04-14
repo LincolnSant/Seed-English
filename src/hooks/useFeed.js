@@ -21,15 +21,14 @@ export function useFeed(currentUserId) {
         )
       `)
       .order('created_at', { ascending: false });
-
     setPosts(data ?? []);
     setLoading(false);
   }
 
-  async function createPost(type, content) {
+  async function createPost(type, content, caption = null, imageUrl = null) {
     const { data, error } = await supabase
       .from('posts')
-      .insert({ author_id: currentUserId, type, content })
+      .insert({ author_id: currentUserId, type, content, caption, image_url: imageUrl })
       .select(`
         *,
         author:profiles!posts_author_id_fkey(id, name),
@@ -52,7 +51,6 @@ export function useFeed(currentUserId) {
   async function toggleLike(postId) {
     const post     = posts.find((p) => p.id === postId);
     const existing = post?.post_likes?.find((l) => l.user_id === currentUserId);
-
     if (existing) {
       setPosts((prev) => prev.map((p) =>
         p.id !== postId ? p : { ...p, post_likes: p.post_likes.filter((l) => l.user_id !== currentUserId) }
@@ -75,10 +73,7 @@ export function useFeed(currentUserId) {
     const { data } = await supabase
       .from('post_comments')
       .insert({ post_id: postId, author_id: currentUserId, content })
-      .select(`
-        id, content, created_at,
-        author:profiles!post_comments_author_id_fkey(id, name)
-      `)
+      .select(`id, content, created_at, author:profiles!post_comments_author_id_fkey(id, name)`)
       .single();
     if (data) {
       setPosts((prev) => prev.map((p) =>
