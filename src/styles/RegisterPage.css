@@ -156,3 +156,13 @@
   font-weight: 500;
 }
 .rp-whatsapp a:hover { text-decoration: underline; }
+
+/* ── Logo PNG ──────────────────────────────────────────── */
+.rp-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 16px;
+  display: block;
+}

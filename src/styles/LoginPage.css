@@ -294,3 +294,13 @@
   .login-left        { display: none; }
   .login-right       { padding: 40px 24px; min-height: 100vh; }
 }
+
+/* ── Logo PNG ──────────────────────────────────────────── */
+.login-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 16px;
+  display: block;
+}

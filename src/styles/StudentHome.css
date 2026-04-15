@@ -291,3 +291,11 @@
   .sh-card       { padding: 14px 16px; }
   .sh-card-title { font-size: 14px; }
 }
+
+/* ── Logo PNG ──────────────────────────────────────────── */
+.sh-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}

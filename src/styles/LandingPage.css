@@ -313,3 +313,10 @@
   .lp-mobile-menu     { display: flex; }
   .lp-nav-links       { display: none !important; }
 }
+
+/* ── Logo PNG ──────────────────────────────────────────── */
+.lp-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}

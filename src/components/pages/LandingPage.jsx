@@ -16,7 +16,7 @@ export default function LandingPage() {
   return (
     <div className="lp-root">
       <nav className="lp-nav">
-        <div className="lp-logo">Seed <span>English</span></div>
+        <img src="/LOGO-LYDIA.png" alt="Seed English" className="lp-logo-img" />
         <div className="lp-nav-links">
           <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
           <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdos</a>
@@ -159,7 +159,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="lp-footer">
-        <div className="lp-logo" style={{ fontSize: 16 }}>Seed <span>English</span></div>
+        <img src="/LOGO-LYDIA.png" alt="Seed English" className="lp-logo-img" style={{ height: 24 }} />
         <div>© 2025 · Todos os direitos reservados</div>
       </footer>
     </div>

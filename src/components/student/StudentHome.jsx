@@ -16,7 +16,8 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
   hasCompletedTest, getTestResult,
 }) {
   const hour = new Date().getHours();
-  const greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
+  const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  const hasVisited = !!localStorage.getItem('ef_profile');
 
   const LESSON_TYPES  = ['text', 'pdf'];
   const VIDEO_TYPES   = ['video'];
@@ -34,7 +35,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
 
   const tabs = [
     { key: 'classes',  label: '📚 Classes',  count: student.contents?.length ?? 0 },
-    { key: 'homework', label: '✏️ Homework', count: student.quizzes?.length  ?? 0 },
+    { key: 'homework', label: '✏️ Homework', count: student.quizzes?.length ?? 0 },
     { key: 'tests',    label: '📋 Tests',    count: student.tests?.length    ?? 0 },
   ];
 
@@ -52,7 +53,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
   return (
     <div className="sh-root">
       {!hideTopbar && <header className="sh-topbar">
-        <div className="sh-logo">Seed <span>English</span></div>
+        <img src="/LOGO-LYDIA.png" alt="Seed English" className="sh-logo-img" />
         <div className="sh-topbar-right">
           <div className="sh-user">
             <AvatarPicker
@@ -73,7 +74,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
         <div className="sh-hero">
           <div className="sh-hero-text">
             <h1>{greeting}, {student.name?.split(' ')[0]}!</h1>
-            <p>Bem-vindo de volta. O que vamos estudar hoje?</p>
+            <p>{hasVisited ? 'Welcome back!' : 'Welcome!'} What are we going to study today?</p>
           </div>
           {student.level && <div className="sh-level-badge">{student.level}</div>}
         </div>
@@ -87,7 +88,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
           <div className="sh-stat-divider" />
           <div className="sh-stat">
             <div className="sh-stat-num">{student.quizzes?.length ?? 0}</div>
-            <div className="sh-stat-label">Homeworks</div>
+            <div className="sh-stat-label">Homework</div>
           </div>
           <div className="sh-stat-divider" />
           <div className="sh-stat">
@@ -99,7 +100,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
               <div className="sh-stat-divider" />
               <div className="sh-stat">
                 <div className="sh-stat-num">{avgScore}%</div>
-                <div className="sh-stat-label">Média geral</div>
+                <div className="sh-stat-label">Grade average</div>
               </div>
             </>
           )}
@@ -125,8 +126,8 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
             {(student.contents?.length ?? 0) === 0 ? (
               <div className="sh-empty">
                 <div className="sh-empty-icon">📭</div>
-                <div className="sh-empty-title">Nenhuma aula ainda</div>
-                <p>Sua professora ainda não adicionou aulas para você.</p>
+                <div className="sh-empty-title">No classes yet</div>
+                <p>Your teacher has not added any classes yet.</p>
               </div>
             ) : (
               <>
@@ -178,8 +179,8 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
             {(student.quizzes?.length ?? 0) === 0 ? (
               <div className="sh-empty">
                 <div className="sh-empty-icon">✏️</div>
-                <div className="sh-empty-title">Nenhum homework ainda</div>
-                <p>Sua professora ainda não adicionou homeworks para você.</p>
+                <div className="sh-empty-title">No homework yet</div>
+                <p>Your teacher has not added any homework yet.</p>
               </div>
             ) : (
               <div className="sh-cards">
@@ -194,7 +195,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
                         <div className="sh-card-title">{q.title}</div>
                         {last && (
                           <div className="sh-card-score">
-                            Última: {last.score}/{last.total} ({Math.round(last.score / last.total * 100)}%)
+                            Last: {last.score}/{last.total} ({Math.round(last.score / last.total * 100)}%)
                           </div>
                         )}
                       </div>
@@ -213,8 +214,8 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
             {(student.tests?.length ?? 0) === 0 ? (
               <div className="sh-empty">
                 <div className="sh-empty-icon">📋</div>
-                <div className="sh-empty-title">Nenhum test ainda</div>
-                <p>Sua professora ainda não adicionou tests para você.</p>
+                <div className="sh-empty-title">No tests yet</div>
+                <p>Your teacher has not added any tests yet.</p>
               </div>
             ) : (
               <div className="sh-cards">
@@ -230,12 +231,12 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
                       <div className="sh-card-icon">📋</div>
                       <div className="sh-card-body">
                         <div className="sh-card-type">
-                          {t.questions?.length ?? 0} questão(ões) · {done ? 'Realizado' : 'Uma tentativa'}
+                          {t.questions?.length ?? 0} questão(ões) · {done ? 'Completed' : 'One attempt'}
                         </div>
                         <div className="sh-card-title">{t.title}</div>
                         {result && (
                           <div className="sh-card-score sh-card-score-test">
-                            Nota: {result.grade}/10 · {result.score}/{result.total} acertos
+                            Grade: {result.grade}/10 · {result.score}/{result.total} correct
                           </div>
                         )}
                       </div>

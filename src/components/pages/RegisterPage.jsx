@@ -75,7 +75,7 @@ export default function RegisterPage() {
         <div className="rp-left-inner">
           <button className="rp-back" onClick={() => navigate('/')}>← Voltar</button>
           <div className="rp-brand">
-            <div className="rp-logo">Seed <span>English</span></div>
+            <img src="/LOGO-LYDIA.png" alt="Seed English" className="rp-logo-img" />
             <p className="rp-brand-desc">
               Crie sua conta e comece sua jornada no inglês com conteúdos feitos especialmente pra você.
             </p>
