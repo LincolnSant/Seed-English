@@ -576,3 +576,22 @@
   .tsp-detail-overlay { padding: 12px; align-items: flex-end; }
   .tsp-detail-modal   { max-height: 90vh; border-radius: 16px 16px 0 0; }
 }
+
+/* ── Performance mobile fixes ──────────────────────────── */
+@media (max-width: 768px) {
+  .tsp-perf-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tsp-perf-scores {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .tsp-detail-btn {
+    margin-left: auto;
+  }
+}
