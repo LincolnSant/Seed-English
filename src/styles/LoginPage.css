@@ -297,10 +297,20 @@
 
 /* ── Logo PNG ──────────────────────────────────────────── */
 .login-logo-img {
-  height: 36px;
+  height: 52px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   margin-bottom: 16px;
   display: block;
+  max-width: 200px;
+}
+
+/* ── Logo fix ──────────────────────────────────────────── */
+.login-brand {
+  overflow: visible;
+}
+.login-logo-img {
+  max-width: 220px !important;
+  height: auto !important;
+  max-height: 80px;
 }

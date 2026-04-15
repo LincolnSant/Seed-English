@@ -159,10 +159,10 @@
 
 /* ── Logo PNG ──────────────────────────────────────────── */
 .rp-logo-img {
-  height: 36px;
+  height: 52px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   margin-bottom: 16px;
   display: block;
+  max-width: 200px;
 }

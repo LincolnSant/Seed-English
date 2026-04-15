@@ -194,3 +194,12 @@
   text-align: center;
 }
 .ts-upload-btn:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+/* ── Logo PNG ──────────────────────────────────────────── */
+.ts-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 36px;
+}
