@@ -53,7 +53,7 @@ export default function StudentDashboard() {
     <div className="sd-root">
       {/* Top nav with two main tabs */}
       <header className="sh-topbar">
-        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="sh-logo-img" />
+        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="sd-topbar-logo" />
         <div className="sd-main-tabs">
           <button className={`sd-main-tab ${mainTab === 'feed' ? 'active' : ''}`} onClick={() => setMainTab('feed')}>
             Feed

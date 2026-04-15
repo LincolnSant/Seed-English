@@ -34,3 +34,15 @@
   .sd-main-tabs { gap: 2px; }
   .sd-main-tab  { padding: 6px 12px; font-size: 12px; }
 }
+
+/* ── Logo no topbar ────────────────────────────────────── */
+.sd-topbar-logo {
+  height: auto;
+  max-height: 38px;
+  max-width: 150px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  display: block;
+  flex-shrink: 0;
+}
