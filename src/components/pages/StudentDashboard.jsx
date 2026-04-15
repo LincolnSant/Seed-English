@@ -8,6 +8,7 @@ import StudentContent from '../student/StudentContent';
 import StudentQuiz    from '../student/StudentQuiz';
 import StudentTest    from '../student/StudentTest';
 import { SkeletonStudentHome } from '../ui/Skeleton';
+import AvatarPicker from '../shared/AvatarPicker';
 import '../../styles/StudentDashboard.css';
 
 export default function StudentDashboard() {
@@ -63,7 +64,13 @@ export default function StudentDashboard() {
         </div>
         <div className="sh-topbar-right">
           <div className="sh-user">
-            <div className="sh-avatar">{student.initials}</div>
+            <AvatarPicker
+              profile={student}
+              onColorChange={setAvatarColor}
+              onPhotoChange={setAvatarPhoto}
+              size={32}
+              dark={false}
+            />
             <span>{student.name}</span>
           </div>
           <button className="sh-logout" onClick={handleLogout}>Sair</button>
