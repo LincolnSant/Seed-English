@@ -41,19 +41,33 @@ export function useStudentData(studentId) {
     setLoading(false);
   }
 
-  async function saveHomeworkResult(quizId, score, total) {
+  async function saveHomeworkResult(quizId, score, total, answers = []) {
     const { data } = await supabase.from('homework_results')
       .insert({ student_id: studentId, quiz_id: quizId, score, total })
       .select().single();
-    if (data) setHomeworkResults((prev) => [data, ...prev]);
+    if (data) {
+      setHomeworkResults((prev) => [data, ...prev]);
+      if (answers.length > 0) {
+        await supabase.from('result_answers').insert(
+          answers.map((a) => ({ ...a, student_id: studentId, quiz_id: quizId }))
+        );
+      }
+    }
   }
 
-  async function saveTestResult(testId, score, total) {
+  async function saveTestResult(testId, score, total, answers = []) {
     const grade = parseFloat(((score / total) * 10).toFixed(1));
     const { data } = await supabase.from('test_results')
       .insert({ student_id: studentId, test_id: testId, score, total, grade })
       .select().single();
-    if (data) setTestResults((prev) => [data, ...prev]);
+    if (data) {
+      setTestResults((prev) => [data, ...prev]);
+      if (answers.length > 0) {
+        await supabase.from('result_answers').insert(
+          answers.map((a) => ({ ...a, student_id: studentId, test_id: testId }))
+        );
+      }
+    }
   }
 
   function hasCompletedTest(testId) {

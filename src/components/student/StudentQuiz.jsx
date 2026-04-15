@@ -25,16 +25,19 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
   async function handleNext() {
     const currentCorrect = isCorrect(question, selected);
     const allResults     = [...results, currentCorrect];
+    const newAnswer      = { question_id: question.id, answer: selected, is_correct: currentCorrect };
+    const allAnswers     = [...answers, newAnswer];
 
     if (current + 1 >= total) {
       const score = allResults.filter(Boolean).length;
       setFinished(true);
       if (!saved) {
         setSaved(true);
-        await onComplete?.(quiz.id, score, allResults.length);
+        await onComplete?.(quiz.id, score, allResults.length, allAnswers);
       }
     } else {
       setResults(allResults);
+      setAnswers(allAnswers);
       setCurrent((p) => p + 1);
       setSelected(null);
       setSubmitted(false);

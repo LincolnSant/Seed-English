@@ -2,13 +2,14 @@ import { useState } from 'react';
 import '../../styles/StudentQuiz.css';
 
 export default function StudentTest({ test, onBack, onComplete, existingResult }) {
-  const [current,   setCurrent]   = useState(0);
-  const [selected,  setSelected]  = useState(null);
-  const [submitted, setSubmitted] = useState(false);
-  const [results,   setResults]   = useState([]); // bool per question
-  const [finished,  setFinished]  = useState(false);
+  const [current,    setCurrent]    = useState(0);
+  const [selected,   setSelected]   = useState(null);
+  const [submitted,  setSubmitted]  = useState(false);
+  const [results,    setResults]    = useState([]);
+  const [answers,    setAnswers]    = useState([]);
+  const [finished,   setFinished]   = useState(false);
   const [finalScore, setFinalScore] = useState(0);
-  const [saved,     setSaved]     = useState(false);
+  const [saved,      setSaved]      = useState(false);
 
   const total    = test.questions.length;
   const question = test.questions[current];
@@ -56,6 +57,8 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
   async function handleNext() {
     const currentCorrect = isCorrect(question, selected);
     const allResults     = [...results, currentCorrect];
+    const newAnswer      = { question_id: question.id, answer: selected, is_correct: currentCorrect };
+    const allAnswers     = [...answers, newAnswer];
 
     if (current + 1 >= total) {
       const score = allResults.filter(Boolean).length;
@@ -63,10 +66,11 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
       setFinished(true);
       if (!saved) {
         setSaved(true);
-        await onComplete(test.id, score, allResults.length);
+        await onComplete(test.id, score, allResults.length, allAnswers);
       }
     } else {
       setResults(allResults);
+      setAnswers(allAnswers);
       setCurrent((p) => p + 1);
       setSelected(null);
       setSubmitted(false);

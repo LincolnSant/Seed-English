@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useState as useStateDetail } from 'react';
+import { supabase } from '../../lib/supabase';
 import ContentForm from './ContentForm';
 import QuizForm    from './QuizForm';
 import TestForm    from './TestForm';
@@ -47,6 +49,31 @@ export default function TeacherStudentProfile({
   async function handleLevelChange(level) {
     setSavingLevel(true); setLevelOpen(false);
     await onUpdateLevel(level); setSavingLevel(false);
+  }
+
+  const [detailData,    setDetailData]    = useState(null); // {title, questions, answers}
+  const [loadingDetail, setLoadingDetail] = useState(false);
+
+  async function openDetail(type, id, title, questions) {
+    setLoadingDetail(true);
+    const field = type === 'quiz' ? 'quiz_id' : 'test_id';
+    const { data } = await supabase
+      .from('result_answers')
+      .select('*')
+      .eq('student_id', student.id)
+      .eq(field, id)
+      .order('created_at', { ascending: false });
+
+    // Get only the most recent attempt (by question_id uniqueness)
+    const seen = new Set();
+    const latest = (data ?? []).filter((a) => {
+      if (seen.has(a.question_id)) return false;
+      seen.add(a.question_id);
+      return true;
+    });
+
+    setDetailData({ title, questions, answers: latest });
+    setLoadingDetail(false);
   }
 
   const hwResults  = student.homework_results ?? [];
@@ -252,6 +279,7 @@ export default function TeacherStudentProfile({
                         <div className="tsp-perf-scores">
                           <span className="tsp-perf-grade">{r.grade}/10</span>
                           <span className="tsp-perf-acertos">{r.score}/{r.total} acertos</span>
+                          {test && <button className="tsp-detail-btn" onClick={() => openDetail('test', r.test_id, test.title, test.questions ?? [])}>Ver detalhes</button>}
                         </div>
                       </div>
                     );
@@ -273,6 +301,7 @@ export default function TeacherStudentProfile({
                         <div className="tsp-perf-scores">
                           <span className="tsp-perf-pct">{pct}%</span>
                           <span className="tsp-perf-acertos">{r.score}/{r.total} acertos</span>
+                          {quiz && <button className="tsp-detail-btn" onClick={() => openDetail('quiz', r.quiz_id, quiz.title, quiz.questions ?? [])}>Ver detalhes</button>}
                         </div>
                       </div>
                     );
@@ -281,6 +310,54 @@ export default function TeacherStudentProfile({
               )}
             </>
           )}
+        </div>
+      )}
+      {/* Detail modal */}
+      {detailData && (
+        <div className="tsp-detail-overlay" onClick={() => setDetailData(null)}>
+          <div className="tsp-detail-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="tsp-detail-header">
+              <h2>{detailData.title}</h2>
+              <button onClick={() => setDetailData(null)}>✕</button>
+            </div>
+            <div className="tsp-detail-body">
+              {detailData.questions.map((q, i) => {
+                const ans = detailData.answers.find((a) => a.question_id === q.id);
+                const correct = ans?.is_correct;
+                return (
+                  <div key={q.id} className={`tsp-detail-q ${correct === true ? 'correct' : correct === false ? 'wrong' : 'pending'}`}>
+                    <div className="tsp-detail-q-header">
+                      <span className="tsp-detail-num">{i + 1}</span>
+                      <span className="tsp-detail-icon">{correct === true ? '✓' : correct === false ? '✗' : '—'}</span>
+                    </div>
+                    <div className="tsp-detail-prompt">{q.prompt}</div>
+                    {ans && (
+                      <div className="tsp-detail-answer">
+                        <span className="tsp-detail-label">Resposta do aluno:</span>
+                        <span>{q.type === 'multiple-choice' || q.type === 'true-false'
+                          ? q.options?.[ans.answer] ?? ans.answer
+                          : ans.answer}</span>
+                      </div>
+                    )}
+                    {!correct && (
+                      <div className="tsp-detail-correct">
+                        <span className="tsp-detail-label">Resposta correta:</span>
+                        <span>{q.type === 'multiple-choice' || q.type === 'true-false'
+                          ? q.options?.[q.correct] ?? q.correct
+                          : q.correct}</span>
+                      </div>
+                    )}
+                    {!correct && q.explanation && (
+                      <div className="tsp-detail-explanation">{q.explanation}</div>
+                    )}
+                  </div>
+                );
+              })}
+              {detailData.answers.length === 0 && (
+                <div className="tsp-empty">Respostas detalhadas não disponíveis para tentativas anteriores.</div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
