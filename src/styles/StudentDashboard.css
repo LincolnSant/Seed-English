@@ -42,7 +42,6 @@
   max-width: 150px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   display: block;
   flex-shrink: 0;
 }
