@@ -7,16 +7,29 @@ import TeacherDashboard from './components/pages/TeacherDashboard';
 import StudentDashboard from './components/pages/StudentDashboard';
 import './styles/App.css';
 
+function AppLoading() {
+  return (
+    <div className="app-loading">
+      <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="app-loading-logo-img" />
+      <div className="app-loading-spinner" />
+    </div>
+  );
+}
+
 function ProtectedRoute({ children, role }) {
   const { user, profile, loading } = useAuth();
-  if (loading)   return <div className="app-loading">Carregando...</div>;
-  if (!user)     return <Navigate to="/login" replace />;
-  if (!profile)  return <div className="app-loading">Carregando perfil...</div>;
+  if (loading)  return <AppLoading />;
+  if (!user)    return <Navigate to="/login" replace />;
+  if (!profile) return <AppLoading />;
   if (profile.role !== role) return <Navigate to="/login" replace />;
   return children;
 }
 
 export default function App() {
+  const { loading } = useAuth();
+
+  if (loading) return <AppLoading />;
+
   return (
     <BrowserRouter>
       <Routes>
