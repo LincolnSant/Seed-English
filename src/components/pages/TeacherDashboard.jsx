@@ -22,7 +22,8 @@ export default function TeacherDashboard() {
   } = useTeacherData();
 
   const [section, setSection]                 = useState('home');
-  const [avatarColor, setAvatarColor]           = useState(null);
+  const [avatarColor, setAvatarColor] = useState(null);
+  const [avatarPhoto, setAvatarPhoto] = useState(null);
   const [selectedStudent, setSelectedStudent] = useState(null);
 
   function openStudent(student) { setSelectedStudent(student); setSection('student-profile'); }
@@ -70,8 +71,9 @@ export default function TeacherDashboard() {
         active={section}
         onChange={setSection}
         onLogout={handleLogout}
-        profile={profile ? { ...profile, avatar_color: avatarColor ?? profile.avatar_color } : null}
+        profile={profile ? { ...profile, avatar_color: avatarColor ?? profile.avatar_color, avatar_url: avatarPhoto ?? profile.avatar_url } : null}
         onColorChange={setAvatarColor}
+        onPhotoChange={setAvatarPhoto}
       />
       <main className="td-main">{renderSection()}</main>
     </div>

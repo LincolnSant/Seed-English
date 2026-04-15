@@ -159,3 +159,38 @@
 }
 .ts-color-swatch:hover { transform: scale(1.15); }
 .ts-color-swatch.active { border-color: #fff; }
+
+/* ── Avatar photo ──────────────────────────────────────── */
+.ts-avatar-img {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ts-color-picker-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 2px 6px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  margin-bottom: 8px;
+  grid-column: 1 / -1;
+}
+
+.ts-upload-btn {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.ts-upload-btn:hover { background: rgba(255,255,255,.15); color: #fff; }
