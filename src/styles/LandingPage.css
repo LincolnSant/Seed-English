@@ -322,3 +322,8 @@
   width: auto;
   object-fit: contain;
 }
+
+.lp-footer {
+  height: 80px; /* altura fixa do footer */
+  overflow: hidden;
+}
