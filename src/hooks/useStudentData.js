@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
 export function useStudentData(studentId) {
-  const [contents,         setContents]         = useState([]);
-  const [quizzes,          setQuizzes]           = useState([]);
-  const [tests,            setTests]             = useState([]);
-  const [homeworkResults,  setHomeworkResults]   = useState([]);
-  const [testResults,      setTestResults]       = useState([]);
-  const [loading,          setLoading]           = useState(true);
+  const cacheKey = studentId ? `ef_student_${studentId}` : null;
+  const cached   = cacheKey ? (() => {
+    try { return JSON.parse(localStorage.getItem(cacheKey) || 'null'); }
+    catch { return null; }
+  })() : null;
+
+  const [contents,        setContents]        = useState(cached?.contents        ?? []);
+  const [quizzes,         setQuizzes]         = useState(cached?.quizzes         ?? []);
+  const [tests,           setTests]           = useState(cached?.tests           ?? []);
+  const [homeworkResults, setHomeworkResults] = useState(cached?.homeworkResults ?? []);
+  const [testResults,     setTestResults]     = useState(cached?.testResults     ?? []);
+  const [loading,         setLoading]         = useState(!cached);
 
   useEffect(() => { if (studentId) fetchAll(); }, [studentId]);
 
@@ -27,18 +33,35 @@ export function useStudentData(studentId) {
       supabase.from('test_results').select('*').eq('student_id', studentId).order('completed_at', { ascending: false }),
     ]);
 
-    setContents(c ?? []);
-    setQuizzes((q ?? []).map((quiz) => ({
+    const newContents = c ?? [];
+    const newQuizzes  = (q ?? []).map((quiz) => ({
       ...quiz,
-      questions: (quiz.questions ?? []).sort((a, b) => a.position - b.position).map((q) => ({ ...q, options: q.options ?? [] })),
-    })));
-    setTests((t ?? []).map((test) => ({
+      questions: (quiz.questions ?? [])
+        .sort((a, b) => a.position - b.position)
+        .map((q) => ({ ...q, options: q.options ?? [] })),
+    }));
+    const newTests = (t ?? []).map((test) => ({
       ...test,
-      questions: (test.test_questions ?? []).sort((a, b) => a.position - b.position).map((q) => ({ ...q, options: q.options ?? [] })),
-    })));
-    setHomeworkResults(hr ?? []);
-    setTestResults(tr ?? []);
+      questions: (test.test_questions ?? [])
+        .sort((a, b) => a.position - b.position)
+        .map((q) => ({ ...q, options: q.options ?? [] })),
+    }));
+    const newHw = hr ?? [];
+    const newTr = tr ?? [];
+
+    setContents(newContents);
+    setQuizzes(newQuizzes);
+    setTests(newTests);
+    setHomeworkResults(newHw);
+    setTestResults(newTr);
     setLoading(false);
+
+    if (cacheKey) {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        contents: newContents, quizzes: newQuizzes,
+        tests: newTests, homeworkResults: newHw, testResults: newTr,
+      }));
+    }
   }
 
   async function saveHomeworkResult(quizId, score, total, answers = []) {

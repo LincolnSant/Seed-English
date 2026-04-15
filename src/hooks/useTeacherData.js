@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
 export function useTeacherData() {
-  const [students, setStudents] = useState([]);
-  const [loading,  setLoading]  = useState(true);
+  const CACHE_KEY = 'ef_teacher_students';
+  const cached    = (() => { try { return JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); } catch { return null; } })();
+
+  const [students, setStudents] = useState(cached ?? []);
+  const [loading,  setLoading]  = useState(!cached);
 
   useEffect(() => { fetchStudents(); }, []);
 
@@ -21,8 +24,10 @@ export function useTeacherData() {
       `)
       .eq('role', 'student')
       .order('name');
-    setStudents(normalize(data ?? []));
+    const normalized = normalize(data ?? []);
+    setStudents(normalized);
     setLoading(false);
+    localStorage.setItem(CACHE_KEY, JSON.stringify(normalized));
   }
 
   function normalize(data) {
