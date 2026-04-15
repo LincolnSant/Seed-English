@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useState as useStateDetail } from 'react';
 import { supabase } from '../../lib/supabase';
 import ContentForm from './ContentForm';
 import QuizForm    from './QuizForm';
