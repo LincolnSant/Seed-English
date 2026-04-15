@@ -59,7 +59,7 @@ export default function StudentDashboard() {
             Feed
           </button>
           <button className={`sd-main-tab ${mainTab === 'study' ? 'active' : ''}`} onClick={() => setMainTab('study')}>
-            Estudar
+            Seeds
           </button>
         </div>
         <div className="sh-topbar-right">
