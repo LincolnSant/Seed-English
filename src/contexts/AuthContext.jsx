@@ -4,23 +4,37 @@ import { supabase } from '../lib/supabase';
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  // Initialize from localStorage to avoid flash
   const [user,    setUser]    = useState(null);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState(() => {
+    try {
+      const cached = localStorage.getItem('ef_profile');
+      return cached ? JSON.parse(cached) : null;
+    } catch { return null; }
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Pega sessão atual
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
-      if (session?.user) fetchProfile(session.user.id);
-      else setLoading(false);
+      if (session?.user) {
+        fetchProfile(session.user.id);
+      } else {
+        setProfile(null);
+        localStorage.removeItem('ef_profile');
+        setLoading(false);
+      }
     });
 
-    // Escuta mudanças de auth
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
-      if (session?.user) fetchProfile(session.user.id);
-      else { setProfile(null); setLoading(false); }
+      if (session?.user) {
+        fetchProfile(session.user.id);
+      } else {
+        setProfile(null);
+        localStorage.removeItem('ef_profile');
+        setLoading(false);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -32,7 +46,10 @@ export function AuthProvider({ children }) {
       .select('*')
       .eq('id', userId)
       .single();
-    setProfile(data);
+    if (data) {
+      setProfile(data);
+      localStorage.setItem('ef_profile', JSON.stringify(data));
+    }
     setLoading(false);
   }
 
@@ -45,6 +62,7 @@ export function AuthProvider({ children }) {
     await supabase.auth.signOut();
     setUser(null);
     setProfile(null);
+    localStorage.removeItem('ef_profile');
   }
 
   return (
