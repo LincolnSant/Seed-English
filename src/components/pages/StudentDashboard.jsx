@@ -20,7 +20,9 @@ export default function StudentDashboard() {
     hasCompletedTest, getTestResult,
   } = useStudentData(profile?.id);
 
-  const [mainTab, setMainTab] = useState('feed'); // 'feed' | 'study'
+  const [mainTab,     setMainTab]     = useState('feed');
+  const [avatarColor, setAvatarColor] = useState(null);
+  const [avatarPhoto, setAvatarPhoto] = useState(null); // 'feed' | 'study'
   const [section,  setSection]  = useState('home');
   const [selected, setSelected] = useState(null);
 
@@ -36,6 +38,8 @@ export default function StudentDashboard() {
   const student = {
     ...profile,
     initials: profile?.name?.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase(),
+    avatar_color: avatarColor ?? profile?.avatar_color,
+    avatar_url:   avatarPhoto ?? profile?.avatar_url,
     contents, quizzes, tests, homeworkResults, testResults,
   };
 
@@ -77,6 +81,8 @@ export default function StudentDashboard() {
           onLogout={handleLogout}
           hasCompletedTest={hasCompletedTest}
           getTestResult={getTestResult}
+          onColorChange={setAvatarColor}
+          onPhotoChange={setAvatarPhoto}
           hideTopbar
         />
       )}

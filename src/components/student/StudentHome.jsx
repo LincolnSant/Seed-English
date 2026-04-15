@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AvatarPicker from '../shared/AvatarPicker';
 import '../../styles/StudentHome.css';
 
 const CONTENT_TYPE_LABEL = {
@@ -10,12 +11,26 @@ const CONTENT_TYPE_LABEL = {
   music:     { icon: '🎵', label: 'Música' },
 };
 
-export default function StudentHome({ hideTopbar = false,
+export default function StudentHome({ hideTopbar = false, onColorChange, onPhotoChange,
   student, onOpenContent, onOpenQuiz, onOpenTest, onLogout,
   hasCompletedTest, getTestResult,
 }) {
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
+
+  const LESSON_TYPES  = ['text', 'pdf'];
+  const VIDEO_TYPES   = ['video'];
+  const EXTRAS_TYPES  = ['curiosity', 'history', 'music'];
+
+  const lessons = (student.contents ?? []).filter((c) => LESSON_TYPES.includes(c.type));
+  const videos  = (student.contents ?? []).filter((c) => VIDEO_TYPES.includes(c.type));
+  const extras  = (student.contents ?? []).filter((c) => EXTRAS_TYPES.includes(c.type));
+
+  const classesTabs = [
+    { key: 'lessons', label: '📚 Lessons', items: lessons },
+    { key: 'videos',  label: '🎬 Videos',  items: videos },
+    { key: 'extras',  label: '💡 Extras',  items: extras },
+  ];
 
   const tabs = [
     { key: 'classes',  label: '📚 Classes',  count: student.contents?.length ?? 0 },
@@ -23,7 +38,8 @@ export default function StudentHome({ hideTopbar = false,
     { key: 'tests',    label: '📋 Tests',    count: student.tests?.length    ?? 0 },
   ];
 
-  const [activeTab, setActiveTab] = useState('classes');
+  const [activeTab,       setActiveTab]       = useState('classes');
+  const [activeClassTab,  setActiveClassTab]  = useState('lessons');
 
   const hwResults  = student.homeworkResults ?? [];
   const tstResults = student.testResults     ?? [];
@@ -39,7 +55,13 @@ export default function StudentHome({ hideTopbar = false,
         <div className="sh-logo">Seed <span>English</span></div>
         <div className="sh-topbar-right">
           <div className="sh-user">
-            <div className="sh-avatar">{student.initials}</div>
+            <AvatarPicker
+              profile={student}
+              onColorChange={onColorChange}
+              onPhotoChange={onPhotoChange}
+              size={32}
+              dark={false}
+            />
             <span>{student.name}</span>
           </div>
           <button className="sh-logout" onClick={onLogout}>Sair</button>
@@ -107,21 +129,45 @@ export default function StudentHome({ hideTopbar = false,
                 <p>Sua professora ainda não adicionou aulas para você.</p>
               </div>
             ) : (
-              <div className="sh-cards">
-                {student.contents.map((c) => {
-                  const meta = CONTENT_TYPE_LABEL[c.type] ?? { icon: '📄', label: c.type };
-                  return (
-                    <button key={c.id} className="sh-card" onClick={() => onOpenContent(c)}>
-                      <div className="sh-card-icon">{meta.icon}</div>
-                      <div className="sh-card-body">
-                        <div className="sh-card-type">{meta.label}</div>
-                        <div className="sh-card-title">{c.title}</div>
-                      </div>
-                      <div className="sh-card-arrow">→</div>
+              <>
+                {/* Sub-tabs */}
+                <div className="sh-subtabs">
+                  {classesTabs.map((t) => (
+                    <button
+                      key={t.key}
+                      className={`sh-subtab ${activeClassTab === t.key ? 'active' : ''}`}
+                      onClick={() => setActiveClassTab(t.key)}
+                    >
+                      {t.label}
+                      <span className="sh-subtab-count">{t.items.length}</span>
                     </button>
-                  );
-                })}
-              </div>
+                  ))}
+                </div>
+
+                {classesTabs.map((t) => activeClassTab === t.key && (
+                  <div key={t.key} className="sh-cards">
+                    {t.items.length === 0 ? (
+                      <div className="sh-empty" style={{ padding: '32px 0' }}>
+                        <p>Nenhum conteúdo nesta categoria ainda.</p>
+                      </div>
+                    ) : (
+                      t.items.map((c) => {
+                        const meta = CONTENT_TYPE_LABEL[c.type] ?? { icon: '📄', label: c.type };
+                        return (
+                          <button key={c.id} className="sh-card" onClick={() => onOpenContent(c)}>
+                            <div className="sh-card-icon">{meta.icon}</div>
+                            <div className="sh-card-body">
+                              <div className="sh-card-type">{meta.label}</div>
+                              <div className="sh-card-title">{c.title}</div>
+                            </div>
+                            <div className="sh-card-arrow">→</div>
+                          </button>
+                        );
+                      })
+                    )}
+                  </div>
+                ))}
+              </>
             )}
           </div>
         )}
