@@ -1,7 +1,7 @@
 :root {
   --ink:        #1A1612;
-  --sage:       #5C7A5E;
-  --sage-light: #E8F0E9;
+  --sage:       #3CBBA8;
+  --sage-light: #E0F5F2;
   --cream:      #F7F3EE;
   --muted:      #8A7F74;
   --border:     rgba(26,22,18,0.10);
@@ -52,7 +52,7 @@
 .ef-field input:focus,
 .ef-field textarea:focus {
   border-color: var(--sage);
-  box-shadow: 0 0 0 3px rgba(92,122,94,.1);
+  box-shadow: 0 0 0 3px rgba(60,187,168,.1);
 }
 .ef-field input::placeholder,
 .ef-field textarea::placeholder { color: rgba(138,127,116,.5); }

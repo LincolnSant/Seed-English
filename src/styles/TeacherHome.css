@@ -1,8 +1,8 @@
 /* ── Shared tokens ─────────────────────────────────────── */
 :root {
   --ink:        #1A1612;
-  --sage:       #5C7A5E;
-  --sage-light: #E8F0E9;
+  --sage:       #3CBBA8;
+  --sage-light: #E0F5F2;
   --warm:       #C8956C;
   --cream:      #F7F3EE;
   --muted:      #8A7F74;
@@ -97,7 +97,7 @@
 }
 .th-student-card:hover {
   border-color: var(--sage);
-  box-shadow: 0 2px 12px rgba(92,122,94,.1);
+  box-shadow: 0 2px 12px rgba(60,187,168,.1);
 }
 .th-student-avatar {
   width: 40px; height: 40px;
@@ -175,7 +175,7 @@
 }
 .tstudents-row:hover {
   border-color: var(--sage);
-  box-shadow: 0 2px 12px rgba(92,122,94,.1);
+  box-shadow: 0 2px 12px rgba(60,187,168,.1);
 }
 .tstudents-row-left {
   display: flex; align-items: center; gap: 14px; flex: 1;
@@ -351,7 +351,7 @@
   min-width: 130px;
 }
 .level-select:hover { border-color: var(--sage) !important; }
-.level-select:focus { outline: none !important; border-color: var(--sage) !important; box-shadow: 0 0 0 3px rgba(92,122,94,.1) !important; }
+.level-select:focus { outline: none !important; border-color: var(--sage) !important; box-shadow: 0 0 0 3px rgba(60,187,168,.1) !important; }
 
 /* ── Custom level dropdown ─────────────────────────────── */
 .level-dropdown { position: relative; }
@@ -370,7 +370,7 @@
 .level-dropdown-btn:disabled { opacity: .6; cursor: not-allowed; }
 
 .level-dropdown-btn.level-básico       { background: #E8F4FD; color: #1A6FA8; border-color: #B5D4F4; }
-.level-dropdown-btn.level-intermediário { background: var(--sage-light); color: var(--sage); border-color: rgba(92,122,94,.3); }
+.level-dropdown-btn.level-intermediário { background: var(--sage-light); color: var(--sage); border-color: rgba(60,187,168,.3); }
 .level-dropdown-btn.level-avançado     { background: #FDF0E8; color: #A0522D; border-color: #F5C4A0; }
 .level-dropdown-btn.level-sem          { background: #fff; color: var(--muted); }
 
@@ -527,7 +527,7 @@
   border-radius: 12px; padding: 16px;
   border: 1.5px solid var(--border);
 }
-.tsp-detail-q.correct { border-color: rgba(92,122,94,.4); background: var(--sage-light); }
+.tsp-detail-q.correct { border-color: rgba(60,187,168,.4); background: var(--sage-light); }
 .tsp-detail-q.wrong   { border-color: rgba(192,57,43,.3); background: rgba(192,57,43,.05); }
 .tsp-detail-q.pending { background: var(--cream); }
 

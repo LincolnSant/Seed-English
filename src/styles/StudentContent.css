@@ -19,7 +19,7 @@
 .sc-header { margin-bottom: 32px; }
 .sc-type-badge {
   display: inline-block;
-  background: #E8F0E9; color: #5C7A5E;
+  background: #E0F5F2; color: #3CBBA8;
   padding: 5px 14px; border-radius: 100px;
   font-size: 12px; font-weight: 500;
   margin-bottom: 16px;
@@ -56,7 +56,7 @@
   width: 100%; height: 100%;
 }
 .sc-link {
-  color: #5C7A5E; font-size: 15px;
+  color: #3CBBA8; font-size: 15px;
   text-decoration: none;
 }
 .sc-link:hover { text-decoration: underline; }
@@ -88,7 +88,7 @@
   height: 92vh;
 }
 .sc-pdf-link {
-  color: #5C7A5E;
+  color: #3CBBA8;
   font-size: 14px;
   text-decoration: none;
   text-align: center;
@@ -117,8 +117,8 @@
   transition: all .2s;
 }
 .sc-pdf-expand:hover {
-  border-color: #5C7A5E;
-  color: #5C7A5E;
+  border-color: #3CBBA8;
+  color: #3CBBA8;
 }
 
 /* ── Mobile fixes ──────────────────────────────────────── */

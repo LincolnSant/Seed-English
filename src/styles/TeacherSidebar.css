@@ -1,7 +1,7 @@
 :root {
   --ink:        #1A1612;
-  --sage:       #5C7A5E;
-  --sage-light: #E8F0E9;
+  --sage:       #3CBBA8;
+  --sage-light: #E0F5F2;
   --cream:      #F7F3EE;
   --muted:      #8A7F74;
   --border:     rgba(26,22,18,0.10);
@@ -55,7 +55,7 @@
   width: 100%;
 }
 .ts-nav-item:hover { background: rgba(255,255,255,.07); color: var(--cream); }
-.ts-nav-item.active { background: rgba(92,122,94,.25); color: var(--cream); }
+.ts-nav-item.active { background: rgba(60,187,168,.25); color: var(--cream); }
 
 .ts-nav-icon { font-size: 16px; width: 20px; text-align: center; }
 .ts-nav-label { font-weight: 400; }

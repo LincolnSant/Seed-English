@@ -2,8 +2,8 @@
 :root {
   --cream:      #F7F3EE;
   --ink:        #1A1612;
-  --sage:       #5C7A5E;
-  --sage-light: #E8F0E9;
+  --sage:       #3CBBA8;
+  --sage-light: #E0F5F2;
   --warm:       #C8956C;
   --warm-light: #F5E8DC;
   --muted:      #8A7F74;
@@ -70,7 +70,7 @@
 }
 .btn-primary:hover {
   background: var(--sage); transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(92, 122, 94, 0.30);
+  box-shadow: 0 8px 24px rgba(60, 187, 168, 0.30);
 }
 
 .btn-secondary {
@@ -133,7 +133,7 @@
 }
 .lp-hero-right::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(92,122,94,.3) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 30% 50%, rgba(60,187,168,.3) 0%, transparent 70%);
 }
 .lp-hero-right::after {
   content: ''; position: absolute; inset: 0;
@@ -171,7 +171,7 @@
 .mock-quiz-q { font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 10px; }
 .mock-options { display: flex; flex-direction: column; gap: 6px; }
 .mock-option { padding: 8px 12px; border-radius: 8px; font-size: 12px; border: 1px solid rgba(255,255,255,.10); color: rgba(255,255,255,.5); }
-.mock-option.correct { border-color: var(--sage); background: rgba(92,122,94,.2); color: var(--sage); font-weight: 500; }
+.mock-option.correct { border-color: var(--sage); background: rgba(60,187,168,.2); color: var(--sage); font-weight: 500; }
 .badge-float {
   position: absolute; right: -20px; top: 60px;
   background: var(--warm); color: #fff; padding: 8px 14px;
@@ -203,7 +203,7 @@
 
 /* CTA */
 .lp-cta { background: var(--ink); padding: 100px 48px; text-align: center; position: relative; overflow: hidden; }
-.lp-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(92,122,94,.25) 0%, transparent 70%); }
+.lp-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(60,187,168,.25) 0%, transparent 70%); }
 /* CTA h2 — mantém Playfair */
 .lp-cta h2 {
   font-family: 'Playfair Display', serif;
@@ -242,7 +242,7 @@
 .lp-step { flex: 1; min-width: 180px; }
 .lp-step-num {
   font-family: 'DM Sans', sans-serif;
-  font-size: 40px; font-weight: 700; color: #3a5c3c; line-height: 1; margin-bottom: 12px;
+  font-size: 40px; font-weight: 700; color: #2a9e8d; line-height: 1; margin-bottom: 12px;
 }
 .lp-step-title { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
 .lp-step-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }

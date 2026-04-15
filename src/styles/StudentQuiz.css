@@ -1,7 +1,7 @@
 :root {
   --ink:        #1A1612;
-  --sage:       #5C7A5E;
-  --sage-light: #E8F0E9;
+  --sage:       #3CBBA8;
+  --sage-light: #E0F5F2;
   --warm:       #C8956C;
   --cream:      #F7F3EE;
   --muted:      #8A7F74;
@@ -128,7 +128,7 @@
   background: #fff; outline: none;
   transition: border-color .2s, box-shadow .2s;
 }
-.sq-fill-input:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(92,122,94,.1); }
+.sq-fill-input:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(60,187,168,.1); }
 .sq-fill-input.correct { border-color: var(--sage); background: var(--sage-light); color: var(--sage); }
 .sq-fill-input.wrong   { border-color: var(--danger); background: var(--danger-bg); color: var(--danger); }
 .sq-fill-input:disabled { cursor: not-allowed; }
@@ -142,7 +142,7 @@
 }
 .sq-feedback.correct {
   background: var(--sage-light);
-  border-color: rgba(92,122,94,.3);
+  border-color: rgba(60,187,168,.3);
   color: var(--sage);
 }
 .sq-feedback.wrong {
