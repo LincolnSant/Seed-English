@@ -41,7 +41,7 @@
 /* Picker dropdown */
 .ap-picker {
   position: absolute;
-  bottom: calc(100% + 10px);
+  top: calc(100% + 10px);
   left: 0;
   background: #fff;
   border: 1px solid rgba(26,22,18,.12);
@@ -104,3 +104,12 @@
   color: rgba(255,255,255,.7);
 }
 .ap-picker.dark .ap-photo-btn:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+.ap-picker.drop-down {
+  top: calc(100% + 10px);
+  bottom: unset;
+}
+.ap-picker.drop-up {
+  bottom: calc(100% + 10px);
+  top: unset;
+}

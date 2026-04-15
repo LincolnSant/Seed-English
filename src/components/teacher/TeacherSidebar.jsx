@@ -33,6 +33,7 @@ export default function TeacherSidebar({ active, onChange, onLogout, profile, on
             onPhotoChange={onPhotoChange}
             size={34}
             dark={true}
+            dropUp={true}
           />
           <div>
             <div className="ts-profile-name">{profile?.name ?? 'Professora'}</div>

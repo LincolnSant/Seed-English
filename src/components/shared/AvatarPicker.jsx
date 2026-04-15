@@ -7,7 +7,7 @@ const COLORS = [
   '#A0522D', '#7B4F9E', '#C0392B', '#2E86AB',
 ];
 
-export default function AvatarPicker({ profile, onColorChange, onPhotoChange, size = 34, dark = false }) {
+export default function AvatarPicker({ profile, onColorChange, onPhotoChange, size = 34, dark = false, dropUp = false }) {
   const [showPicker, setShowPicker] = useState(false);
   const [uploading,  setUploading]  = useState(false);
   const fileRef = useRef();
@@ -55,7 +55,7 @@ export default function AvatarPicker({ profile, onColorChange, onPhotoChange, si
       <span className={`ap-edit ${dark ? 'dark' : ''}`}>✏️</span>
 
       {showPicker && (
-        <div className={`ap-picker ${dark ? 'dark' : ''}`} onClick={(e) => e.stopPropagation()}>
+        <div className={`ap-picker ${dark ? 'dark' : ''} ${dropUp ? 'drop-up' : 'drop-down'}`} onClick={(e) => e.stopPropagation()}>
           <div className="ap-picker-label">Cor do avatar</div>
           <div className="ap-colors">
             {COLORS.map((color) => (
