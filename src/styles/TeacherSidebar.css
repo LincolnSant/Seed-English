@@ -197,8 +197,10 @@
 
 /* ── Logo PNG ──────────────────────────────────────────── */
 .ts-logo-img {
-  height: 48px;
+  height: 120px;
   width: auto;
+  max-width: 190px;
   object-fit: contain;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
+  display: block;
 }
