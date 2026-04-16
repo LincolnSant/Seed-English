@@ -35,7 +35,7 @@ export default function TeacherDashboard() {
 
   if (loading) return (
     <div className="td-root">
-      <div style={{ width: 230, minWidth: 230, background: '#1A1612' }} />
+      <div style={{ width: 230, minWidth: 230, background: '#4A4A4A' }} />
       <main className="td-main"><SkeletonTeacherHome /></main>
     </div>
   );

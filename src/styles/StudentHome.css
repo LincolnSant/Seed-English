@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 48px;
-  background: var(--ink);
+  background: #4A4A4A;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -231,7 +231,7 @@
   text-align: center;
 }
 .sh-tab.active .sh-tab-count {
-  background: var(--ink);
+  background: #4A4A4A;
   color: var(--cream);
 }
 
@@ -266,7 +266,7 @@
 }
 .sh-subtab:hover { border-color: var(--sage); color: var(--sage); }
 .sh-subtab.active {
-  background: var(--ink);
+  background: #4A4A4A;
   border-color: var(--ink);
   color: #fff;
   font-weight: 500;
