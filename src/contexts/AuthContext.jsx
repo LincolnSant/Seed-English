@@ -49,6 +49,8 @@ export function AuthProvider({ children }) {
     if (data) {
       setProfile(data);
       localStorage.setItem('ef_profile', JSON.stringify(data));
+      // Also clear student data cache so level updates show immediately
+      localStorage.removeItem(`ef_student_${userId}`);
     }
     setLoading(false);
   }
