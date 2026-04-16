@@ -18,7 +18,7 @@ export default function LoginPage() {
     // 1. Faz login
     const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
     if (authError || !data.user) {
-      setError('E-mail ou senha incorretos.');
+      setError('Email ou senha incorretos.');
       setLoading(false);
       return;
     }
@@ -44,7 +44,7 @@ export default function LoginPage() {
     <div className="login-root">
       <div className="login-left">
         <div className="login-left-inner">
-          <button className="login-back" onClick={() => navigate('/')}>← Voltar</button>
+          <button className="login-back" onClick={() => navigate('/')}>← Back</button>
           <div className="login-brand">
             <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="login-logo-img" />
             <p className="login-brand-desc">
@@ -59,7 +59,7 @@ export default function LoginPage() {
               <div className="testimonial-avatar">CM</div>
               <div>
                 <div className="testimonial-name">Carlos Mendes</div>
-                <div className="testimonial-role">Aluno · Nível Intermediário</div>
+                <div className="testimonial-role">Student · A2 Elementary</div>
               </div>
             </div>
           </div>
@@ -69,21 +69,21 @@ export default function LoginPage() {
       <div className="login-right">
         <div className="login-form-wrap">
           <div className="login-form-header">
-            <h2>Bem-vindo de volta</h2>
+            <h2>Welcome back</h2>
             <p>Entre com seu e-mail e senha para continuar</p>
           </div>
           <form className="login-form" onSubmit={handleSubmit} noValidate>
             <div className="form-group">
-              <label htmlFor="email">E-mail</label>
+              <label htmlFor="email">Email</label>
               <input
-                id="email" type="email" placeholder="seu@email.com"
+                id="email" type="email" placeholder="your@email.com"
                 value={email} onChange={(e) => setEmail(e.target.value)}
                 required autoComplete="email"
               />
             </div>
             <div className="form-group">
               <div className="form-group-row">
-                <label htmlFor="password">Senha</label>
+                <label htmlFor="password">Password</label>
                 <a href="#" className="form-forgot">Esqueceu a senha?</a>
               </div>
               <input
@@ -94,13 +94,13 @@ export default function LoginPage() {
             </div>
             {error && <div className="form-error" role="alert">{error}</div>}
             <button type="submit" className="btn-login" disabled={loading || !email || !password}>
-              {loading ? <span className="btn-spinner" /> : 'Entrar na conta →'}
+              {loading ? <span className="btn-spinner" /> : 'Sign in na conta →'}
             </button>
           </form>
           <div className="login-footer-note">
             Não tem conta?{' '}
             <a href="#" onClick={(e) => { e.preventDefault(); navigate('/cadastro'); }}>
-              Criar conta
+              Create conta
             </a>
           </div>
         </div>
