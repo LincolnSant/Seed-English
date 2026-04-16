@@ -134,7 +134,7 @@
 
 /* ─── Right — form panel ──────────────────────────────── */
 .login-right {
-  background: #4A4A4A;
+  background: #C1C1C1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,12 +155,12 @@
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.8px;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 8px;
 }
 .login-form-header p {
   font-size: 15px;
-  color: rgba(255,255,255,.6);
+  color: var(--muted);
 }
 
 /* ─── Form ────────────────────────────────────────────── */
@@ -170,7 +170,7 @@
 .form-group label {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255,255,255,.85);
+  color: var(--ink);
 }
 .form-group-row {
   display: flex;
@@ -270,7 +270,7 @@
   margin-top: 24px;
   text-align: center;
   font-size: 14px;
-  color: rgba(255,255,255,.6);
+  color: var(--muted);
 }
 .login-footer-note a {
   color: var(--sage);
