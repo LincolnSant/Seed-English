@@ -1,8 +1,7 @@
 .sd-root {
   min-height: 100vh;
-  background: #F7F3EE;
+  background: #F5F5F5;
   font-family: 'DM Sans', sans-serif;
-  margin-left: -11px;
 }
 
 /* ── Main tab bar ──────────────────────────────────────── */
@@ -49,13 +48,13 @@
 .sd-root .sh-topbar {
   height: 72px;
   overflow: visible;
-  padding: 0 px;
+  padding: 0 48px;
 }
 
 /* ── Mobile topbar fix ─────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    padding: 0 1px;
+    padding: 0 12px;
     height: 56px !important;
     overflow: hidden !important;
     flex-wrap: nowrap;
