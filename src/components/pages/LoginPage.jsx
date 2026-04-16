@@ -69,21 +69,21 @@ export default function LoginPage() {
       <div className="login-right">
         <div className="login-form-wrap">
           <div className="login-form-header">
-            <h2>Welcome back</h2>
+            <h2>Bem vindo de volta!</h2>
             <p>Entre com seu e-mail e senha para continuar</p>
           </div>
           <form className="login-form" onSubmit={handleSubmit} noValidate>
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
-                id="email" type="email" placeholder="your@email.com"
+                id="email" type="email" placeholder="seu@email.com"
                 value={email} onChange={(e) => setEmail(e.target.value)}
                 required autoComplete="email"
               />
             </div>
             <div className="form-group">
               <div className="form-group-row">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Senha</label>
                 <a href="#" className="form-forgot">Esqueceu a senha?</a>
               </div>
               <input
@@ -100,7 +100,7 @@ export default function LoginPage() {
           <div className="login-footer-note">
             Não tem conta?{' '}
             <a href="#" onClick={(e) => { e.preventDefault(); navigate('/cadastro'); }}>
-              Create conta
+              Criar conta
             </a>
           </div>
         </div>
