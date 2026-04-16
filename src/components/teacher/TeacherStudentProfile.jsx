@@ -14,7 +14,7 @@ const CONTENT_TYPE_LABEL = {
   music:     '🎵 Música',
 };
 
-const LEVELS = ['Básico', 'Intermediário', 'Avançado'];
+const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 
 export default function TeacherStudentProfile({
   student, onBack,
@@ -97,12 +97,12 @@ export default function TeacherStudentProfile({
                     onBlur={() => setTimeout(() => setLevelOpen(false), 150)}
                     disabled={savingLevel}
                   >
-                    {student.level ?? 'Sem nível'}
+                    {student.level ?? 'No level'}
                     <span className="level-dropdown-arrow">▾</span>
                   </button>
                   {levelOpen && (
                     <div className="level-dropdown-menu">
-                      <button onMouseDown={(e) => { e.preventDefault(); handleLevelChange(''); }}>Sem nível</button>
+                      <button onMouseDown={(e) => { e.preventDefault(); handleLevelChange(''); }}>No level</button>
                       {LEVELS.map((l) => (
                         <button key={l}
                           className={student.level === l ? 'active' : ''}

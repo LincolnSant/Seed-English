@@ -53,7 +53,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
   return (
     <div className="sh-root">
       {!hideTopbar && <header className="sh-topbar">
-        <img src="/LOGO-LYDIA.png" alt="Seed English" className="sh-logo-img" />
+        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="sh-logo-img" />
         <div className="sh-topbar-right">
           <div className="sh-user">
             <AvatarPicker
