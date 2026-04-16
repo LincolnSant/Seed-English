@@ -302,3 +302,15 @@
   }
   .ts-color-picker { bottom: unset; top: calc(100% + 8px); }
 }
+
+/* ── Profile row fix ───────────────────────────────────── */
+.ts-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.ts-profile-info {
+  flex: 1;
+  min-width: 0;
+}

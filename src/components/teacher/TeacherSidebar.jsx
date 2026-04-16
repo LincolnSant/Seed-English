@@ -36,12 +36,18 @@ export default function TeacherSidebar({ active, onChange, onLogout, profile, on
             dark={true}
             dropUp={true}
           />
-          <div>
+          <div className="ts-profile-info">
             <div className="ts-profile-name">{profile?.name ?? 'Teacher'}</div>
             <div className="ts-profile-role">Teacher</div>
           </div>
+          <NotificationBell
+            userId={profile?.id}
+            userRole="teacher"
+            dark={true}
+            dropUp={true}
+            onNavigate={onNavigate}
+          />
         </div>
-        <NotificationBell userId={profile?.id} dark={true} />
         <button className="ts-logout" onClick={onLogout}>Log out</button>
       </div>
     </aside>
