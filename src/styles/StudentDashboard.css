@@ -48,7 +48,7 @@
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
   height: 72px;
-  overflow: visible;
+  overflow: hidden;
   padding: 0 48px;
 }
 
@@ -98,7 +98,7 @@
     gap: 8px;
   }
   .sd-topbar-logo {
-    max-height: 85px;
+    max-height: 120px;
     max-width: 100px;
   }
   .sd-main-tabs {
@@ -119,5 +119,19 @@
   .sh-logout {
     padding: 6px 12px;
     font-size: 12px;
+  }
+}
+
+/* ── Topbar locked height mobile ───────────────────────── */
+@media (max-width: 768px) {
+  .sd-root .sh-topbar {
+    height: 56px !important;
+    overflow: hidden !important;
+    padding: 0 12px !important;
+    flex-wrap: nowrap;
+  }
+  .sd-topbar-logo {
+    max-height: 85px !important;
+    max-width: 80px !important;
   }
 }
