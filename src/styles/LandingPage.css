@@ -231,9 +231,11 @@
 .btn-cta-outline:hover { border-color: rgba(247,243,238,.5); color: #F5F5F5; }
 
 .lp-footer {
-  padding: 32px 48px; border-top: 1px solid var(--border);
+  padding: 0 48px; border-top: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
   font-size: 13px; color: var(--muted);
+  height: 72px;
+  overflow: hidden;
 }
 
 /* Como funciona */
@@ -318,7 +320,7 @@
 
 /* ── Logo PNG ──────────────────────────────────────────── */
 .lp-logo-img {
-  height: 78px;
+  height: 120px;
   width: auto;
   object-fit: contain;
 }
