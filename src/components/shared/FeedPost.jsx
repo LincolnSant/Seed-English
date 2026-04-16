@@ -43,11 +43,11 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
       <div className="fp-header">
         <div className="fp-avatar">{getInitials(post.author?.name)}</div>
         <div className="fp-meta">
-          <div className="fp-author">{post.author?.name ?? 'Professora'}</div>
+          <div className="fp-author">{post.author?.name ?? 'Teacher'}</div>
           <div className="fp-time">{timeAgo(post.created_at)}</div>
         </div>
         {(isTeacher || post.author_id === currentUserId) && (
-          <button className="fp-delete" onClick={() => onDeletePost(post.id)} title="Excluir">✕</button>
+          <button className="fp-delete" onClick={() => onDeletePost(post.id)} title="Delete">✕</button>
         )}
       </div>
 
@@ -90,7 +90,7 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
       {/* Comments */}
       {showComments && (
         <div className="fp-comments">
-          {commentCount === 0 && <div className="fp-no-comments">Nenhum comentário ainda.</div>}
+          {commentCount === 0 && <div className="fp-no-comments">No comments yet.</div>}
           {(post.post_comments ?? [])
             .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
             .map((c) => (
@@ -109,7 +109,7 @@ export default function FeedPost({ post, currentUserId, isTeacher, onToggleLike,
               </div>
             ))}
           <form className="fp-comment-form" onSubmit={handleComment}>
-            <input type="text" placeholder="Escreva um comentário..."
+            <input type="text" placeholder="Write a comment..."
               value={commentText} onChange={(e) => setCommentText(e.target.value)} disabled={submitting} />
             <button type="submit" disabled={submitting || !commentText.trim()}>
               {submitting ? '...' : '→'}

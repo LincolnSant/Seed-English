@@ -20,10 +20,10 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
     return (
       <div className="sq-root">
         <div className="sq-inner">
-          <button className="sq-back" onClick={onBack}>← Voltar</button>
+          <button className="sq-back" onClick={onBack}>← Back</button>
           <div className="sq-finished">
             <div className="sq-finished-icon">📋</div>
-            <h1>Test já realizado</h1>
+            <h1>Test already completed</h1>
             <p>{test.title}</p>
             <div className="sq-score">
               <span className="sq-score-num">{existingResult.grade}</span>
@@ -33,10 +33,10 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
               <div className="sq-score-bar" style={{ width: `${pct}%` }} />
             </div>
             <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>
-              {existingResult.score}/{existingResult.total} acertos
+              {existingResult.score}/{existingResult.total} correct
             </p>
             <div className="sq-finished-actions">
-              <button className="sq-btn-primary" onClick={onBack}>← Voltar ao início</button>
+              <button className="sq-btn-primary" onClick={onBack}>← Back to home</button>
             </div>
           </div>
         </div>
@@ -84,10 +84,10 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
     return (
       <div className="sq-root">
         <div className="sq-inner">
-          <button className="sq-back" onClick={onBack}>← Voltar</button>
+          <button className="sq-back" onClick={onBack}>← Back</button>
           <div className="sq-finished">
             <div className="sq-finished-icon">{grade >= 6 ? '🎉' : '📖'}</div>
-            <h1>{grade >= 6 ? 'Aprovado!' : 'Continue estudando!'}</h1>
+            <h1>{grade >= 6 ? 'Passed!' : 'Keep studying!'}</h1>
             <p>{test.title}</p>
             <div className="sq-score">
               <span className="sq-score-num">{grade}</span>
@@ -97,10 +97,10 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
               <div className="sq-score-bar" style={{ width: `${pct}%` }} />
             </div>
             <p style={{ fontSize: 14, color: 'var(--muted)', marginBottom: 32 }}>
-              {finalScore}/{total} acertos
+              {finalScore}/{total} correct
             </p>
             <div className="sq-finished-actions">
-              <button className="sq-btn-primary" onClick={onBack}>← Voltar ao início</button>
+              <button className="sq-btn-primary" onClick={onBack}>← Back to home</button>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
   return (
     <div className="sq-root">
       <div className="sq-inner">
-        <button className="sq-back" onClick={onBack}>← Voltar ao início</button>
+        <button className="sq-back" onClick={onBack}>← Back to home</button>
 
         <div className="sq-header">
           <div className="sq-quiz-title">{test.title}</div>
@@ -125,7 +125,7 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
         </div>
 
         <div className="sq-card">
-          <div className="sq-question-num">Questão {current + 1}</div>
+          <div className="sq-question-num">Question {current + 1}</div>
           <div className="sq-question-prompt">{question.prompt}</div>
 
           {question.type === 'multiple-choice' && (
@@ -191,11 +191,11 @@ export default function StudentTest({ test, onBack, onComplete, existingResult }
           {!submitted ? (
             <button className="sq-btn-primary" onClick={handleSubmit}
               disabled={selected === null || selected === ''}>
-              Confirmar resposta
+              Confirm resposta
             </button>
           ) : (
             <button className="sq-btn-primary" onClick={handleNext}>
-              {current + 1 >= total ? 'Ver resultado →' : 'Próxima questão →'}
+              {current + 1 >= total ? 'See result →' : 'Next question →'}
             </button>
           )}
         </div>

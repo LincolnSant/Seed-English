@@ -50,7 +50,7 @@ export default function QuizForm({ initial, onSave, onCancel }) {
       prev.map((q, i) => {
         if (i !== index) return q;
         if (type === 'true-false') {
-          return { ...q, type, options: ['Verdadeiro', 'Falso'], correct: 0 };
+          return { ...q, type, options: ['True', 'False'], correct: 0 };
         }
         if (type === 'fill-blank') {
           return { ...q, type, options: [], correct: '' };
@@ -68,10 +68,10 @@ export default function QuizForm({ initial, onSave, onCancel }) {
 
   return (
     <form className="ef-form" onSubmit={handleSubmit}>
-      <div className="ef-form-title">{initial ? 'Editar quiz' : 'Novo quiz'}</div>
+      <div className="ef-form-title">{initial ? 'Edit quiz' : 'Novo quiz'}</div>
 
       <div className="ef-field">
-        <label htmlFor="qf-title">Título do quiz</label>
+        <label htmlFor="qf-title">Title do quiz</label>
         <input
           id="qf-title"
           type="text"
@@ -85,7 +85,7 @@ export default function QuizForm({ initial, onSave, onCancel }) {
       {questions.map((q, qi) => (
         <div className="ef-question-block" key={qi}>
           <div className="ef-question-header">
-            <span className="ef-question-num">Pergunta {qi + 1}</span>
+            <span className="ef-question-num">Question {qi + 1}</span>
             <div className="ef-question-type-row">
               {['multiple-choice', 'true-false', 'fill-blank'].map((t) => (
                 <button
@@ -94,9 +94,9 @@ export default function QuizForm({ initial, onSave, onCancel }) {
                   className={`ef-type-btn small ${q.type === t ? 'active' : ''}`}
                   onClick={() => changeType(qi, t)}
                 >
-                  {t === 'multiple-choice' && 'Múltipla escolha'}
-                  {t === 'true-false'      && 'Verdadeiro/Falso'}
-                  {t === 'fill-blank'      && 'Preencha a lacuna'}
+                  {t === 'multiple-choice' && 'Multiple choice'}
+                  {t === 'true-false'      && 'True/False'}
+                  {t === 'fill-blank'      && 'Fill in the blank'}
                 </button>
               ))}
             </div>
@@ -112,7 +112,7 @@ export default function QuizForm({ initial, onSave, onCancel }) {
           </div>
 
           <div className="ef-field">
-            <label>Enunciado</label>
+            <label>Question prompt</label>
             <input
               type="text"
               placeholder={
@@ -129,7 +129,7 @@ export default function QuizForm({ initial, onSave, onCancel }) {
           {/* Multiple choice options */}
           {q.type === 'multiple-choice' && (
             <div className="ef-field">
-              <label>Alternativas — clique no ✓ para marcar a correta</label>
+              <label>Options — click ✓ to mark the correct one</label>
               <div className="ef-options">
                 {q.options.map((opt, oi) => (
                   <div className="ef-option-row" key={oi}>
@@ -142,7 +142,7 @@ export default function QuizForm({ initial, onSave, onCancel }) {
                     </button>
                     <input
                       type="text"
-                      placeholder={`Alternativa ${oi + 1}`}
+                      placeholder={`Option ${oi + 1}`}
                       value={opt}
                       onChange={(e) => updateOption(qi, oi, e.target.value)}
                     />
@@ -155,9 +155,9 @@ export default function QuizForm({ initial, onSave, onCancel }) {
           {/* True / False */}
           {q.type === 'true-false' && (
             <div className="ef-field">
-              <label>Resposta correta</label>
+              <label>Correct answer</label>
               <div className="ef-tf-row">
-                {['Verdadeiro', 'Falso'].map((opt, oi) => (
+                {['True', 'False'].map((opt, oi) => (
                   <button
                     type="button"
                     key={opt}
@@ -174,7 +174,7 @@ export default function QuizForm({ initial, onSave, onCancel }) {
           {/* Fill in the blank */}
           {q.type === 'fill-blank' && (
             <div className="ef-field">
-              <label>Resposta correta</label>
+              <label>Correct answer</label>
               <input
                 type="text"
                 placeholder="Ex: has been"
@@ -199,13 +199,13 @@ export default function QuizForm({ initial, onSave, onCancel }) {
       ))}
 
       <button type="button" className="ef-add-question" onClick={addQuestion}>
-        + Adicionar pergunta
+        + Add pergunta
       </button>
 
       <div className="ef-form-actions">
-        <button type="button" className="ef-btn-cancel" onClick={onCancel}>Cancelar</button>
+        <button type="button" className="ef-btn-cancel" onClick={onCancel}>Cancel</button>
         <button type="submit" className="ef-btn-save">
-          {initial ? 'Salvar alterações' : 'Criar quiz'}
+          {initial ? 'Save alterações' : 'Create quiz'}
         </button>
       </div>
     </form>

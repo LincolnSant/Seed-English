@@ -2,12 +2,12 @@ import { useState } from 'react';
 import '../../styles/StudentContent.css';
 
 const CONTENT_TYPE_LABEL = {
-  text:      { icon: '📝', label: 'Texto' },
-  video:     { icon: '🎬', label: 'Vídeo' },
+  text:      { icon: '📝', label: 'Text' },
+  video:     { icon: '🎬', label: 'Video' },
   pdf:       { icon: '📄', label: 'PDF' },
-  curiosity: { icon: '💡', label: 'Curiosidade' },
-  history:   { icon: '🏛️', label: 'Fato histórico' },
-  music:     { icon: '🎵', label: 'Música' },
+  curiosity: { icon: '💡', label: 'Curiosity' },
+  history:   { icon: '🏛️', label: 'Historical fact' },
+  music:     { icon: '🎵', label: 'Music' },
 };
 
 function getYouTubeId(url) {
@@ -53,7 +53,7 @@ export default function StudentContent({ content, onBack }) {
   return (
     <div className="sc-root">
       <div className="sc-inner">
-        <button className="sc-back" onClick={onBack}>← Voltar</button>
+        <button className="sc-back" onClick={onBack}>← Back</button>
 
         <div className="sc-header">
           <span className="sc-type-badge">{meta.icon} {meta.label}</span>
@@ -70,7 +70,7 @@ export default function StudentContent({ content, onBack }) {
           )}
           {content.type === 'video' && !ytId && (
             <a href={content.body} target="_blank" rel="noreferrer" className="sc-link">
-              Abrir vídeo →
+              Open video →
             </a>
           )}
 
@@ -79,7 +79,7 @@ export default function StudentContent({ content, onBack }) {
             <div className="sc-pdf-wrap">
               <div className="sc-pdf-toolbar">
                 <a href={content.body} target="_blank" rel="noreferrer" className="sc-pdf-link">
-                  📄 Abrir no Google Drive →
+                  📄 Open in Google Drive →
                 </a>
                 <button className="sc-pdf-expand" onClick={() => setExpanded(!expanded)}>
                   {expanded ? '⤓ Recolher' : '⤢ Expandir'}
@@ -98,7 +98,7 @@ export default function StudentContent({ content, onBack }) {
           )}
           {content.type === 'pdf' && !driveUrl && (
             <a href={content.body} target="_blank" rel="noreferrer" className="sc-link">
-              📄 Abrir PDF →
+              📄 Open PDF →
             </a>
           )}
 
@@ -108,7 +108,7 @@ export default function StudentContent({ content, onBack }) {
           )}
         </div>
 
-        <button className="sc-done" onClick={onBack}>← Voltar para o início</button>
+        <button className="sc-done" onClick={onBack}>← Back para o início</button>
       </div>
     </div>
   );

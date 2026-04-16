@@ -34,7 +34,7 @@ export default function TestForm({ initial, onSave, onCancel }) {
   function changeType(index, type) {
     setQuestions((prev) => prev.map((q, i) => {
       if (i !== index) return q;
-      if (type === 'true-false') return { ...q, type, options: ['Verdadeiro', 'Falso'], correct: 0 };
+      if (type === 'true-false') return { ...q, type, options: ['True', 'False'], correct: 0 };
       if (type === 'fill-blank') return { ...q, type, options: [], correct: '' };
       return { ...q, type, options: ['', '', '', ''], correct: 0 };
     }));
@@ -48,13 +48,13 @@ export default function TestForm({ initial, onSave, onCancel }) {
 
   return (
     <form className="ef-form" onSubmit={handleSubmit}>
-      <div className="ef-form-title">{initial ? 'Editar test' : 'Novo test'}</div>
+      <div className="ef-form-title">{initial ? 'Edit test' : 'New test'}</div>
       <div className="ef-hint-banner">
-        📋 O aluno terá apenas uma tentativa para completar este test.
+        📋 The student will have only one attempt to complete this test.
       </div>
 
       <div className="ef-field">
-        <label htmlFor="tf-title">Título do test</label>
+        <label htmlFor="tf-title">Title do test</label>
         <input
           id="tf-title" type="text"
           placeholder="Ex: Test — Unit 1"
@@ -65,16 +65,16 @@ export default function TestForm({ initial, onSave, onCancel }) {
       {questions.map((q, qi) => (
         <div className="ef-question-block" key={qi}>
           <div className="ef-question-header">
-            <span className="ef-question-num">Questão {qi + 1}</span>
+            <span className="ef-question-num">Question {qi + 1}</span>
             <div className="ef-question-type-row">
               {['multiple-choice', 'true-false', 'fill-blank'].map((t) => (
                 <button type="button" key={t}
                   className={`ef-type-btn small ${q.type === t ? 'active' : ''}`}
                   onClick={() => changeType(qi, t)}
                 >
-                  {t === 'multiple-choice' && 'Múltipla escolha'}
-                  {t === 'true-false'      && 'Verdadeiro/Falso'}
-                  {t === 'fill-blank'      && 'Preencha a lacuna'}
+                  {t === 'multiple-choice' && 'Multiple choice'}
+                  {t === 'true-false'      && 'True/False'}
+                  {t === 'fill-blank'      && 'Fill in the blank'}
                 </button>
               ))}
             </div>
@@ -84,7 +84,7 @@ export default function TestForm({ initial, onSave, onCancel }) {
           </div>
 
           <div className="ef-field">
-            <label>Enunciado</label>
+            <label>Question prompt</label>
             <input type="text"
               placeholder={q.type === 'fill-blank' ? 'Ex: She ___ to London twice.' : 'Ex: Which tense is used here?'}
               value={q.prompt} onChange={(e) => updateQuestion(qi, 'prompt', e.target.value)} required
@@ -93,7 +93,7 @@ export default function TestForm({ initial, onSave, onCancel }) {
 
           {q.type === 'multiple-choice' && (
             <div className="ef-field">
-              <label>Alternativas — clique no ✓ para marcar a correta</label>
+              <label>Options — click ✓ to mark the correct one</label>
               <div className="ef-options">
                 {q.options.map((opt, oi) => (
                   <div className="ef-option-row" key={oi}>
@@ -103,7 +103,7 @@ export default function TestForm({ initial, onSave, onCancel }) {
                     >
                       {q.correct === oi ? '✓' : '○'}
                     </button>
-                    <input type="text" placeholder={`Alternativa ${oi + 1}`}
+                    <input type="text" placeholder={`Option ${oi + 1}`}
                       value={opt} onChange={(e) => updateOption(qi, oi, e.target.value)}
                     />
                   </div>
@@ -114,9 +114,9 @@ export default function TestForm({ initial, onSave, onCancel }) {
 
           {q.type === 'true-false' && (
             <div className="ef-field">
-              <label>Resposta correta</label>
+              <label>Correct answer</label>
               <div className="ef-tf-row">
-                {['Verdadeiro', 'Falso'].map((opt, oi) => (
+                {['True', 'False'].map((opt, oi) => (
                   <button type="button" key={opt}
                     className={`ef-tf-btn ${q.correct === oi ? 'active' : ''}`}
                     onClick={() => updateQuestion(qi, 'correct', oi)}
@@ -130,7 +130,7 @@ export default function TestForm({ initial, onSave, onCancel }) {
 
           {q.type === 'fill-blank' && (
             <div className="ef-field">
-              <label>Resposta correta</label>
+              <label>Correct answer</label>
               <input type="text" placeholder="Ex: has been"
                 value={q.correct} onChange={(e) => updateQuestion(qi, 'correct', e.target.value)} required
               />
@@ -138,8 +138,8 @@ export default function TestForm({ initial, onSave, onCancel }) {
           )}
 
           <div className="ef-field">
-            <label>Explicação (mostrada ao errar)</label>
-            <textarea placeholder="Explique a resposta correta..."
+            <label>Explanation (shown when wrong)</label>
+            <textarea placeholder="Explain the correct answer..."
               value={q.explanation} onChange={(e) => updateQuestion(qi, 'explanation', e.target.value)} rows={3}
             />
           </div>
@@ -147,13 +147,13 @@ export default function TestForm({ initial, onSave, onCancel }) {
       ))}
 
       <button type="button" className="ef-add-question" onClick={addQuestion}>
-        + Adicionar questão
+        + Add questão
       </button>
 
       <div className="ef-form-actions">
-        <button type="button" className="ef-btn-cancel" onClick={onCancel}>Cancelar</button>
+        <button type="button" className="ef-btn-cancel" onClick={onCancel}>Cancel</button>
         <button type="submit" className="ef-btn-save">
-          {initial ? 'Salvar alterações' : 'Criar test'}
+          {initial ? 'Save alterações' : 'Create test'}
         </button>
       </div>
     </form>

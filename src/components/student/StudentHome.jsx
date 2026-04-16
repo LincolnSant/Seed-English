@@ -3,12 +3,12 @@ import AvatarPicker from '../shared/AvatarPicker';
 import '../../styles/StudentHome.css';
 
 const CONTENT_TYPE_LABEL = {
-  text:      { icon: '📝', label: 'Texto' },
-  video:     { icon: '🎬', label: 'Vídeo' },
+  text:      { icon: '📝', label: 'Text' },
+  video:     { icon: '🎬', label: 'Video' },
   pdf:       { icon: '📄', label: 'PDF' },
-  curiosity: { icon: '💡', label: 'Curiosidade' },
-  history:   { icon: '🏛️', label: 'Fato histórico' },
-  music:     { icon: '🎵', label: 'Música' },
+  curiosity: { icon: '💡', label: 'Curiosity' },
+  history:   { icon: '🏛️', label: 'Historical fact' },
+  music:     { icon: '🎵', label: 'Music' },
 };
 
 export default function StudentHome({ hideTopbar = false, onColorChange, onPhotoChange,
@@ -65,7 +65,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
             />
             <span>{student.name}</span>
           </div>
-          <button className="sh-logout" onClick={onLogout}>Sair</button>
+          <button className="sh-logout" onClick={onLogout}>Log out</button>
         </div>
       </header>}
 
@@ -191,7 +191,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
                     <button key={q.id} className="sh-card sh-card-quiz" onClick={() => onOpenQuiz(q)}>
                       <div className="sh-card-icon">✏️</div>
                       <div className="sh-card-body">
-                        <div className="sh-card-type">{q.questions?.length ?? 0} questão(ões)</div>
+                        <div className="sh-card-type">{q.questions?.length ?? 0} question(s)</div>
                         <div className="sh-card-title">{q.title}</div>
                         {last && (
                           <div className="sh-card-score">
@@ -231,7 +231,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
                       <div className="sh-card-icon">📋</div>
                       <div className="sh-card-body">
                         <div className="sh-card-type">
-                          {t.questions?.length ?? 0} questão(ões) · {done ? 'Completed' : 'One attempt'}
+                          {t.questions?.length ?? 0} question(s) · {done ? 'Completed' : 'One attempt'}
                         </div>
                         <div className="sh-card-title">{t.title}</div>
                         {result && (

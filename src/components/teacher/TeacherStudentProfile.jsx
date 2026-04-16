@@ -6,12 +6,12 @@ import TestForm    from './TestForm';
 import '../../styles/TeacherHome.css';
 
 const CONTENT_TYPE_LABEL = {
-  text:      '📝 Texto',
-  video:     '🎬 Vídeo',
+  text:      '📝 Text',
+  video:     '🎬 Video',
   pdf:       '📄 PDF',
-  curiosity: '💡 Curiosidade',
-  history:   '🏛️ Fato histórico',
-  music:     '🎵 Música',
+  curiosity: '💡 Curiosity',
+  history:   '🏛️ Historical fact',
+  music:     '🎵 Music',
 };
 
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -80,7 +80,7 @@ export default function TeacherStudentProfile({
 
   return (
     <div className="tsp-root">
-      <button className="tsp-back" onClick={onBack}>← Voltar</button>
+      <button className="tsp-back" onClick={onBack}>← Back</button>
 
       <div className="tsp-header">
         <div className="tsp-student-info">
@@ -89,7 +89,7 @@ export default function TeacherStudentProfile({
             <h1>{student.name}</h1>
             <div className="tsp-meta">
               <div className="level-selector-wrap">
-                <span className="level-selector-label">Nível:</span>
+                <span className="level-selector-label">Level:</span>
                 <div className="level-dropdown">
                   <button
                     className={`level-dropdown-btn level-${(student.level ?? 'sem').toLowerCase()}`}
@@ -125,7 +125,7 @@ export default function TeacherStudentProfile({
           { key: 'classes',     label: `📚 Classes (${student.contents?.length ?? 0})` },
           { key: 'homework',    label: `✏️ Homework (${student.quizzes?.length ?? 0})` },
           { key: 'test',        label: `📋 Test (${student.tests?.length ?? 0})` },
-          { key: 'performance', label: `📊 Desempenho` },
+          { key: 'performance', label: `📊 Performance` },
         ].map((t) => (
           <button key={t.key}
             className={`tsp-tab ${tab === t.key ? 'active' : ''}`}
@@ -139,7 +139,7 @@ export default function TeacherStudentProfile({
         <div className="tsp-tab-content">
           <div className="tsp-tab-actions">
             <button className="btn-add" onClick={() => { setEditingContent(null); setShowContentForm(true); }}>
-              + Nova aula
+              + New class
             </button>
           </div>
           {showContentForm && (
@@ -147,7 +147,7 @@ export default function TeacherStudentProfile({
               onCancel={() => { setShowContentForm(false); setEditingContent(null); }} />
           )}
           {(student.contents?.length === 0 && !showContentForm) && (
-            <div className="tsp-empty">Nenhuma aula adicionada ainda.</div>
+            <div className="tsp-empty">No classes added yet.</div>
           )}
           <div className="tsp-content-list">
             {(student.contents ?? []).map((c) => (
@@ -155,8 +155,8 @@ export default function TeacherStudentProfile({
                 <div className="tsp-content-top">
                   <span className="content-type-badge">{CONTENT_TYPE_LABEL[c.type] ?? c.type}</span>
                   <div className="tsp-card-actions">
-                    <button onClick={() => { setEditingContent(c); setShowContentForm(true); }}>Editar</button>
-                    <button className="btn-danger" onClick={() => onDeleteContent(c.id)}>Excluir</button>
+                    <button onClick={() => { setEditingContent(c); setShowContentForm(true); }}>Edit</button>
+                    <button className="btn-danger" onClick={() => onDeleteContent(c.id)}>Delete</button>
                   </div>
                 </div>
                 <div className="tsp-content-title">{c.title}</div>
@@ -178,7 +178,7 @@ export default function TeacherStudentProfile({
         <div className="tsp-tab-content">
           <div className="tsp-tab-actions">
             <button className="btn-add" onClick={() => { setEditingQuiz(null); setShowQuizForm(true); }}>
-              + Novo homework
+              + New homework
             </button>
           </div>
           {showQuizForm && (
@@ -186,16 +186,16 @@ export default function TeacherStudentProfile({
               onCancel={() => { setShowQuizForm(false); setEditingQuiz(null); }} />
           )}
           {(student.quizzes?.length === 0 && !showQuizForm) && (
-            <div className="tsp-empty">Nenhum homework adicionado ainda.</div>
+            <div className="tsp-empty">No homework added yet.</div>
           )}
           <div className="tsp-content-list">
             {(student.quizzes ?? []).map((q) => (
               <div className="tsp-content-card" key={q.id}>
                 <div className="tsp-content-top">
-                  <span className="content-type-badge">✏️ {q.questions?.length ?? 0} questão(ões)</span>
+                  <span className="content-type-badge">✏️ {q.questions?.length ?? 0} question(s)</span>
                   <div className="tsp-card-actions">
-                    <button onClick={() => { setEditingQuiz(q); setShowQuizForm(true); }}>Editar</button>
-                    <button className="btn-danger" onClick={() => onDeleteQuiz(q.id)}>Excluir</button>
+                    <button onClick={() => { setEditingQuiz(q); setShowQuizForm(true); }}>Edit</button>
+                    <button className="btn-danger" onClick={() => onDeleteQuiz(q.id)}>Delete</button>
                   </div>
                 </div>
                 <div className="tsp-content-title">{q.title}</div>
@@ -218,7 +218,7 @@ export default function TeacherStudentProfile({
         <div className="tsp-tab-content">
           <div className="tsp-tab-actions">
             <button className="btn-add" onClick={() => { setEditingTest(null); setShowTestForm(true); }}>
-              + Novo test
+              + New test
             </button>
           </div>
           {showTestForm && (
@@ -226,7 +226,7 @@ export default function TeacherStudentProfile({
               onCancel={() => { setShowTestForm(false); setEditingTest(null); }} />
           )}
           {(student.tests?.length === 0 && !showTestForm) && (
-            <div className="tsp-empty">Nenhum test adicionado ainda.</div>
+            <div className="tsp-empty">No tests added yet.</div>
           )}
           <div className="tsp-content-list">
             {(student.tests ?? []).map((t) => {
@@ -234,21 +234,21 @@ export default function TeacherStudentProfile({
               return (
                 <div className="tsp-content-card" key={t.id}>
                   <div className="tsp-content-top">
-                    <span className="content-type-badge">📋 {t.questions?.length ?? 0} questão(ões)</span>
+                    <span className="content-type-badge">📋 {t.questions?.length ?? 0} question(s)</span>
                     <div className="tsp-card-actions">
-                      {!result && <button onClick={() => { setEditingTest(t); setShowTestForm(true); }}>Editar</button>}
-                      <button className="btn-danger" onClick={() => onDeleteTest(t.id)}>Excluir</button>
+                      {!result && <button onClick={() => { setEditingTest(t); setShowTestForm(true); }}>Edit</button>}
+                      <button className="btn-danger" onClick={() => onDeleteTest(t.id)}>Delete</button>
                     </div>
                   </div>
                   <div className="tsp-content-title">{t.title}</div>
                   {result ? (
                     <div className="tsp-test-result">
                       <span className="tsp-test-grade">{result.grade}/10</span>
-                      <span className="tsp-test-score">{result.score}/{result.total} acertos</span>
+                      <span className="tsp-test-score">{result.score}/{result.total} correct</span>
                       <span className="tsp-test-date">{new Date(result.completed_at).toLocaleDateString('pt-BR')}</span>
                     </div>
                   ) : (
-                    <div className="tsp-test-pending">Aguardando realização</div>
+                    <div className="tsp-test-pending">Pending</div>
                   )}
                 </div>
               );
@@ -261,7 +261,7 @@ export default function TeacherStudentProfile({
       {tab === 'performance' && (
         <div className="tsp-tab-content">
           {hwResults.length === 0 && tstResults.length === 0 ? (
-            <div className="tsp-empty">Nenhuma atividade realizada ainda.</div>
+            <div className="tsp-empty">No activities completed yet.</div>
           ) : (
             <>
               {tstResults.length > 0 && (
@@ -277,8 +277,8 @@ export default function TeacherStudentProfile({
                         </div>
                         <div className="tsp-perf-scores">
                           <span className="tsp-perf-grade">{r.grade}/10</span>
-                          <span className="tsp-perf-acertos">{r.score}/{r.total} acertos</span>
-                          {test && <button className="tsp-detail-btn" onClick={() => openDetail('test', r.test_id, test.title, test.questions ?? [])}>Ver detalhes</button>}
+                          <span className="tsp-perf-correct">{r.score}/{r.total} correct</span>
+                          {test && <button className="tsp-detail-btn" onClick={() => openDetail('test', r.test_id, test.title, test.questions ?? [])}>View details</button>}
                         </div>
                       </div>
                     );
@@ -299,8 +299,8 @@ export default function TeacherStudentProfile({
                         </div>
                         <div className="tsp-perf-scores">
                           <span className="tsp-perf-pct">{pct}%</span>
-                          <span className="tsp-perf-acertos">{r.score}/{r.total} acertos</span>
-                          {quiz && <button className="tsp-detail-btn" onClick={() => openDetail('quiz', r.quiz_id, quiz.title, quiz.questions ?? [])}>Ver detalhes</button>}
+                          <span className="tsp-perf-correct">{r.score}/{r.total} correct</span>
+                          {quiz && <button className="tsp-detail-btn" onClick={() => openDetail('quiz', r.quiz_id, quiz.title, quiz.questions ?? [])}>View details</button>}
                         </div>
                       </div>
                     );
@@ -340,7 +340,7 @@ export default function TeacherStudentProfile({
                     )}
                     {!correct && (
                       <div className="tsp-detail-correct">
-                        <span className="tsp-detail-label">Resposta correta:</span>
+                        <span className="tsp-detail-label">Correct answer:</span>
                         <span>{q.type === 'multiple-choice' || q.type === 'true-false'
                           ? q.options?.[q.correct] ?? q.correct
                           : q.correct}</span>

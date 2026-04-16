@@ -50,20 +50,20 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
     return (
       <div className="sq-root">
         <div className="sq-inner">
-          <button className="sq-back" onClick={onBack}>← Voltar</button>
+          <button className="sq-back" onClick={onBack}>← Back</button>
           <div className="sq-finished">
             <div className="sq-finished-icon">{pct >= 70 ? '🎉' : '📖'}</div>
-            <h1>{pct >= 70 ? 'Muito bem!' : 'Continue praticando!'}</h1>
+            <h1>{pct >= 70 ? 'Well done!' : 'Keep practicing!'}</h1>
             <p>{quiz.title}</p>
             <div className="sq-score">
               <span className="sq-score-num">{score}</span>
-              <span className="sq-score-total">/{total} corretas</span>
+              <span className="sq-score-total">/{total} correct</span>
             </div>
             <div className="sq-score-bar-wrap">
               <div className="sq-score-bar" style={{ width: `${pct}%` }} />
             </div>
             <div className="sq-finished-actions">
-              <button className="sq-btn-primary" onClick={onBack}>← Voltar ao início</button>
+              <button className="sq-btn-primary" onClick={onBack}>← Back to home</button>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
   return (
     <div className="sq-root">
       <div className="sq-inner">
-        <button className="sq-back" onClick={onBack}>← Voltar ao início</button>
+        <button className="sq-back" onClick={onBack}>← Back to home</button>
         <div className="sq-header">
           <div className="sq-quiz-title">{quiz.title}</div>
           <div className="sq-progress-row">
@@ -86,7 +86,7 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
         </div>
 
         <div className="sq-card">
-          <div className="sq-question-num">Pergunta {current + 1}</div>
+          <div className="sq-question-num">Question {current + 1}</div>
           <div className="sq-question-prompt">{question.prompt}</div>
 
           {question.type === 'multiple-choice' && (
@@ -152,11 +152,11 @@ export default function StudentQuiz({ quiz, onBack, onComplete }) {
           {!submitted ? (
             <button className="sq-btn-primary" onClick={handleSubmit}
               disabled={selected === null || selected === ''}>
-              Confirmar resposta
+              Confirm resposta
             </button>
           ) : (
             <button className="sq-btn-primary" onClick={handleNext}>
-              {current + 1 >= total ? 'Ver resultado →' : 'Próxima pergunta →'}
+              {current + 1 >= total ? 'See result →' : 'Next question →'}
             </button>
           )}
         </div>

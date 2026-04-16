@@ -3,7 +3,7 @@ import { supabase } from '../../lib/supabase';
 import '../../styles/AvatarPicker.css';
 
 const COLORS = [
-  '#5C7A5E', '#1A1612', '#C8956C', '#1A6FA8',
+  '#3CBBA8', '#1A1612', '#C8956C', '#1A6FA8',
   '#A0522D', '#7B4F9E', '#C0392B', '#2E86AB',
 ];
 
@@ -12,7 +12,7 @@ export default function AvatarPicker({ profile, onColorChange, onPhotoChange, si
   const [uploading,  setUploading]  = useState(false);
   const fileRef = useRef();
 
-  const avatarColor = profile?.avatar_color ?? '#5C7A5E';
+  const avatarColor = profile?.avatar_color ?? '#3CBBA8';
   const avatarPhoto = profile?.avatar_url   ?? null;
   const initials    = (profile?.name ?? '?').split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase();
 
@@ -56,7 +56,7 @@ export default function AvatarPicker({ profile, onColorChange, onPhotoChange, si
 
       {showPicker && (
         <div className={`ap-picker ${dark ? 'dark' : ''} ${dropUp ? 'drop-up' : 'drop-down'}`} onClick={(e) => e.stopPropagation()}>
-          <div className="ap-picker-label">Cor do avatar</div>
+          <div className="ap-picker-label">Avatar color</div>
           <div className="ap-colors">
             {COLORS.map((color) => (
               <button
@@ -71,7 +71,7 @@ export default function AvatarPicker({ profile, onColorChange, onPhotoChange, si
             className="ap-photo-btn"
             onMouseDown={(e) => { e.preventDefault(); fileRef.current?.click(); }}
           >
-            📷 Usar foto
+            📷 Use photo
           </button>
         </div>
       )}

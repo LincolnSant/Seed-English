@@ -2,12 +2,12 @@ import { useState } from 'react';
 import '../../styles/Forms.css';
 
 const TYPES = [
-  { value: 'text',      label: '📝 Texto' },
-  { value: 'video',     label: '🎬 Vídeo (link)' },
+  { value: 'text',      label: '📝 Text' },
+  { value: 'video',     label: '🎬 Video (link)' },
   { value: 'pdf',       label: '📄 PDF (Google Drive)' },
-  { value: 'curiosity', label: '💡 Curiosidade' },
-  { value: 'history',   label: '🏛️ Fato histórico' },
-  { value: 'music',     label: '🎵 Música' },
+  { value: 'curiosity', label: '💡 Curiosity' },
+  { value: 'history',   label: '🏛️ Historical fact' },
+  { value: 'music',     label: '🎵 Music' },
 ];
 
 export default function ContentForm({ initial, onSave, onCancel }) {
@@ -25,10 +25,10 @@ export default function ContentForm({ initial, onSave, onCancel }) {
 
   return (
     <form className="ef-form" onSubmit={handleSubmit}>
-      <div className="ef-form-title">{initial ? 'Editar conteúdo' : 'Nova aula'}</div>
+      <div className="ef-form-title">{initial ? 'Edit conteúdo' : 'New class'}</div>
 
       <div className="ef-field">
-        <label>Tipo</label>
+        <label>Type</label>
         <div className="ef-type-grid">
           {TYPES.map((t) => (
             <button
@@ -43,19 +43,19 @@ export default function ContentForm({ initial, onSave, onCancel }) {
       </div>
 
       <div className="ef-field">
-        <label htmlFor="cf-title">Título</label>
+        <label htmlFor="cf-title">Title</label>
         <input
           id="cf-title" type="text"
-          placeholder="Ex: Aula 1 — Present Perfect"
+          placeholder="Ex: Class 1 — Present Perfect"
           value={title} onChange={(e) => setTitle(e.target.value)} required
         />
       </div>
 
       <div className="ef-field">
         <label htmlFor="cf-body">
-          {type === 'video' ? 'Link do vídeo (YouTube)' :
-           type === 'pdf'   ? 'Link do Google Drive' :
-           'Conteúdo'}
+          {type === 'video' ? 'Video link (YouTube)' :
+           type === 'pdf'   ? 'Google Drive link' :
+           'Content'}
         </label>
         {isLink ? (
           <input
@@ -65,22 +65,22 @@ export default function ContentForm({ initial, onSave, onCancel }) {
           />
         ) : (
           <textarea
-            id="cf-body" placeholder="Escreva o conteúdo aqui..."
+            id="cf-body" placeholder="Write content here..."
             value={body} onChange={(e) => setBody(e.target.value)}
             rows={6} required
           />
         )}
         {type === 'pdf' && (
           <div className="ef-hint">
-            No Google Drive: clique em "Compartilhar" → "Qualquer pessoa com o link" → copie o link
+            On Google Drive: click "Share" → "Anyone with the link" → copy the link
           </div>
         )}
       </div>
 
       <div className="ef-form-actions">
-        <button type="button" className="ef-btn-cancel" onClick={onCancel}>Cancelar</button>
+        <button type="button" className="ef-btn-cancel" onClick={onCancel}>Cancel</button>
         <button type="submit" className="ef-btn-save">
-          {initial ? 'Salvar alterações' : 'Adicionar aula'}
+          {initial ? 'Save alterações' : 'Add aula'}
         </button>
       </div>
     </form>

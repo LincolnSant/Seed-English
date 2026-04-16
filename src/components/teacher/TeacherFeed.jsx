@@ -88,19 +88,19 @@ export default function TeacherFeed({ teacherId, teacherName }) {
     <div className="tf-root">
       <div className="tf-header">
         <h1>Feed</h1>
-        <p>Publique conteúdos para todos os seus alunos</p>
+        <p>Post content for all your students</p>
       </div>
 
       {/* Compose */}
       <div className="tf-compose-twitter">
-        <div className="tf-compose-avatar" style={{ background: '#5C7A5E' }}>
+        <div className="tf-compose-avatar" style={{ background: '#3CBBA8' }}>
           {getInitials(teacherName)}
         </div>
         <div className="tf-compose-right">
 
           <textarea
             className="tf-compose-textarea"
-            placeholder="O que você quer compartilhar?"
+            placeholder="What do you want to share?"
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows={3}
@@ -121,7 +121,7 @@ export default function TeacherFeed({ teacherId, teacherName }) {
               <input
                 className="tf-video-input"
                 type="url"
-                placeholder="Cole o link do YouTube aqui..."
+                placeholder="Paste YouTube link here..."
                 value={videoUrl}
                 onChange={(e) => setVideoUrl(e.target.value)}
               />
@@ -134,7 +134,7 @@ export default function TeacherFeed({ teacherId, teacherName }) {
             <input
               className="tf-caption-input"
               type="text"
-              placeholder="Adicionar legenda (opcional)..."
+              placeholder="Add legenda (opcional)..."
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
             />
@@ -146,14 +146,14 @@ export default function TeacherFeed({ teacherId, teacherName }) {
               <button
                 className={`tf-toolbar-btn ${imagePreview ? 'active' : ''}`}
                 onClick={() => fileRef.current?.click()}
-                title="Adicionar foto"
+                title="Add foto"
               >
                 🖼️
               </button>
               <button
                 className={`tf-toolbar-btn ${showVideo ? 'active' : ''}`}
                 onClick={toggleVideo}
-                title="Adicionar vídeo"
+                title="Add vídeo"
               >
                 🎬
               </button>
@@ -170,7 +170,7 @@ export default function TeacherFeed({ teacherId, teacherName }) {
               onClick={handlePost}
               disabled={submitting || !canPost}
             >
-              {submitting ? 'Publicando...' : 'Publicar'}
+              {submitting ? 'Posting...' : 'Post'}
             </button>
           </div>
         </div>
@@ -185,8 +185,8 @@ export default function TeacherFeed({ teacherId, teacherName }) {
         ) : posts.length === 0 ? (
           <div className="feed-empty">
             <div className="feed-empty-icon">📢</div>
-            <div className="feed-empty-title">Nenhuma publicação ainda</div>
-            <p>Comece publicando algo para seus alunos!</p>
+            <div className="feed-empty-title">No posts yet</div>
+            <p>Start posting something for your students!</p>
           </div>
         ) : (
           <div className="feed-list">

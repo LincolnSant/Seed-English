@@ -8,20 +8,20 @@ export default function StudentFeed({ student, onLogout, hideTopbar = false }) {
   return (
     <div className="sh-root">
       {!hideTopbar && <header className="sh-topbar">
-        <div className="sh-logo">Seed <span>English</span></div>
+        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="sh-logo-img" />
         <div className="sh-topbar-right">
           <div className="sh-user">
             <div className="sh-avatar">{student.initials}</div>
             <span>{student.name}</span>
           </div>
-          <button className="sh-logout" onClick={onLogout}>Sair</button>
+          <button className="sh-logout" onClick={onLogout}>Log out</button>
         </div>
       </header>}
 
       <div className="feed-body">
         <div className="feed-header">
           <h2>Feed</h2>
-          <p>Publicações da sua professora</p>
+          <p>Posts from your teacher</p>
         </div>
 
         {loading ? (
@@ -31,8 +31,8 @@ export default function StudentFeed({ student, onLogout, hideTopbar = false }) {
         ) : posts.length === 0 ? (
           <div className="feed-empty">
             <div className="feed-empty-icon">📢</div>
-            <div className="feed-empty-title">Nenhuma publicação ainda</div>
-            <p>Sua professora ainda não fez nenhuma publicação.</p>
+            <div className="feed-empty-title">No posts yet</div>
+            <p>Your teacher hasn't posted anything yet.</p>
           </div>
         ) : (
           <div className="feed-list">
