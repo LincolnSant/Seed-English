@@ -1,39 +1,38 @@
 .sd-root {
   min-height: 100vh;
-  background: #F7F3EE;
+  background: #F5F5F5;
   font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* ── Main tab bar ──────────────────────────────────────── */
-.sd-main-tabs {
+/* ── Tab bar below topbar ──────────────────────────────── */
+.sd-tab-bar {
   display: flex;
+  background: #4A4A4A;
+  padding: 8px 48px 0;
   gap: 4px;
-  background: rgba(255,255,255,.08);
-  border-radius: 100px;
-  padding: 3px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
 }
+
 .sd-main-tab {
-  padding: 6px 18px;
-  border-radius: 100px;
+  padding: 10px 20px;
   border: none;
   background: transparent;
   color: rgba(247,243,238,.6);
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all .2s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
 }
 .sd-main-tab.active {
-  background: #fff;
-  color: #1A1612;
+  color: #fff;
+  border-bottom-color: #fff;
 }
 .sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.9); }
-
-@media (max-width: 768px) {
-  .sd-main-tabs { gap: 2px; }
-  .sd-main-tab  { padding: 6px 12px; font-size: 12px; }
-}
 
 /* ── Logo no topbar ────────────────────────────────────── */
 .sd-topbar-logo {
@@ -47,28 +46,20 @@
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
   height: 72px;
-  overflow: visible;
+  overflow: hidden;
   padding: 0 48px;
 }
 
-/* ── Mobile topbar fix ─────────────────────────────────── */
+/* ── Mobile ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    padding: 0 12px;
+    padding: 0 16px;
     height: 56px !important;
     overflow: hidden !important;
-    flex-wrap: nowrap;
-    gap: 0;
   }
   .sd-topbar-logo {
-    max-height: 85px !important;
-    max-width: 80px !important;
-    flex-shrink: 0;
-  }
-  .sd-main-tabs {
-    flex: 1;
-    justify-content: center;
-    margin: 0 8px;
+    max-height:  85px !important;
+    max-width: 90px !important;
   }
   .sh-topbar-right {
     display: flex;
@@ -79,4 +70,17 @@
   .sh-user span { display: none; }
   .sh-logout { padding: 6px 10px; font-size: 12px; }
 
+  .sd-tab-bar {
+    padding: 8px 16px 0;
+    justify-content: center;
+  }
+  .sd-main-tab { padding: 8px 16px; font-size: 13px; }
+}
+
+/* ── Page alignment ────────────────────────────────────── */
+.sd-root {
+  margin: 0;
+  padding: 0;
+  left: 0;
+  position: relative;
 }
