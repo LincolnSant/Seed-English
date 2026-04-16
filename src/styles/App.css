@@ -74,8 +74,9 @@ html, body, #root {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .app-loading-logo-img {
-  height: 150px;
+  height: 190px;
   width: auto;
+  align-items: center;
   object-fit: contain;
 }
 
