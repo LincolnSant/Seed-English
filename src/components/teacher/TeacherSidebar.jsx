@@ -2,8 +2,8 @@ import AvatarPicker from '../shared/AvatarPicker';
 import '../../styles/TeacherSidebar.css';
 
 const NAV = [
-  { key: 'home',     icon: '⊞', label: 'Visão geral' },
-  { key: 'students', icon: '👤', label: 'Alunos' },
+  { key: 'home',     icon: '⊞', label: 'Overview' },
+  { key: 'students', icon: '👤', label: 'Students' },
   { key: 'feed',     icon: '📢', label: 'Feed' },
 ];
 
@@ -36,11 +36,11 @@ export default function TeacherSidebar({ active, onChange, onLogout, profile, on
             dropUp={true}
           />
           <div>
-            <div className="ts-profile-name">{profile?.name ?? 'Professora'}</div>
-            <div className="ts-profile-role">Professora</div>
+            <div className="ts-profile-name">{profile?.name ?? 'Teacher'}</div>
+            <div className="ts-profile-role">Teacher</div>
           </div>
         </div>
-        <button className="ts-logout" onClick={onLogout}>Sair</button>
+        <button className="ts-logout" onClick={onLogout}>Log out</button>
       </div>
     </aside>
   );
