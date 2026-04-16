@@ -18,6 +18,8 @@
   height: 72px;
   overflow: hidden;
   padding: 0 48px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ── Mobile ────────────────────────────────────────────── */
@@ -28,6 +30,8 @@
     overflow: visible !important;
     padding: 8px 16px !important;
     flex-wrap: nowrap;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   .sd-topbar-logo {
     height: 32px !important;
