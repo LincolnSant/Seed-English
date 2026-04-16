@@ -1,3 +1,8 @@
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* ── Placeholder ───────────────────────────────────────── */
 .placeholder-root {
   min-height: 100vh;
@@ -30,7 +35,7 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-.placeholder-btn:hover { background: #5C7A5E; }
+.placeholder-btn:hover { background: #3CBBA8; }
 
 /* ── App loading ───────────────────────────────────────── */
 .app-loading {
@@ -51,15 +56,15 @@
   letter-spacing: -0.5px;
 }
 .app-loading-logo span {
-  color: #5C7A5E;
+  color: #3CBBA8;
   font-style: italic;
 }
 
 .app-loading-spinner {
   width: 32px;
   height: 32px;
-  border: 2.5px solid rgba(92,122,94,.2);
-  border-top-color: #5C7A5E;
+  border: 2.5px solid rgba(60,187,168,.2);
+  border-top-color: #3CBBA8;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

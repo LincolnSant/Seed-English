@@ -205,7 +205,7 @@
 /* ── Mobile fix ────────────────────────────────────────── */
 @media (max-width: 768px) {
   .nb-dropdown {
-    right: 0;
+    right: -60px;
     left: unset;
     width: 290px;
   }
