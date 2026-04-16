@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: #F7F3EE;
   font-family: 'DM Sans', sans-serif;
+  margin-left: -4px;
 }
 
 /* ── Main tab bar ──────────────────────────────────────── */
@@ -78,5 +79,4 @@
   }
   .sh-user span { display: none; }
   .sh-logout { padding: 6px 10px; font-size: 12px; }
-
 }
