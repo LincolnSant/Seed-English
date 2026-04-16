@@ -19,7 +19,7 @@ export default function ToastNotification({ notifications }) {
     unread.forEach((n) => {
       setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== n.id));
-      }, 4000);
+      }, 20000);
     });
   }, [notifications]);
 

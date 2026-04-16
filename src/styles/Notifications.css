@@ -194,3 +194,10 @@
 
 /* ── Profile info layout ───────────────────────────────── */
 .ts-profile-info { flex: 1; min-width: 0; }
+
+.nb-header-sub {
+  font-size: 11px;
+  color: #8A7F74;
+  font-weight: 400;
+}
+.nb-dropdown.dark .nb-header-sub { color: rgba(255,255,255,.3); }

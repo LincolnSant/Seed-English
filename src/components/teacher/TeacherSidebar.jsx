@@ -8,7 +8,7 @@ const NAV = [
   { key: 'feed',     icon: '📢', label: 'Feed' },
 ];
 
-export default function TeacherSidebar({ active, onChange, onLogout, profile, onColorChange, onPhotoChange }) {
+export default function TeacherSidebar({ active, onChange, onLogout, profile, onColorChange, onPhotoChange, onNavigate }) {
   return (
     <aside className="ts-root">
       <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="ts-logo-img" />

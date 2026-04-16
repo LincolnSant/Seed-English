@@ -74,6 +74,7 @@ export default function TeacherDashboard() {
         profile={profile ? { ...profile, avatar_color: avatarColor ?? profile.avatar_color, avatar_url: avatarPhoto ?? profile.avatar_url } : null}
         onColorChange={setAvatarColor}
         onPhotoChange={setAvatarPhoto}
+        onNavigate={(dest) => { if (dest.section) setSection(dest.section); }}
       />
       <main className="td-main">{renderSection()}</main>
     </div>

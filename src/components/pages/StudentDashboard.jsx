@@ -74,7 +74,7 @@ export default function StudentDashboard() {
             />
             <span>{student.name}</span>
           </div>
-          <NotificationBell userId={profile?.id} dark={false} />
+          <NotificationBell userId={profile?.id} userRole="student" dark={false} onNavigate={(dest) => { if (dest.tab) setMainTab(dest.tab); }} />
           <button className="sh-logout" onClick={handleLogout}>Log out</button>
         </div>
       </header>
