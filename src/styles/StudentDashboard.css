@@ -55,7 +55,7 @@
 /* ── Mobile topbar fix ─────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    padding: 0 8px;
+    padding: 0 3px;
     height: 56px !important;
     overflow: hidden !important;
     flex-wrap: nowrap;
