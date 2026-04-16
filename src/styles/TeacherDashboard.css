@@ -16,3 +16,22 @@
   .td-root { flex-direction: column; }
   .td-main { padding-bottom: 80px; }
 }
+
+@media (max-width: 768px) {
+  .td-root {
+    flex-direction: column;
+  }
+  .td-main {
+    padding-bottom: 24px;
+  }
+}
+
+/* ── Mobile layout fix ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .td-root {
+    flex-direction: column;
+  }
+  .td-main {
+    padding-bottom: 24px;
+  }
+}

@@ -50,3 +50,73 @@
   overflow: visible;
   padding: 0 48px;
 }
+
+/* ── Mobile topbar fix ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .sd-root .sh-topbar {
+    padding: 0 16px;
+    height: auto;
+    min-height: 64px;
+    overflow: visible;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sd-topbar-logo {
+    max-height: 36px;
+    max-width: 100px;
+  }
+  .sd-main-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .sh-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .sh-user span {
+    display: none;
+  }
+  .sh-logout {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ── Mobile topbar fix ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .sd-root .sh-topbar {
+    padding: 0 16px;
+    height: auto;
+    min-height: 64px;
+    overflow: visible;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sd-topbar-logo {
+    max-height: 36px;
+    max-width: 100px;
+  }
+  .sd-main-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .sh-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .sh-user span {
+    display: none;
+  }
+  .sh-logout {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
