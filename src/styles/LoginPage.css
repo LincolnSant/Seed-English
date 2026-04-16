@@ -32,13 +32,13 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 20% 40%, rgba(60,187,168,.35) 0%, transparent 65%);
+  background: none;
 }
 .login-left::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 80% 90%, rgba(60,187,168,.05) 0%, transparent 55%);
+  background: none;
 }
 
 .login-left-inner {
@@ -84,7 +84,7 @@
 .login-brand-desc {
   font-size: 17px;
   font-weight: 300;
-  color: var(--muted);
+  color: #4A4A4A;
   line-height: 1.65;
   max-width: 340px;
 }
