@@ -81,6 +81,9 @@
 .rp-features {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 .rp-feature {
