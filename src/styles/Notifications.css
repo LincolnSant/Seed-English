@@ -190,6 +190,8 @@
 .nb-dropdown.drop-up {
   bottom: calc(100% + 10px);
   top: unset;
+  right: unset;
+  left: 0;
 }
 
 /* ── Profile info layout ───────────────────────────────── */
