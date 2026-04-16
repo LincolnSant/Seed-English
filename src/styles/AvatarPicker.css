@@ -3,6 +3,7 @@
   cursor: pointer;
   flex-shrink: 0;
   display: inline-flex;
+  z-index: 9999;
 }
 
 .ap-avatar {
@@ -40,15 +41,14 @@
 
 /* Picker dropdown */
 .ap-picker {
-  position: fixed;
-  top: 80px;
-  right: 16px;
-  left: unset;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
   background: #fff;
   border: 1px solid rgba(26,22,18,.12);
   border-radius: 14px;
   padding: 14px;
-  z-index: 300;
+  z-index: 9999;
   box-shadow: 0 8px 32px rgba(0,0,0,.15);
   min-width: 160px;
 }
