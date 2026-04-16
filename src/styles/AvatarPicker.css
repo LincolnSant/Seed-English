@@ -40,9 +40,10 @@
 
 /* Picker dropdown */
 .ap-picker {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  left: unset;
   background: #fff;
   border: 1px solid rgba(26,22,18,.12);
   border-radius: 14px;
