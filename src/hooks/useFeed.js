@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import { createNotification } from './useNotifications';
 import { supabase } from '../lib/supabase';
+
+async function createNotification(userId, type, title, body) {
+  await supabase.from('notifications').insert({ user_id: userId, type, title, body });
+}
 
 export function useFeed(currentUserId) {
   const [posts,   setPosts]   = useState([]);

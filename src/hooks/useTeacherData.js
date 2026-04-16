@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { createNotification } from './useNotifications';
+
+async function createNotification(userId, type, title, body) {
+  await supabase.from('notifications').insert({ user_id: userId, type, title, body });
+}
 
 export function useTeacherData() {
   const CACHE_KEY = 'ef_teacher_students';
