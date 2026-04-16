@@ -78,3 +78,13 @@ html, body, #root {
   width: auto;
   object-fit: contain;
 }
+
+/* ── Global mobile scroll fix ──────────────────────────── */
+@media (max-width: 768px) {
+  .sd-root, .sh-root, .sq-root, .sc-root,
+  .feed-body, .tf-root, .tsp-root,
+  .th-root, .tstudents-root {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+}
