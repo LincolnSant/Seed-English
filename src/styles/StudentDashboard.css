@@ -1,34 +1,32 @@
 .sd-root {
-  overflow-x: hidden;
   min-height: 100vh;
   background: #F7F3EE;
   font-family: 'DM Sans', sans-serif;
 }
 
-/* ── Tab bar below topbar ──────────────────────────────── */
-.sd-tab-bar {
+/* ── Main tab bar ──────────────────────────────────────── */
+.sd-main-tabs {
   display: flex;
-  background: var(--ink);
-  padding: 8px 16px 0;
   gap: 4px;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.08);
+  border-radius: 100px;
+  padding: 3px;
 }
 .sd-main-tab {
-  padding: 10px 20px;
+  padding: 6px 18px;
+  border-radius: 100px;
   border: none;
   background: transparent;
   color: rgba(247,243,238,.6);
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: all .2s;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
 }
 .sd-main-tab.active {
-  color: #fff;
-  border-bottom-color: #fff;
+  background: #fff;
+  color: #1A1612;
 }
 .sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.9); }
 
@@ -49,43 +47,8 @@
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
   height: 72px;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 48px;
-}
-
-/* ── Mobile topbar fix ─────────────────────────────────── */
-@media (max-width: 768px) {
-  .sd-root .sh-topbar {
-    padding: 0 16px;
-    height: auto;
-    min-height: 64px;
-    overflow: visible;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .sd-topbar-logo {
-    max-height: 120px;
-    max-width: 100px;
-  }
-  .sd-main-tabs {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 8px;
-  }
-  .sh-topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-  .sh-user span {
-    display: none;
-  }
-  .sh-logout {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
 }
 
 /* ── Mobile topbar fix ─────────────────────────────────── */
@@ -115,4 +78,5 @@
   }
   .sh-user span { display: none; }
   .sh-logout { padding: 6px 10px; font-size: 12px; }
+
 }
