@@ -55,14 +55,6 @@ export default function StudentDashboard() {
       {/* Top nav with two main tabs */}
       <header className="sh-topbar">
         <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="sd-topbar-logo" />
-        <div className="sd-main-tabs">
-          <button className={`sd-main-tab ${mainTab === 'feed' ? 'active' : ''}`} onClick={() => setMainTab('feed')}>
-            Feed
-          </button>
-          <button className={`sd-main-tab ${mainTab === 'study' ? 'active' : ''}`} onClick={() => setMainTab('study')}>
-            Seeds
-          </button>
-        </div>
         <div className="sh-topbar-right">
           <div className="sh-user">
             <AvatarPicker
@@ -78,6 +70,14 @@ export default function StudentDashboard() {
           <button className="sh-logout" onClick={handleLogout}>Log out</button>
         </div>
       </header>
+      <div className="sd-tab-bar">
+        <button className={`sd-main-tab ${mainTab === 'feed' ? 'active' : ''}`} onClick={() => setMainTab('feed')}>
+          Feed
+        </button>
+        <button className={`sd-main-tab ${mainTab === 'study' ? 'active' : ''}`} onClick={() => setMainTab('study')}>
+          Seeds
+        </button>
+      </div>
 
       {mainTab === 'feed' ? (
         <StudentFeed student={student} onLogout={handleLogout} hideTopbar />
