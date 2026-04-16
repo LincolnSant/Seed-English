@@ -4,7 +4,7 @@
   --sage:       #3CBBA8;
   --sage-light: #E0F5F2;
   --warm:       #C8956C;
-  --cream:      #F7F3EE;
+  --cream:      #F5F5F5;
   --muted:      #8A7F74;
   --border:     rgba(26,22,18,0.10);
   --danger:     #C0392B;
@@ -287,7 +287,7 @@
 /* ── Shared btn-add ────────────────────────────────────── */
 .btn-add {
   background: var(--ink);
-  color: var(--cream);
+  color: #F5F5F5;
   border: none;
   padding: 10px 20px;
   border-radius: 100px;
@@ -323,7 +323,7 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   color: var(--muted);
-  background: var(--cream);
+  background: #F5F5F5;
 }
 
 /* ── Level selector redesign ───────────────────────────── */
@@ -451,7 +451,7 @@
 /* ── ef-hint ───────────────────────────────────────────── */
 .ef-hint {
   font-size: 12px; color: var(--muted);
-  background: var(--cream); border-radius: 8px;
+  background: #F5F5F5; border-radius: 8px;
   padding: 8px 12px; margin-top: 4px; line-height: 1.5;
 }
 .ef-hint-banner {
@@ -516,7 +516,7 @@
   cursor: pointer; padding: 4px 8px;
   border-radius: 6px; transition: all .2s;
 }
-.tsp-detail-header button:hover { background: var(--cream); color: var(--ink); }
+.tsp-detail-header button:hover { background: #F5F5F5; color: var(--ink); }
 
 .tsp-detail-body {
   overflow-y: auto; padding: 20px 24px;
@@ -529,7 +529,7 @@
 }
 .tsp-detail-q.correct { border-color: rgba(60,187,168,.4); background: var(--sage-light); }
 .tsp-detail-q.wrong   { border-color: rgba(192,57,43,.3); background: rgba(192,57,43,.05); }
-.tsp-detail-q.pending { background: var(--cream); }
+.tsp-detail-q.pending { background: #F5F5F5; }
 
 .tsp-detail-q-header {
   display: flex; align-items: center;

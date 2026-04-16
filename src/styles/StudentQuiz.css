@@ -3,7 +3,7 @@
   --sage:       #3CBBA8;
   --sage-light: #E0F5F2;
   --warm:       #C8956C;
-  --cream:      #F7F3EE;
+  --cream:      #F5F5F5;
   --muted:      #8A7F74;
   --border:     rgba(26,22,18,0.10);
   --danger:     #C0392B;
@@ -12,7 +12,7 @@
 
 .sq-root {
   min-height: 100vh;
-  background: var(--cream);
+  background: #F5F5F5;
   font-family: 'DM Sans', sans-serif;
   padding: 48px 24px 80px;
 }
@@ -91,7 +91,7 @@
 .sq-option-letter {
   width: 26px; height: 26px;
   border-radius: 50%;
-  background: var(--cream);
+  background: #F5F5F5;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 600;
   flex-shrink: 0;
@@ -156,7 +156,7 @@
 /* ── Actions ───────────────────────────────────────────── */
 .sq-actions { display: flex; justify-content: flex-end; }
 .sq-btn-primary {
-  background: var(--ink); color: var(--cream);
+  background: var(--ink); color: #F5F5F5;
   border: none; padding: 14px 28px;
   border-radius: 100px;
   font-family: 'DM Sans', sans-serif;

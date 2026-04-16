@@ -1,5 +1,5 @@
 :root {
-  --cream:      #F7F3EE;
+  --cream:      #F5F5F5;
   --ink:        #1A1612;
   --sage:       #3CBBA8;
   --sage-light: #E0F5F2;
@@ -18,7 +18,7 @@
 
 /* ── Left panel ───────────────────────────────────────── */
 .rp-left {
-  background: var(--ink);
+  background: #fff;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -34,7 +34,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 80% 90%, rgba(200,149,108,.2) 0%, transparent 55%);
+  background: radial-gradient(ellipse at 80% 90%, rgba(60,187,168,.05) 0%, transparent 55%);
 }
 .rp-left-inner {
   position: relative;
@@ -47,9 +47,9 @@
 }
 .rp-back {
   align-self: flex-start;
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.6);
-  border: 1px solid rgba(255,255,255,.12);
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
   padding: 8px 16px;
   border-radius: 100px;
   font-family: 'DM Sans', sans-serif;
@@ -57,14 +57,14 @@
   cursor: pointer;
   transition: background .2s, color .2s;
 }
-.rp-back:hover { background: rgba(255,255,255,.14); color: #fff; }
+.rp-back:hover { background: #F5F5F5; color: var(--ink); }
 
 .rp-brand { margin: auto 0; }
 .rp-logo {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
   font-weight: 700;
-  color: var(--cream);
+  color: var(--ink);
   letter-spacing: -0.5px;
   margin-bottom: 16px;
 }
@@ -72,7 +72,7 @@
 .rp-brand-desc {
   font-size: 17px;
   font-weight: 300;
-  color: rgba(247,243,238,.55);
+  color: var(--muted);
   line-height: 1.65;
   max-width: 340px;
   margin-bottom: 40px;
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(247,243,238,.7);
+  color: var(--muted);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -95,7 +95,7 @@
 
 /* ── Right panel ──────────────────────────────────────── */
 .rp-right {
-  background: var(--cream);
+  background: #F5F5F5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,7 @@
 
 .rp-whatsapp {
   font-size: 13px;
-  color: rgba(247,243,238,.5);
+  color: var(--muted);
   margin-top: 32px;
 }
 .rp-whatsapp a {

@@ -2,7 +2,7 @@
    If you use a global CSS file or CSS vars in index.css,
    you can remove this block and rely on the root tokens.   */
 :root {
-  --cream:      #F7F3EE;
+  --cream:      #F5F5F5;
   --ink:        #1A1612;
   --sage:       #3CBBA8;
   --sage-light: #E0F5F2;
@@ -22,7 +22,7 @@
 
 /* ─── Left — branding panel ───────────────────────────── */
 .login-left {
-  background: var(--ink);
+  background: #fff;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -38,7 +38,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 80% 90%, rgba(200,149,108,.2) 0%, transparent 55%);
+  background: radial-gradient(ellipse at 80% 90%, rgba(60,187,168,.05) 0%, transparent 55%);
 }
 
 .login-left-inner {
@@ -53,9 +53,9 @@
 
 .login-back {
   align-self: flex-start;
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.6);
-  border: 1px solid rgba(255,255,255,.12);
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
   padding: 8px 16px;
   border-radius: 100px;
   font-family: 'DM Sans', sans-serif;
@@ -64,8 +64,8 @@
   transition: background 0.2s, color 0.2s;
 }
 .login-back:hover {
-  background: rgba(255,255,255,.14);
-  color: #fff;
+  background: #F5F5F5;
+  color: var(--ink);
 }
 
 .login-brand { margin: auto 0; }
@@ -73,7 +73,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 32px;
   font-weight: 700;
-  color: var(--cream);
+  color: var(--ink);
   letter-spacing: -0.5px;
   margin-bottom: 16px;
 }
@@ -84,15 +84,15 @@
 .login-brand-desc {
   font-size: 17px;
   font-weight: 300;
-  color: rgba(247,243,238,.55);
+  color: var(--muted);
   line-height: 1.65;
   max-width: 340px;
 }
 
 /* Testimonial */
 .login-testimonial {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.10);
+  background: #F5F5F5;
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
 }
@@ -100,7 +100,7 @@
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: 16px;
-  color: rgba(247,243,238,.8);
+  color: var(--ink);
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -124,17 +124,17 @@
 .testimonial-name {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255,255,255,.85);
+  color: var(--ink);
 }
 .testimonial-role {
   font-size: 12px;
-  color: rgba(255,255,255,.4);
+  color: var(--muted);
   margin-top: 2px;
 }
 
 /* ─── Right — form panel ──────────────────────────────── */
 .login-right {
-  background: var(--cream);
+  background: #F5F5F5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,7 +218,7 @@
 .btn-login {
   width: 100%;
   background: var(--ink);
-  color: var(--cream);
+  color: #F5F5F5;
   border: none;
   padding: 15px;
   border-radius: 100px;
@@ -248,7 +248,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid rgba(247,243,238,.3);
-  border-top-color: var(--cream);
+  border-top-color: #F5F5F5;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   display: inline-block;
@@ -312,5 +312,5 @@
 .login-logo-img {
   max-width: 220px !important;
   height: auto !important;
-  max-height: 150px;
+  max-height: 80px;
 }

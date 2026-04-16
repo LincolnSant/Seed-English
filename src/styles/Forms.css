@@ -2,7 +2,7 @@
   --ink:        #1A1612;
   --sage:       #3CBBA8;
   --sage-light: #E0F5F2;
-  --cream:      #F7F3EE;
+  --cream:      #F5F5F5;
   --muted:      #8A7F74;
   --border:     rgba(26,22,18,0.10);
   --danger:     #C0392B;
@@ -78,7 +78,7 @@
 
 /* Question block */
 .ef-question-block {
-  background: var(--cream);
+  background: #F5F5F5;
   border-radius: 12px;
   padding: 20px;
   display: flex;

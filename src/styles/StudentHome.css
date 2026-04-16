@@ -4,7 +4,7 @@
   --sage-light: #E0F5F2;
   --warm:       #C8956C;
   --warm-light: #F5E8DC;
-  --cream:      #F7F3EE;
+  --cream:      #F5F5F5;
   --muted:      #8A7F74;
   --border:     rgba(26,22,18,0.10);
 }
@@ -27,7 +27,7 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: var(--cream);
+  color: #F5F5F5;
   letter-spacing: -0.5px;
 }
 .sh-logo span { color: var(--sage); font-style: italic; }
@@ -53,7 +53,7 @@
   cursor: pointer;
   transition: all .2s;
 }
-.sh-logout:hover { background: rgba(255,255,255,.14); color: var(--cream); }
+.sh-logout:hover { background: rgba(255,255,255,.14); color: #F5F5F5; }
 
 /* ── Body ──────────────────────────────────────────────── */
 .sh-body { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
@@ -232,7 +232,7 @@
 }
 .sh-tab.active .sh-tab-count {
   background: #4A4A4A;
-  color: var(--cream);
+  color: #F5F5F5;
 }
 
 .sh-tab-content { min-height: 200px; }
