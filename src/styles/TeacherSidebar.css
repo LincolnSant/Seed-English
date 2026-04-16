@@ -8,6 +8,8 @@
 }
 
 .ts-root {
+  z-index: 100;
+  position: relative;
   width: 230px;
   min-width: 230px;
   background: #4A4A4A;
@@ -97,6 +99,8 @@
 
 @media (max-width: 768px) {
   .ts-root {
+  z-index: 100;
+  position: relative;
     width: 100%;
     min-width: unset;
     min-height: unset;
@@ -208,6 +212,8 @@
 /* ── Mobile sidebar fix ────────────────────────────────── */
 @media (max-width: 768px) {
   .ts-root {
+  z-index: 100;
+  position: relative;
     width: 100%;
     height: auto;
     min-height: unset;
@@ -259,6 +265,8 @@
 /* ── Mobile sidebar fix ────────────────────────────────── */
 @media (max-width: 768px) {
   .ts-root {
+  z-index: 100;
+  position: relative;
     width: 100%;
     height: auto;
     min-height: unset;
