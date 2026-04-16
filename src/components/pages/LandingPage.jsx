@@ -18,10 +18,10 @@ export default function LandingPage() {
       <nav className="lp-nav">
         <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-logo-img" />
         <div className="lp-nav-links">
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdos</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
-          <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>How it works</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Content</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contact</a>
+          <button className="btn-nav" onClick={() => navigate('/login')}>Sign in</button>
         </div>
         <button className="lp-mobile-menu-btn" onClick={() => setMobileMenu(!mobileMenu)}>
           {mobileMenu ? '✕' : '☰'}
@@ -30,11 +30,11 @@ export default function LandingPage() {
 
       {mobileMenu && (
         <div className="lp-mobile-menu">
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdos</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
-          <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
-          <button className="btn-secondary" onClick={() => navigate('/cadastro')}>Criar conta</button>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>How it works</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Content</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contact</a>
+          <button className="btn-nav" onClick={() => navigate('/login')}>Sign in</button>
+          <button className="btn-secondary" onClick={() => navigate('/cadastro')}>Create conta</button>
         </div>
       )}
 
@@ -43,12 +43,12 @@ export default function LandingPage() {
           <div className="lp-tag">Plataforma de inglês</div>
           <h1>Aprenda inglês <em>do seu jeito,</em> no seu ritmo</h1>
           <p className="lp-desc">
-            Conteúdos personalizados, exercícios interativos e acompanhamento próximo
+            Content personalizados, exercícios interativos e acompanhamento próximo
             da sua professora — tudo em um só lugar.
           </p>
           <div className="lp-actions">
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-primary btn-primary-link">
-              Falar com a professora →
+              Talk to the teacher →
             </a>
             <button className="btn-secondary" onClick={() => scrollTo('como-funciona')}>
               Ver como funciona
@@ -78,7 +78,7 @@ export default function LandingPage() {
                 <div className="mock-avatar a">AM</div>
                 <div>
                   <div className="mock-name">Ana Martins</div>
-                  <div className="mock-sub">Nível Intermediário · Semana 4</div>
+                  <div className="mock-sub">B1 · Intermediate</div>
                 </div>
               </div>
               <div className="mock-prog-section">
@@ -104,7 +104,7 @@ export default function LandingPage() {
       </section>
 
       <section className="lp-how" id="como-funciona">
-        <div className="section-label">Como funciona</div>
+        <div className="section-label">How it works</div>
         <div className="section-title">Simples, direto e <em>personalizado pra você</em></div>
         <div className="lp-steps">
           <div className="lp-step">
@@ -132,7 +132,7 @@ export default function LandingPage() {
         <div className="section-title">Tudo que você precisa para <em>evoluir de verdade</em></div>
         <div className="features-grid">
           {[
-            { icon: '📚', title: 'Conteúdo personalizado', desc: 'Materiais organizados por nível e tema, escolhidos especialmente pela sua professora para o seu perfil.' },
+            { icon: '📚', title: 'Content personalizado', desc: 'Materiais organizados por nível e tema, escolhidos especialmente pela sua professora para o seu perfil.' },
             { icon: '✏️', title: 'Quiz interativos',       desc: 'Exercícios de gramática, vocabulário e compreensão com feedback imediato e acompanhamento de progresso.' },
             { icon: '📊', title: 'Acompanhamento real',    desc: 'Sua professora vê seu desempenho e adapta os conteúdos conforme você avança. Sem achismos.' },
           ].map((f) => (
@@ -159,7 +159,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="lp-footer">
-        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-logo-img" style={{ height: 130}} />
+        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-logo-img" style={{ height: 24 }} />
         <div>© 2026 · Todos os direitos reservados</div>
       </footer>
     </div>
