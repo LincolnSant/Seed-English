@@ -69,7 +69,7 @@ export default function LoginPage() {
       <div className="login-right">
         <div className="login-form-wrap">
           <div className="login-form-header">
-            <h2>Bem vindo de volta!</h2>
+            <h2>Bem vindo</h2>
             <p>Entre com seu e-mail e senha para continuar</p>
           </div>
           <form className="login-form" onSubmit={handleSubmit} noValidate>
@@ -94,7 +94,7 @@ export default function LoginPage() {
             </div>
             {error && <div className="form-error" role="alert">{error}</div>}
             <button type="submit" className="btn-login" disabled={loading || !email || !password}>
-              {loading ? <span className="btn-spinner" /> : 'Sign in na conta →'}
+              {loading ? <span className="btn-spinner" /> : 'Acessar conta →'}
             </button>
           </form>
           <div className="login-footer-note">
