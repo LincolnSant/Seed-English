@@ -49,13 +49,13 @@
 .sd-root .sh-topbar {
   height: 72px;
   overflow: visible;
-  padding: 0 48px;
+  padding: 0 px;
 }
 
 /* ── Mobile topbar fix ─────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    padding: 0 12px;
+    padding: 0 15px;
     height: 56px !important;
     overflow: hidden !important;
     flex-wrap: nowrap;
