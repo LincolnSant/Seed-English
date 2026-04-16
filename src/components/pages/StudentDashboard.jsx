@@ -10,6 +10,8 @@ import StudentTest    from '../student/StudentTest';
 import { SkeletonStudentHome } from '../ui/Skeleton';
 import AvatarPicker from '../shared/AvatarPicker';
 import NotificationBell from '../shared/NotificationBell';
+import ToastNotification from '../shared/ToastNotification';
+import { useNotifications } from '../../hooks/useNotifications';
 import '../../styles/StudentDashboard.css';
 
 export default function StudentDashboard() {
@@ -22,6 +24,7 @@ export default function StudentDashboard() {
     hasCompletedTest, getTestResult,
   } = useStudentData(profile?.id);
 
+  const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications(profile?.id);
   const [mainTab,     setMainTab]     = useState('feed');
   const [avatarColor, setAvatarColor] = useState(null);
   const [avatarPhoto, setAvatarPhoto] = useState(null); // 'feed' | 'study'
@@ -95,6 +98,7 @@ export default function StudentDashboard() {
           hideTopbar
         />
       )}
+      <ToastNotification notifications={notifications} />
     </div>
   );
 }
