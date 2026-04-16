@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNotifications } from '../../hooks/useNotifications';
+import ToastNotification from './ToastNotification';
 import '../../styles/Notifications.css';
 
 function timeAgo(date) {
@@ -33,6 +34,8 @@ export default function NotificationBell({ userId, dark = false }) {
   }, []);
 
   return (
+    <>
+    <ToastNotification notifications={notifications} />
     <div className="nb-wrap" ref={ref}>
       <button
         className={`nb-btn ${dark ? 'dark' : ''}`}
@@ -83,5 +86,6 @@ export default function NotificationBell({ userId, dark = false }) {
         </div>
       )}
     </div>
+    </>
   );
 }

@@ -8,8 +8,6 @@ import TeacherFeed           from '../teacher/TeacherFeed';
 import TeacherStudents       from '../teacher/TeacherStudents';
 import TeacherStudentProfile from '../teacher/TeacherStudentProfile';
 import { SkeletonTeacherHome } from '../ui/Skeleton';
-import ToastNotification from '../shared/ToastNotification';
-import { useNotifications } from '../../hooks/useNotifications';
 import '../../styles/TeacherDashboard.css';
 
 export default function TeacherDashboard() {
@@ -23,7 +21,6 @@ export default function TeacherDashboard() {
     updateLevel,
   } = useTeacherData();
 
-  const { notifications } = useNotifications(profile?.id);
   const [section, setSection]                 = useState('home');
   const [avatarColor, setAvatarColor] = useState(null);
   const [avatarPhoto, setAvatarPhoto] = useState(null);
@@ -79,7 +76,6 @@ export default function TeacherDashboard() {
         onPhotoChange={setAvatarPhoto}
       />
       <main className="td-main">{renderSection()}</main>
-      <ToastNotification notifications={notifications} />
     </div>
   );
 }
