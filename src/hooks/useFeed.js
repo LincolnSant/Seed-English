@@ -48,10 +48,7 @@ export function useFeed(currentUserId) {
       .from('profiles').select('id').eq('role', 'student');
     if (students) {
       await Promise.all(students.map((s) =>
-        createNotification(s.id, 'new_post', 'New post from your teacher',
-          type === 'video' ? 'Your teacher shared a new video.' :
-          type === 'image' ? 'Your teacher shared a new photo.' :
-          caption || content?.slice(0, 80) || 'Check the feed for new content.')
+        createNotification(s.id, 'new_post', '📢 New post!', 'Your teacher made a new post. Check the feed!')
       ));
     }
   }
