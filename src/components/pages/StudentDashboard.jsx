@@ -9,6 +9,7 @@ import StudentQuiz    from '../student/StudentQuiz';
 import StudentTest    from '../student/StudentTest';
 import { SkeletonStudentHome } from '../ui/Skeleton';
 import AvatarPicker from '../shared/AvatarPicker';
+import NotificationBell from '../shared/NotificationBell';
 import '../../styles/StudentDashboard.css';
 
 export default function StudentDashboard() {
@@ -73,7 +74,8 @@ export default function StudentDashboard() {
             />
             <span>{student.name}</span>
           </div>
-          <button className="sh-logout" onClick={handleLogout}>Sair</button>
+          <NotificationBell userId={profile?.id} dark={false} />
+          <button className="sh-logout" onClick={handleLogout}>Log out</button>
         </div>
       </header>
 

@@ -18,10 +18,10 @@ export default function LandingPage() {
       <nav className="lp-nav">
         <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-logo-img" />
         <div className="lp-nav-links">
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>How it works</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Content</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contact</a>
-          <button className="btn-nav" onClick={() => navigate('/login')}>Sign in</button>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdo</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
+          <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
         </div>
         <button className="lp-mobile-menu-btn" onClick={() => setMobileMenu(!mobileMenu)}>
           {mobileMenu ? '✕' : '☰'}

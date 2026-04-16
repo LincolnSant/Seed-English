@@ -1,4 +1,5 @@
 import AvatarPicker from '../shared/AvatarPicker';
+import NotificationBell from '../shared/NotificationBell';
 import '../../styles/TeacherSidebar.css';
 
 const NAV = [
@@ -40,6 +41,7 @@ export default function TeacherSidebar({ active, onChange, onLogout, profile, on
             <div className="ts-profile-role">Teacher</div>
           </div>
         </div>
+        <NotificationBell userId={profile?.id} dark={true} />
         <button className="ts-logout" onClick={onLogout}>Log out</button>
       </div>
     </aside>

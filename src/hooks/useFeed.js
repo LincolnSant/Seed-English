@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createNotification } from './useNotifications';
 import { supabase } from '../lib/supabase';
 
 export function useFeed(currentUserId) {
@@ -41,6 +42,18 @@ export function useFeed(currentUserId) {
       .single();
     if (error) throw error;
     setPosts((prev) => [data, ...prev]);
+
+    // Notify all students
+    const { data: students } = await supabase
+      .from('profiles').select('id').eq('role', 'student');
+    if (students) {
+      await Promise.all(students.map((s) =>
+        createNotification(s.id, 'new_post', 'New post from your teacher',
+          type === 'video' ? 'Your teacher shared a new video.' :
+          type === 'image' ? 'Your teacher shared a new photo.' :
+          caption || content?.slice(0, 80) || 'Check the feed for new content.')
+      ));
+    }
   }
 
   async function deletePost(postId) {
@@ -65,6 +78,13 @@ export function useFeed(currentUserId) {
         setPosts((prev) => prev.map((p) =>
           p.id !== postId ? p : { ...p, post_likes: [...(p.post_likes ?? []), data] }
         ));
+        // Notify post author
+        const post = posts.find((p) => p.id === postId);
+        if (post && post.author_id !== currentUserId) {
+          const { data: liker } = await supabase.from('profiles').select('name').eq('id', currentUserId).single();
+          await createNotification(post.author_id, 'new_like', 'New like on your post',
+            `${liker?.name ?? 'A student'} liked your post.`);
+        }
       }
     }
   }
@@ -79,6 +99,13 @@ export function useFeed(currentUserId) {
       setPosts((prev) => prev.map((p) =>
         p.id !== postId ? p : { ...p, post_comments: [...(p.post_comments ?? []), data] }
       ));
+      // Notify post author
+      const post = posts.find((p) => p.id === postId);
+      if (post && post.author_id !== currentUserId) {
+        const { data: commenter } = await supabase.from('profiles').select('name').eq('id', currentUserId).single();
+        await createNotification(post.author_id, 'new_comment', 'New comment on your post',
+          `${commenter?.name ?? 'A student'} commented: "${content.slice(0, 60)}"`);
+      }
     }
   }
 
