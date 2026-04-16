@@ -91,7 +91,9 @@
   font-size: 14px;
   line-height: 1.5;
 }
-.rp-feature-icon { font-size: 18px; flex-shrink: 0; }
+.rp-feature-icon {
+  font-size: 20px;
+  flex-shrink: 0; font-size: 18px; flex-shrink: 0; }
 
 /* ── Right panel ──────────────────────────────────────── */
 .rp-right {
