@@ -95,7 +95,7 @@
 
 /* ── Right panel ──────────────────────────────────────── */
 .rp-right {
-  background: var(--cream);
+   background: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
