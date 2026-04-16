@@ -126,7 +126,7 @@
 .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
 .lp-hero-right {
-  background: var(--ink); min-height: calc(100vh - 73px);
+  background: #4A4A4A; min-height: calc(100vh - 73px);
   position: relative; display: flex; align-items: center;
   justify-content: center; overflow: hidden;
   animation: fadeIn 0.8s ease 0.3s both;
