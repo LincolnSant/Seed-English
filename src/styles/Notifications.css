@@ -201,3 +201,12 @@
   font-weight: 400;
 }
 .nb-dropdown.dark .nb-header-sub { color: rgba(255,255,255,.3); }
+
+/* ── Mobile fix ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nb-dropdown {
+    right: 0;
+    left: unset;
+    width: 290px;
+  }
+}
