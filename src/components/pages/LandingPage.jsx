@@ -30,11 +30,11 @@ export default function LandingPage() {
 
       {mobileMenu && (
         <div className="lp-mobile-menu">
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>How it works</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Content</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contact</a>
-          <button className="btn-nav" onClick={() => navigate('/login')}>Sign in</button>
-          <button className="btn-secondary" onClick={() => navigate('/cadastro')}>Create conta</button>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('como-funciona'); }}>Como funciona</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('conteudos'); }}>Conteúdo</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo('contato'); }}>Contato</a>
+          <button className="btn-nav" onClick={() => navigate('/login')}>Entrar</button>
+          <button className="btn-secondary" onClick={() => navigate('/cadastro')}>Criar conta</button>
         </div>
       )}
 
@@ -43,12 +43,12 @@ export default function LandingPage() {
           <div className="lp-tag">Plataforma de inglês</div>
           <h1>Aprenda inglês <em>do seu jeito,</em> no seu ritmo</h1>
           <p className="lp-desc">
-            Content personalizados, exercícios interativos e acompanhamento próximo
+            Conteúdos personalizados, exercícios interativos e acompanhamento próximo
             da sua professora — tudo em um só lugar.
           </p>
           <div className="lp-actions">
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-primary btn-primary-link">
-              Talk to the teacher →
+              Falar com a professora →
             </a>
             <button className="btn-secondary" onClick={() => scrollTo('como-funciona')}>
               Ver como funciona
@@ -104,7 +104,7 @@ export default function LandingPage() {
       </section>
 
       <section className="lp-how" id="como-funciona">
-        <div className="section-label">How it works</div>
+        <div className="section-label">Como funciona</div>
         <div className="section-title">Simples, direto e <em>personalizado pra você</em></div>
         <div className="lp-steps">
           <div className="lp-step">
@@ -132,9 +132,9 @@ export default function LandingPage() {
         <div className="section-title">Tudo que você precisa para <em>evoluir de verdade</em></div>
         <div className="features-grid">
           {[
-            { icon: '📚', title: 'Content personalizado', desc: 'Materiais organizados por nível e tema, escolhidos especialmente pela sua professora para o seu perfil.' },
-            { icon: '✏️', title: 'Quiz interativos',       desc: 'Exercícios de gramática, vocabulário e compreensão com feedback imediato e acompanhamento de progresso.' },
-            { icon: '📊', title: 'Acompanhamento real',    desc: 'Sua professora vê seu desempenho e adapta os conteúdos conforme você avança. Sem achismos.' },
+            { icon: '📚', title: 'Conteúdo personalizado', desc: 'Materiais organizados por nível e tema, escolhidos especialmente pela sua professora para o seu perfil.' },
+            { icon: '✏️', title: 'Quiz interativos',        desc: 'Exercícios de gramática, vocabulário e compreensão com feedback imediato e acompanhamento de progresso.' },
+            { icon: '📊', title: 'Acompanhamento real',     desc: 'Sua professora vê seu desempenho e adapta os conteúdos conforme você avança. Sem achismos.' },
           ].map((f) => (
             <div className="feature-card" key={f.title}>
               <div className="feature-icon">{f.icon}</div>
