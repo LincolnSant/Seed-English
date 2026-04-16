@@ -9,7 +9,7 @@ export default function TeacherHome({ students, onGoStudents, onOpenStudent }) {
       <div className="th-header">
         <div>
           <h1>Overview</h1>
-          <p>Welcome back! Aqui está um resumo da sua turma.</p>
+          <p>Welcome back! Here's a summary of your class.</p>
         </div>
       </div>
 
@@ -17,23 +17,23 @@ export default function TeacherHome({ students, onGoStudents, onOpenStudent }) {
         <div className="th-stat-card">
           <div className="th-stat-icon">👤</div>
           <div className="th-stat-num">{students.length}</div>
-          <div className="th-stat-label">Students ativos</div>
+          <div className="th-stat-label">Active students</div>
         </div>
         <div className="th-stat-card">
           <div className="th-stat-icon">📚</div>
           <div className="th-stat-num">{totalContents}</div>
-          <div className="th-stat-label">Content criados</div>
+          <div className="th-stat-label">Classes created</div>
         </div>
         <div className="th-stat-card">
           <div className="th-stat-icon">✏️</div>
           <div className="th-stat-num">{totalQuizzes}</div>
-          <div className="th-stat-label">Quizzes created</div>
+          <div className="th-stat-label">Homework created</div>
         </div>
       </div>
 
       <div className="th-section">
         <div className="th-section-header">
-          <h2>Students recentes</h2>
+          <h2>Recent students</h2>
           <button className="th-see-all" onClick={onGoStudents}>See all →</button>
         </div>
         <div className="th-students-grid">
@@ -45,8 +45,8 @@ export default function TeacherHome({ students, onGoStudents, onOpenStudent }) {
                 <div className="th-student-level">{s.level ?? 'No level'}</div>
               </div>
               <div className="th-student-meta">
-                <span>{s.contents?.length ?? 0} conteúdos</span>
-                <span>{s.quizzes?.length ?? 0} quiz</span>
+                <span>{s.contents?.length ?? 0} classes</span>
+                <span>{s.quizzes?.length ?? 0} homework</span>
               </div>
             </div>
           ))}
