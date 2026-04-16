@@ -63,7 +63,7 @@
     gap: 8px;
   }
   .sd-topbar-logo {
-    max-height: 36px;
+    max-height: 120px;
     max-width: 100px;
   }
   .sd-main-tabs {
@@ -90,48 +90,28 @@
 /* ── Mobile topbar fix ─────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    padding: 0 16px;
-    height: auto;
-    min-height: 64px;
-    overflow: visible;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .sd-topbar-logo {
-    max-height: 120px;
-    max-width: 100px;
-  }
-  .sd-main-tabs {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 8px;
-  }
-  .sh-topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-  .sh-user span {
-    display: none;
-  }
-  .sh-logout {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-}
-
-/* ── Topbar locked height mobile ───────────────────────── */
-@media (max-width: 768px) {
-  .sd-root .sh-topbar {
+    padding: 0 12px;
     height: 56px !important;
     overflow: hidden !important;
-    padding: 0 12px !important;
     flex-wrap: nowrap;
+    gap: 0;
   }
   .sd-topbar-logo {
     max-height: 85px !important;
     max-width: 80px !important;
+    flex-shrink: 0;
   }
+  .sd-main-tabs {
+    flex: 1;
+    justify-content: center;
+    margin: 0 8px;
+  }
+  .sh-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .sh-user span { display: none; }
+  .sh-logout { padding: 6px 10px; font-size: 12px; }
 }
