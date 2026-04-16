@@ -185,3 +185,12 @@
     max-width: 100%;
   }
 }
+
+/* ── Drop up ───────────────────────────────────────────── */
+.nb-dropdown.drop-up {
+  bottom: calc(100% + 10px);
+  top: unset;
+}
+
+/* ── Profile info layout ───────────────────────────────── */
+.ts-profile-info { flex: 1; min-width: 0; }

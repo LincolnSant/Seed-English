@@ -58,7 +58,7 @@ const TYPE_ICON = {
   'new_comment':  '💬',
 };
 
-export default function NotificationBell({ userId, dark = false }) {
+export default function NotificationBell({ userId, dark = false, dropUp = false }) {
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications(userId);
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -87,7 +87,7 @@ export default function NotificationBell({ userId, dark = false }) {
         </button>
 
         {open && (
-          <div className={`nb-dropdown ${dark ? 'dark' : ''}`}>
+          <div className={`nb-dropdown ${dark ? 'dark' : ''} ${dropUp ? 'drop-up' : ''}`}>
             <div className="nb-header">
               <span>Notifications</span>
               {unreadCount > 0 && (
