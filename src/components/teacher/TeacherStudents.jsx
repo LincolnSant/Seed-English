@@ -3,6 +3,14 @@ import '../../styles/TeacherHome.css';
 
 const LEVELS = ['All', 'A1', 'A2', 'B1', 'B2', 'C1'];
 
+const LEVEL_LABELS = {
+  'A1': 'A1 · Beginner',
+  'A2': 'A2 · Elementary',
+  'B1': 'B1 · Intermediate',
+  'B2': 'B2 · Upper Intermediate',
+  'C1': 'C1 · Advanced',
+};
+
 export default function TeacherStudents({ students, onOpenStudent }) {
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
@@ -58,7 +66,7 @@ export default function TeacherStudents({ students, onOpenStudent }) {
               </div>
               <div className="tstudents-row-center">
                 <span className={`level-badge level-${(s.level ?? '').toLowerCase()}`}>
-                  {s.level ?? 'No level'}
+                  {LEVEL_LABELS[s.level] ?? s.level ?? 'No level'}
                 </span>
               </div>
               <div className="tstudents-row-right">

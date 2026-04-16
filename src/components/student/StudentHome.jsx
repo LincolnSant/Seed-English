@@ -2,6 +2,14 @@ import { useState } from 'react';
 import AvatarPicker from '../shared/AvatarPicker';
 import '../../styles/StudentHome.css';
 
+const LEVEL_LABELS = {
+  'A1': 'A1 · Beginner',
+  'A2': 'A2 · Elementary',
+  'B1': 'B1 · Intermediate',
+  'B2': 'B2 · Upper Intermediate',
+  'C1': 'C1 · Advanced',
+};
+
 const CONTENT_TYPE_LABEL = {
   text:      { icon: '📝', label: 'Text' },
   video:     { icon: '🎬', label: 'Video' },
@@ -76,7 +84,7 @@ export default function StudentHome({ hideTopbar = false, onColorChange, onPhoto
             <h1>{greeting}, {student.name?.split(' ')[0]}!</h1>
             <p>{hasVisited ? 'Welcome back!' : 'Welcome!'} What are we going to study today?</p>
           </div>
-          {student.level && <div className="sh-level-badge">{student.level}</div>}
+          {student.level && <div className="sh-level-badge">{LEVEL_LABELS[student.level] ?? student.level}</div>}
         </div>
 
         {/* Stats */}

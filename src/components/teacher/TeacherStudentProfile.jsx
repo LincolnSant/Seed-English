@@ -16,6 +16,14 @@ const CONTENT_TYPE_LABEL = {
 
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 
+const LEVEL_LABELS = {
+  'A1': 'A1 · Beginner',
+  'A2': 'A2 · Elementary',
+  'B1': 'B1 · Intermediate',
+  'B2': 'B2 · Upper Intermediate',
+  'C1': 'C1 · Advanced',
+};
+
 export default function TeacherStudentProfile({
   student, onBack,
   onSaveContent, onDeleteContent,
@@ -97,7 +105,7 @@ export default function TeacherStudentProfile({
                     onBlur={() => setTimeout(() => setLevelOpen(false), 150)}
                     disabled={savingLevel}
                   >
-                    {student.level ?? 'No level'}
+                    {LEVEL_LABELS[student.level] ?? student.level ?? 'No level'}
                     <span className="level-dropdown-arrow">▾</span>
                   </button>
                   {levelOpen && (
