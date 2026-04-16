@@ -84,6 +84,4 @@ export default function NotificationBell({ userId, dark = false }) {
       )}
     </div>
   );
-}    
-
-
+}

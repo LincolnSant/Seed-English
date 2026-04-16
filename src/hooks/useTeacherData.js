@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { createNotification } from './useNotifications';
 
 export function useTeacherData() {
   const CACHE_KEY = 'ef_teacher_students';
@@ -64,6 +65,8 @@ export function useTeacherData() {
         .select().single();
       if (error) throw error;
       updateStudentLocal(studentId, (s) => ({ ...s, contents: [...s.contents, data] }));
+      await createNotification(studentId, 'new_content', 'New class available!',
+        `Your teacher added: "${content.title}"`);
     }
   }
 
@@ -89,6 +92,8 @@ export function useTeacherData() {
       updateStudentLocal(studentId, (s) => ({
         ...s, quizzes: [...s.quizzes, { ...data, questions: quiz.questions }],
       }));
+      await createNotification(studentId, 'new_homework', 'New homework available!',
+        `Your teacher added: "${quiz.title}"`);
     }
   }
 
@@ -114,6 +119,8 @@ export function useTeacherData() {
       updateStudentLocal(studentId, (s) => ({
         ...s, tests: [...(s.tests ?? []), { ...data, questions: test.questions }],
       }));
+      await createNotification(studentId, 'new_test', 'New test available!',
+        `Your teacher added: "${test.title}"`);
     }
   }
 
