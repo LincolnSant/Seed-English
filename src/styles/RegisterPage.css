@@ -34,7 +34,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 80% 90%, rgba(60,187,168,.05) 0%, transparent 55%);
+  background: radial-gradient(ellipse at 80% 90%, rgba(200,149,108,.2) 0%, transparent 55%);
 }
 .rp-left-inner {
   position: relative;
@@ -47,9 +47,9 @@
 }
 .rp-back {
   align-self: flex-start;
-  background: transparent;
-  color: rgba(247,243,238,.55);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.12);
   padding: 8px 16px;
   border-radius: 100px;
   font-family: 'DM Sans', sans-serif;
@@ -57,46 +57,51 @@
   cursor: pointer;
   transition: background .2s, color .2s;
 }
-.rp-back:hover { background: #F5F5F5; color: rgba(247,243,238,.7); }
+.rp-back:hover { background: rgba(255,255,255,.14); color: #fff; }
 
-.rp-brand { margin: auto 0; }
-.rp-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: rgba(247,243,238,.7);
-  letter-spacing: -0.5px;
-  margin-bottom: 16px;
-}
-.rp-logo span { color: var(--sage); font-style: italic; }
+.rp-brand { margin: auto 0; overflow: visible; }
 .rp-brand-desc {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 300;
-  color: rgba(247,243,238,.55);
+  color: rgba(255,255,255,.7);
   line-height: 1.65;
   max-width: 340px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
+/* Features */
 .rp-features {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 .rp-feature {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: rgba(247,243,238,.55);
+  gap: 14px;
+  color: rgba(255,255,255,.95);
   font-size: 14px;
-  line-height: 1.5;
+  font-weight: 400;
+  padding: 12px 16px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
 }
-.rp-feature-icon {
-  font-size: 20px;
-  flex-shrink: 0; font-size: 18px; flex-shrink: 0; }
+.rp-feature-icon { font-size: 20px; flex-shrink: 0; }
+
+/* WhatsApp */
+.rp-whatsapp {
+  font-size: 13px;
+  color: rgba(255,255,255,.5);
+  margin-top: 24px;
+}
+.rp-whatsapp a {
+  color: var(--sage);
+  text-decoration: none;
+  font-weight: 500;
+}
+.rp-whatsapp a:hover { text-decoration: underline; }
 
 /* ── Right panel ──────────────────────────────────────── */
 .rp-right {
@@ -107,22 +112,15 @@
   padding: 48px 40px;
   animation: fadeUp 0.6s ease both;
 }
-.rp-form-wrap {
-  width: 100%;
-  max-width: 400px;
-}
-.rp-form-header {
-  margin-bottom: 32px;
-}
+.rp-form-wrap { width: 100%; max-width: 400px; }
+.rp-form-header { margin-bottom: 32px; }
 .rp-form-header h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 32px; font-weight: 700;
   letter-spacing: -0.8px;
-  color: rgba(247,243,238,.7);
-  margin-bottom: 8px;
+  color: var(--ink); margin-bottom: 8px;
 }
-.rp-form-header p { font-size: 15px; color: rgba(247,243,238,.55); }
+.rp-form-header p { font-size: 15px; color: var(--muted); }
 
 .rp-form { display: flex; flex-direction: column; gap: 18px; }
 
@@ -130,12 +128,10 @@
   margin-top: 24px;
   text-align: center;
   font-size: 14px;
-  color: rgba(247,243,238,.55);
+  color: var(--muted);
 }
 .rp-footer-note a {
-  color: var(--sage);
-  font-weight: 500;
-  text-decoration: none;
+  color: var(--sage); font-weight: 500; text-decoration: none;
 }
 .rp-footer-note a:hover { text-decoration: underline; }
 
@@ -145,29 +141,17 @@
 }
 
 @media (max-width: 768px) {
-  .rp-root       { grid-template-columns: 1fr; }
-  .rp-left       { display: none; }
-  .rp-right      { padding: 40px 24px; min-height: 100vh; }
+  .rp-root  { grid-template-columns: 1fr; }
+  .rp-left  { display: none; }
+  .rp-right { padding: 40px 24px; min-height: 100vh; }
 }
 
-.rp-whatsapp {
-  font-size: 13px;
-  color: rgba(247,243,238,.55);
-  margin-top: 32px;
-}
-.rp-whatsapp a {
-  color: var(--sage);
-  text-decoration: none;
-  font-weight: 500;
-}
-.rp-whatsapp a:hover { text-decoration: underline; }
-
-/* ── Logo PNG ──────────────────────────────────────────── */
+/* ── Logo ──────────────────────────────────────────────── */
 .rp-logo-img {
-  height: 220px;
-  width: auto;
+  max-width: 220px;
+  height: auto;
+  max-height: 120px;
   object-fit: contain;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   display: block;
-  max-width: 200px;
 }
