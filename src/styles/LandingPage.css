@@ -320,7 +320,16 @@
 
 /* ── Logo PNG ──────────────────────────────────────────── */
 .lp-logo-img {
-  height: 120px;
+  height: 78px;
   width: auto;
+  object-fit: contain;
+}
+
+/* ── Footer logo ───────────────────────────────────────── */
+.lp-footer-logo {
+  height: auto;
+  max-height: 78px;
+  width: auto;
+  max-width: 200px;
   object-fit: contain;
 }

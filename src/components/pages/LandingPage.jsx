@@ -159,7 +159,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="lp-footer">
-        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-logo-img" style={{ height: 24 }} />
+        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-footer-logo" />
         <div>© 2026 · Todos os direitos reservados</div>
       </footer>
     </div>
