@@ -43,3 +43,10 @@
   display: block;
   flex-shrink: 0;
 }
+
+/* ── Topbar height fix ─────────────────────────────────── */
+.sd-root .sh-topbar {
+  height: 72px;
+  overflow: hidden;
+  padding: 0 48px;
+}
