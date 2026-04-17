@@ -74,7 +74,9 @@ function getDestination(type, userRole) {
 export default function NotificationBell({ userId, userRole, dark = false, dropUp = false, onNavigate }) {
   const { notifications, unreadCount, markAllAsRead } = useNotifications(userId);
   const [open, setOpen] = useState(false);
+  const [btnPos, setBtnPos] = useState(null);
   const ref = useRef();
+  const btnRef = useRef();
 
   useEffect(() => {
     function handleClick(e) {
@@ -96,7 +98,15 @@ export default function NotificationBell({ userId, userRole, dark = false, dropU
       <div className="nb-wrap" ref={ref}>
         <button
           className={`nb-btn ${dark ? 'dark' : ''}`}
-          onClick={() => { setOpen(!open); if (!open && unreadCount > 0) markAllAsRead(); }}
+          onClick={() => {
+            if (!open && btnRef.current) {
+              const rect = btnRef.current.getBoundingClientRect();
+              setBtnPos({ top: rect.top, left: rect.left, right: rect.right, bottom: rect.bottom });
+            }
+            setOpen(!open);
+            if (!open && unreadCount > 0) markAllAsRead();
+          }}
+          ref={btnRef}
           title="Notifications"
         >
           🔔
@@ -106,7 +116,16 @@ export default function NotificationBell({ userId, userRole, dark = false, dropU
         </button>
 
         {open && (
-          <div className={`nb-dropdown ${dark ? 'dark' : ''} ${dropUp ? 'drop-up' : ''}`}>
+          <div
+            className={`nb-dropdown ${dark ? 'dark' : ''} ${dropUp ? 'drop-up-fixed' : ''}`}
+            style={dropUp && btnPos ? {
+              position: 'fixed',
+              bottom: `${window.innerHeight - btnPos.top + 8}px`,
+              left: `${btnPos.left}px`,
+              top: 'unset',
+              zIndex: 99999,
+            } : {}}
+          >
             <div className="nb-header">
               <span>Notifications</span>
               <span className="nb-header-sub">Last 5</span>
