@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import ToastNotification from './ToastNotification';
 import '../../styles/Notifications.css';
@@ -57,7 +56,6 @@ const TYPE_ICON = {
   'new_comment':  '💬',
 };
 
-// Map notification type to route/tab
 function getDestination(type, userRole) {
   if (userRole === 'student') {
     if (type === 'new_content')  return { tab: 'study', section: 'classes' };
@@ -71,7 +69,7 @@ function getDestination(type, userRole) {
   return null;
 }
 
-export default function NotificationBell({ userId, userRole, dark = false, dropUp = false, onNavigate }) {
+export default function NotificationBell({ userId, userRole, dropUp = false, onNavigate }) {
   const { notifications, unreadCount, markAllAsRead } = useNotifications(userId);
   const [open, setOpen] = useState(false);
   const [btnPos, setBtnPos] = useState(null);
@@ -97,11 +95,11 @@ export default function NotificationBell({ userId, userRole, dark = false, dropU
       <ToastNotification notifications={notifications} />
       <div className="nb-wrap" ref={ref}>
         <button
-          className={`nb-btn ${dark ? 'dark' : ''}`}
+          className="nb-btn"
           onClick={() => {
             if (!open && btnRef.current) {
               const rect = btnRef.current.getBoundingClientRect();
-              setBtnPos({ top: rect.top, left: rect.left, right: rect.right, bottom: rect.bottom });
+              setBtnPos({ top: rect.top, left: rect.left });
             }
             setOpen(!open);
             if (!open && unreadCount > 0) markAllAsRead();
@@ -117,7 +115,7 @@ export default function NotificationBell({ userId, userRole, dark = false, dropU
 
         {open && (
           <div
-            className={`nb-dropdown ${dark ? 'dark' : ''} ${dropUp ? 'drop-up-fixed' : ''}`}
+            className="nb-dropdown"
             style={dropUp && btnPos ? {
               position: 'fixed',
               bottom: `${window.innerHeight - btnPos.top + 8}px`,
