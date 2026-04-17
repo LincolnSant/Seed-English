@@ -43,7 +43,7 @@ export default function TeacherSidebar({ active, onChange, onLogout, profile, on
           <NotificationBell
             userId={profile?.id}
             userRole="teacher"
-            dark={true}
+            dark={false}
             dropUp={true}
             onNavigate={onNavigate}
           />
