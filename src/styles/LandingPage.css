@@ -114,10 +114,7 @@
 }
 .lp-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
-.lp-stats {
-  display: flex; gap: 32px;
-  margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border);
-}
+
 /* stat-num — mantém Playfair */
 .stat-num {
   font-family: 'Playfair Display', serif;
@@ -342,7 +339,7 @@
 /* ── Footer logo ───────────────────────────────────────── */
 .lp-footer-logo {
   height: auto;
-  max-height: 95px;
+  max-height: 110px;
   width: auto;
   max-width: 200px;
   object-fit: contain;
