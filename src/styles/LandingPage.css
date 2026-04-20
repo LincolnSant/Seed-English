@@ -83,9 +83,9 @@
 
 .lp-hero {
   display: grid; grid-template-columns: 1fr 1fr;
-  min-height: calc(100vh - 73px); align-items: center;
+  align-items: center;
 }
-.lp-hero-left { padding: 80px 48px; animation: fadeUp 0.8s ease both; }
+.lp-hero-left { padding: 60px 48px; animation: fadeUp 0.8s ease both; }
 
 .lp-tag {
   display: inline-flex; align-items: center; gap: 8px;
@@ -339,7 +339,7 @@
 /* ── Footer logo ───────────────────────────────────────── */
 .lp-footer-logo {
   height: auto;
-  max-height: 110px;
+  max-height: 120px;
   width: auto;
   max-width: 200px;
   object-fit: contain;
