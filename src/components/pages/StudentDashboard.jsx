@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
@@ -34,8 +34,6 @@ export default function StudentDashboard() {
   const [selected, setSelected] = useState(null);
 
   // Update tab badges from notifications
-  const { notifications } = useNotifications ? {} : {};
-
   // Track new items per tab
   const [tabBadges, setTabBadges] = useState(() => {
     try {
