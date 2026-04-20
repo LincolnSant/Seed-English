@@ -23,31 +23,33 @@
 /* ── Tab bar below topbar ──────────────────────────────── */
 .sd-tab-bar {
   display: flex;
+  justify-content: center;
   background: #4A4A4A;
-  padding: 8px 48px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: 0 48px;
+  gap: 4px;
 }
 
 .sd-main-tab {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 12px 24px;
   border: none;
   background: transparent;
-  color: rgba(247,243,238,.6);
+  color: rgba(247,243,238,.5);
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all .2s;
   border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
+  position: relative;
 }
 .sd-main-tab.active {
   color: #fff;
-  border-bottom-color: #fff;
+  border-bottom-color: #3CBBA8;
 }
-.sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.9); }
+.sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.8); }
 
 /* ── Tab badge ─────────────────────────────────────────── */
 .sd-tab-badge {
@@ -75,7 +77,7 @@
   }
   .sd-topbar-logo {
     height: 32px !important;
-    max-height: 86px !important;
+    max-height: 85px !important;
     max-width: 80px !important;
   }
   .sh-topbar-right {
