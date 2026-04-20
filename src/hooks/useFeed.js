@@ -9,7 +9,19 @@ export function useFeed(currentUserId) {
   const [posts,   setPosts]   = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { if (currentUserId) fetchPosts(); }, [currentUserId]);
+  useEffect(() => {
+    if (!currentUserId) return;
+    fetchPosts();
+
+    // Realtime — aparece novo post sem F5
+    const channel = supabase
+      .channel(`feed:${currentUserId}`)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'posts' }, fetchPosts)
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'posts' }, fetchPosts)
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
+  }, [currentUserId]);
 
   async function fetchPosts() {
     setLoading(true);

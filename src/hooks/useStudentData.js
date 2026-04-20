@@ -15,7 +15,20 @@ export function useStudentData(studentId) {
   const [testResults,     setTestResults]     = useState(cached?.testResults     ?? []);
   const [loading,         setLoading]         = useState(!cached);
 
-  useEffect(() => { if (studentId) fetchAll(); }, [studentId]);
+  useEffect(() => {
+    if (!studentId) return;
+    fetchAll();
+
+    // Realtime — atualiza quando professor adiciona conteudo
+    const channel = supabase
+      .channel(`student_data:${studentId}`)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'contents', filter: `student_id=eq.${studentId}` }, fetchAll)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'quizzes',  filter: `student_id=eq.${studentId}` }, fetchAll)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'tests',    filter: `student_id=eq.${studentId}` }, fetchAll)
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
+  }, [studentId]);
 
   async function fetchAll() {
     setLoading(true);
