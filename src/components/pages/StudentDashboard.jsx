@@ -24,24 +24,13 @@ export default function StudentDashboard() {
   } = useStudentData(profile?.id);
 
   const [mainTab,     setMainTab]     = useState('feed');
-  const [feedUnread,  setFeedUnread]  = useState(0);
-  const [seedUnread,  setSeedUnread]  = useState(0);
-  const [feedUnread,  setFeedUnread]  = useState(0);
-  const [seedUnread,  setSeedUnread]  = useState(0);
   const [avatarColor, setAvatarColor] = useState(null);
-  const [avatarPhoto, setAvatarPhoto] = useState(null); // 'feed' | 'study'
-  const [section,  setSection]  = useState('home');
-  const [selected, setSelected] = useState(null);
+  const [avatarPhoto, setAvatarPhoto] = useState(null);
+  const [section,     setSection]     = useState('home');
+  const [selected,    setSelected]    = useState(null);
+  const [tabBadges,   setTabBadges]   = useState({ feed: 0, study: 0 });
 
-  // Update tab badges from notifications
-  // Track new items per tab
-  const [tabBadges, setTabBadges] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(`ef_badges_${profile?.id}`) || '{"feed":0,"study":0}');
-    } catch { return { feed: 0, study: 0 }; }
-  });
-
-  // Listen for new notifications to update badges
+  // Listen for new notifications to update tab badges
   useEffect(() => {
     if (!profile?.id) return;
     const channel = supabase.channel(`badges:${profile.id}`)
@@ -51,28 +40,21 @@ export default function StudentDashboard() {
       }, (payload) => {
         const type = payload.new?.type;
         const tab = type === 'new_post' ? 'feed' : 'study';
-        setTabBadges((prev) => {
-          const next = { ...prev, [tab]: (prev[tab] || 0) + 1 };
-          localStorage.setItem(`ef_badges_${profile.id}`, JSON.stringify(next));
-          return next;
-        });
+        setTabBadges((prev) => ({ ...prev, [tab]: (prev[tab] || 0) + 1 }));
       })
       .subscribe();
     return () => supabase.removeChannel(channel);
   }, [profile?.id]);
 
-  // Clear badge when switching tabs
   function handleTabChange(tab) {
     setMainTab(tab);
     setTabBadges((prev) => ({ ...prev, [tab]: 0 }));
-    localStorage.setItem(`ef_tab_${profile?.id}_${tab}`, Date.now().toString());
   }
 
   function openContent(content) { setSelected(content); setSection('content'); }
   function openQuiz(quiz)       { setSelected(quiz);    setSection('quiz'); }
   function openTest(test)       { setSelected(test);    setSection('test'); }
   function goHome()             { setSelected(null);    setSection('home'); }
-
   async function handleLogout() { await signOut(); navigate('/login'); }
 
   if (loading) return <SkeletonStudentHome />;
@@ -85,14 +67,12 @@ export default function StudentDashboard() {
     contents, quizzes, tests, homeworkResults, testResults,
   };
 
-  // Inside content/quiz/test — no tab bar
   if (section === 'content') return <StudentContent content={selected} onBack={goHome} />;
   if (section === 'quiz')    return <StudentQuiz quiz={selected} onBack={goHome} onComplete={saveHomeworkResult} />;
   if (section === 'test')    return <StudentTest test={selected} onBack={goHome} onComplete={saveTestResult} existingResult={getTestResult(selected?.id)} />;
 
   return (
     <div className="sd-root">
-      {/* Top nav with two main tabs */}
       <header className="sh-topbar">
         <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="sd-topbar-logo" />
         <div className="sh-topbar-right">
@@ -106,16 +86,19 @@ export default function StudentDashboard() {
             />
             <span>{student.name}</span>
           </div>
-          <NotificationBell userId={profile?.id} userRole="student" dark={false} onNavigate={(dest) => { if (dest.tab) setMainTab(dest.tab); }} />
+          <NotificationBell userId={profile?.id} userRole="student" onNavigate={(dest) => { if (dest.tab) handleTabChange(dest.tab); }} />
           <button className="sh-logout" onClick={handleLogout}>Log out</button>
         </div>
       </header>
+
       <div className="sd-tab-bar">
-        <button className={`sd-main-tab ${mainTab === 'feed' ? 'active' : ''}`} onClick={() => setMainTab('feed')}>
+        <button className={`sd-main-tab ${mainTab === 'feed' ? 'active' : ''}`} onClick={() => handleTabChange('feed')}>
           Feed
+          {tabBadges.feed > 0 && <span className="sd-tab-badge">{tabBadges.feed}</span>}
         </button>
-        <button className={`sd-main-tab ${mainTab === 'study' ? 'active' : ''}`} onClick={() => setMainTab('study')}>
+        <button className={`sd-main-tab ${mainTab === 'study' ? 'active' : ''}`} onClick={() => handleTabChange('study')}>
           Seeds
+          {tabBadges.study > 0 && <span className="sd-tab-badge">{tabBadges.study}</span>}
         </button>
       </div>
 
