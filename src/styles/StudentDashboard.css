@@ -70,15 +70,14 @@
 /* ── Mobile ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    height: auto !important;
-    min-height: 56px;
-    overflow: visible !important;
-    padding: 8px 16px !important;
+    height: 64px !important;
+    overflow: hidden !important;
+    padding: 0 16px !important;
   }
   .sd-topbar-logo {
-    height: 85px !important;
-    max-height: 85px !important;
-    max-width: 80px !important;
+    height: 44px !important;
+    max-height: 44px !important;
+    max-width: 120px !important;
   }
   .sh-topbar-right {
     display: flex;
