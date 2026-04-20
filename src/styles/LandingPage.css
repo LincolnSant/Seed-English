@@ -83,7 +83,7 @@
 
 .lp-hero {
   display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center;
+  align-items: stretch;
 }
 .lp-hero-left { padding: 60px 48px; animation: fadeUp 0.8s ease both; }
 
@@ -99,7 +99,6 @@
   background: var(--sage); border-radius: 50%;
 }
 
-/* H1 — mantém Playfair pra ficar bonito */
 .lp-hero-left h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(42px, 5vw, 62px);
@@ -114,8 +113,6 @@
 }
 .lp-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
-
-/* stat-num — mantém Playfair */
 .stat-num {
   font-family: 'Playfair Display', serif;
   font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1;
@@ -123,7 +120,7 @@
 .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
 .lp-hero-right {
-  background: #4A4A4A; min-height: calc(100vh - 73px);
+  background: #4A4A4A; min-height: 500px;
   position: relative; display: flex; align-items: center;
   justify-content: center; overflow: hidden;
   animation: fadeIn 0.8s ease 0.3s both;
@@ -182,7 +179,6 @@
   font-size: 11px; font-weight: 500; letter-spacing: 2px;
   text-transform: uppercase; color: var(--sage); margin-bottom: 16px;
 }
-/* section-title — mantém Playfair */
 .section-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(32px, 4vw, 48px); font-weight: 700;
@@ -194,14 +190,12 @@
 .feature-card { background: #F5F5F5; padding: 36px 28px; transition: background 0.2s; cursor: default; }
 .feature-card:hover { background: var(--sage-light); }
 .feature-icon { width: 44px; height: 44px; background: var(--sage-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 20px; }
-/* feature-title — DM Sans */
 .feature-title { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
 .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
 /* CTA */
 .lp-cta { background: var(--ink); padding: 100px 48px; text-align: center; position: relative; overflow: hidden; }
 .lp-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(60,187,168,.25) 0%, transparent 70%); }
-/* CTA h2 — mantém Playfair */
 .lp-cta h2 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(36px, 5vw, 56px); font-weight: 700;
@@ -244,19 +238,14 @@
     gap: 12px;
     text-align: center;
   }
-  .lp-footer-logo {
-    max-height: 90px !important;
-  }
+  .lp-footer-logo { max-height: 90px !important; }
 }
 
 /* Como funciona */
 .lp-how { padding: 100px 48px; background: #F5F5F5; }
 .lp-steps { display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
 .lp-step { flex: 1; min-width: 180px; }
-.lp-step-num {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 40px; font-weight: 700; color: #2a9e8d; line-height: 1; margin-bottom: 12px;
-}
+.lp-step-num { font-family: 'DM Sans', sans-serif; font-size: 40px; font-weight: 700; color: #2a9e8d; line-height: 1; margin-bottom: 12px; }
 .lp-step-title { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
 .lp-step-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
 .lp-step-arrow { font-size: 24px; color: var(--sage); padding-top: 40px; flex-shrink: 0; }
@@ -284,44 +273,17 @@
 
 /* ── Mobile menu ───────────────────────────────────────── */
 .lp-mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: var(--ink);
-  cursor: pointer;
-  padding: 4px 8px;
+  display: none; background: none; border: none;
+  font-size: 22px; color: var(--ink); cursor: pointer; padding: 4px 8px;
 }
-
 .lp-mobile-menu {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: rgba(247,243,238,0.98);
-  backdrop-filter: blur(12px);
-  padding: 16px 24px 24px;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 73px;
-  z-index: 99;
+  display: none; flex-direction: column; gap: 4px;
+  background: rgba(247,243,238,0.98); backdrop-filter: blur(12px);
+  padding: 16px 24px 24px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 73px; z-index: 99;
 }
-.lp-mobile-menu a {
-  padding: 12px 0;
-  font-size: 16px;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border);
-}
-.lp-mobile-menu button {
-  margin-top: 8px;
-  width: 100%;
-  padding: 13px;
-  border-radius: 100px;
-  font-size: 15px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-}
+.lp-mobile-menu a { padding: 12px 0; font-size: 16px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border); }
+.lp-mobile-menu button { margin-top: 8px; width: 100%; padding: 13px; border-radius: 100px; font-size: 15px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; }
 
 @media (max-width: 768px) {
   .lp-mobile-menu-btn { display: block; }

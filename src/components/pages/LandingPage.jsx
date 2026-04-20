@@ -54,7 +54,6 @@ export default function LandingPage() {
               Ver como funciona
             </button>
           </div>
-
         </div>
 
         <div className="lp-hero-right">
@@ -146,9 +145,12 @@ export default function LandingPage() {
       </section>
 
       <footer className="lp-footer">
-        <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-footer-logo" />
-        <div>© 2026 · Todos os direitos reservados</div>
-      </footer>
+  <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-footer-logo" />
+  <div>© 2026 · Todos os direitos reservados</div>
+  <div style={{ fontSize: '12px', color: 'var(--muted)' }}>
+    Desenvolvido por <a href="https://portfolio--lincoln.vercel.app/" target="_blank" rel="noreferrer" style={{ color: 'var(--sage)', textDecoration: 'none', fontWeight: 500 }}>Lincoln</a>
+  </div>
+</footer>
     </div>
   );
 }
