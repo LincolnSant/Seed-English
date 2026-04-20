@@ -245,7 +245,7 @@
     text-align: center;
   }
   .lp-footer-logo {
-    max-height: 60px !important;
+    max-height: 90px !important;
   }
 }
 
@@ -339,7 +339,7 @@
 /* ── Footer logo ───────────────────────────────────────── */
 .lp-footer-logo {
   height: auto;
-  max-height: 120px;
+  max-height: 85px;
   width: auto;
   max-width: 200px;
   object-fit: contain;
