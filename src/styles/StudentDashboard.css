@@ -4,37 +4,6 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-/* ── Main tab bar ──────────────────────────────────────── */
-.sd-main-tabs {
-  display: flex;
-  gap: 4px;
-  background: rgba(255,255,255,.08);
-  border-radius: 100px;
-  padding: 3px;
-}
-.sd-main-tab {
-  padding: 6px 18px;
-  border-radius: 100px;
-  border: none;
-  background: transparent;
-  color: rgba(247,243,238,.6);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all .2s;
-}
-.sd-main-tab.active {
-  background: #fff;
-  color: #1A1612;
-}
-.sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.9); }
-
-@media (max-width: 768px) {
-  .sd-main-tabs { gap: 2px; }
-  .sd-main-tab  { padding: 6px 12px; font-size: 12px; }
-}
-
 /* ── Logo no topbar ────────────────────────────────────── */
 .sd-topbar-logo {
   height: 120px;
@@ -47,38 +16,38 @@
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
   height: 72px;
-  overflow: visible;
+  overflow: hidden;
   padding: 0 48px;
 }
 
-/* ── Mobile topbar fix ─────────────────────────────────── */
-@media (max-width: 768px) {
-  .sd-root .sh-topbar {
-    padding: 0 12px;
-    height: 56px !important;
-    overflow: hidden !important;
-    flex-wrap: nowrap;
-    gap: 0;
-  }
-  .sd-topbar-logo {
-    max-height: 85px !important;
-    max-width: 80px !important;
-    flex-shrink: 0;
-  }
-  .sd-main-tabs {
-    flex: 1;
-    justify-content: center;
-    margin: 0 8px;
-  }
-  .sh-topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-  .sh-user span { display: none; }
-  .sh-logout { padding: 6px 10px; font-size: 12px; }
+/* ── Tab bar below topbar ──────────────────────────────── */
+.sd-tab-bar {
+  display: flex;
+  background: #4A4A4A;
+  padding: 8px 48px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
 }
+
+.sd-main-tab {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  color: rgba(247,243,238,.6);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.sd-main-tab.active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+.sd-main-tab:hover:not(.active) { color: rgba(247,243,238,.9); }
 
 /* ── Tab badge ─────────────────────────────────────────── */
 .sd-tab-badge {
@@ -94,5 +63,34 @@
   border-radius: 100px;
   padding: 0 4px;
   margin-left: 6px;
-  vertical-align: middle;
+}
+
+/* ── Mobile ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sd-root .sh-topbar {
+    height: auto !important;
+    min-height: 56px;
+    overflow: visible !important;
+    padding: 8px 16px !important;
+  }
+  .sd-topbar-logo {
+    height: 32px !important;
+    max-height: 86px !important;
+    max-width: 80px !important;
+  }
+  .sh-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .sh-user span { display: none; }
+  .sh-logout { padding: 6px 10px; font-size: 12px; white-space: nowrap; }
+
+  .sd-tab-bar {
+    padding: 8px 16px 0;
+    justify-content: center;
+  }
+  .sd-main-tab { padding: 8px 16px; font-size: 13px; }
 }
