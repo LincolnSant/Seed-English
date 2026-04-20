@@ -14,14 +14,12 @@
   position: sticky;
   top: 0;
   z-index: 50;
+  overflow: visible !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 48px;
   background: #4A4A4A;
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 .sh-logo {
   font-family: 'DM Sans', sans-serif;
@@ -163,12 +161,9 @@
 
 /* ── Mobile fixes ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .sh-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50; padding: 16px 20px; }
+  .sh-topbar { padding: 12px 16px; }
   .sh-topbar .sh-user span { display: none; }
-  .sh-body { padding: 32px 16px 60px; }
+  .sh-body { padding: 24px 16px 60px; }
   .sh-hero { flex-direction: column; align-items: flex-start; gap: 12px; }
   .sh-hero h1 { font-size: 26px; }
   .sh-stats { padding: 16px 20px; gap: 0; }
@@ -183,9 +178,7 @@
 .sh-card-test:hover { border-color: #C8956C; box-shadow: 0 4px 16px rgba(200,149,108,.12); }
 .sh-card-done { opacity: 0.75; }
 .sh-card-done .sh-card-arrow { color: var(--sage); }
-.sh-card-score {
-  font-size: 11px; color: var(--sage); font-weight: 500; margin-top: 3px;
-}
+.sh-card-score { font-size: 11px; color: var(--sage); font-weight: 500; margin-top: 3px; }
 .sh-card-score-test { color: #A0522D; }
 
 /* ── Tabs ──────────────────────────────────────────────── */
@@ -195,7 +188,6 @@
   border-bottom: 1px solid var(--border);
   margin-bottom: 24px;
 }
-
 .sh-tab {
   display: flex;
   align-items: center;
@@ -214,27 +206,15 @@
   white-space: nowrap;
 }
 .sh-tab:hover { color: var(--ink); }
-.sh-tab.active {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
-  font-weight: 500;
-}
-
+.sh-tab.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
 .sh-tab-count {
   background: var(--sage-light);
   color: var(--sage);
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 100px;
-  min-width: 20px;
-  text-align: center;
+  font-size: 11px; font-weight: 600;
+  padding: 2px 7px; border-radius: 100px;
+  min-width: 20px; text-align: center;
 }
-.sh-tab.active .sh-tab-count {
-  background: #4A4A4A;
-  color: #F5F5F5;
-}
-
+.sh-tab.active .sh-tab-count { background: #4A4A4A; color: #F5F5F5; }
 .sh-tab-content { min-height: 200px; }
 
 @media (max-width: 768px) {
@@ -243,51 +223,22 @@
 }
 
 /* ── Sub-tabs (Classes) ────────────────────────────────── */
-.sh-subtabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
+.sh-subtabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
 .sh-subtab {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 100px;
-  border: 1.5px solid var(--border);
-  background: #fff;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--muted);
-  cursor: pointer;
-  transition: all .2s;
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 100px;
+  border: 1.5px solid var(--border); background: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  font-weight: 400; color: var(--muted); cursor: pointer; transition: all .2s;
 }
 .sh-subtab:hover { border-color: var(--sage); color: var(--sage); }
-.sh-subtab.active {
-  background: #4A4A4A;
-  border-color: var(--ink);
-  color: #fff;
-  font-weight: 500;
-}
-.sh-subtab-count {
-  font-size: 11px;
-  font-weight: 600;
-  background: rgba(255,255,255,.2);
-  padding: 1px 6px;
-  border-radius: 100px;
-}
-.sh-subtab:not(.active) .sh-subtab-count {
-  background: var(--sage-light);
-  color: var(--sage);
-}
+.sh-subtab.active { background: #4A4A4A; border-color: var(--ink); color: #fff; font-weight: 500; }
+.sh-subtab-count { font-size: 11px; font-weight: 600; background: rgba(255,255,255,.2); padding: 1px 6px; border-radius: 100px; }
+.sh-subtab:not(.active) .sh-subtab-count { background: var(--sage-light); color: var(--sage); }
 
-/* ── Sub-tabs mobile ───────────────────────────────────── */
 @media (max-width: 768px) {
   .sh-subtabs { gap: 6px; }
   .sh-subtab  { padding: 7px 12px; font-size: 12px; }
-
   .sh-card       { padding: 14px 16px; }
   .sh-card-title { font-size: 14px; }
 }
@@ -300,7 +251,4 @@
   width: auto;
   object-fit: contain;
   display: block;
-  background: #fff;
-  border-radius: 6px;
-  padding: 4px 8px;
 }
