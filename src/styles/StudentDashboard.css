@@ -71,7 +71,7 @@
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
     height: 64px !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     padding: 0 16px !important;
   }
   .sd-topbar-logo {
