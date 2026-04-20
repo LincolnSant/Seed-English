@@ -54,20 +54,7 @@ export default function LandingPage() {
               Ver como funciona
             </button>
           </div>
-          <div className="lp-stats">
-            <div className="stat-item">
-              <div className="stat-num">12+</div>
-              <div className="stat-label">Módulos de conteúdo</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-num">200+</div>
-              <div className="stat-label">Questões de prática</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-num">100%</div>
-              <div className="stat-label">Personalizado</div>
-            </div>
-          </div>
+
         </div>
 
         <div className="lp-hero-right">
