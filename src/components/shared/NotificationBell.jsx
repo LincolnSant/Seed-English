@@ -116,15 +116,15 @@ export default function NotificationBell({ userId, userRole, dropUp = false, onN
         {open && (
           <div
             className="nb-dropdown"
-            style={btnPos ? {
+            style={{
               position: 'fixed',
-              top: dropUp ? 'unset' : `${btnPos.bottom + 8}px`,
-              bottom: dropUp ? `${window.innerHeight - btnPos.top + 8}px` : 'unset',
-              right: `${window.innerWidth - btnPos.right}px`,
+              top: btnPos && !dropUp ? `${btnPos.bottom + 8}px` : 'unset',
+              bottom: btnPos && dropUp ? `${window.innerHeight - btnPos.top + 8}px` : 'unset',
+              right: btnPos ? `${window.innerWidth - btnPos.right}px` : '16px',
               left: 'unset',
               zIndex: 99999,
               width: '320px',
-            } : {}}
+            }}
           >
             <div className="nb-header">
               <span>Notifications</span>
