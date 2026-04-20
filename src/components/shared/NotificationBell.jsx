@@ -99,7 +99,7 @@ export default function NotificationBell({ userId, userRole, dropUp = false, onN
           onClick={() => {
             if (!open && btnRef.current) {
               const rect = btnRef.current.getBoundingClientRect();
-              setBtnPos({ top: rect.top, left: rect.left });
+              setBtnPos({ top: rect.top, left: rect.left, right: rect.right, bottom: rect.bottom });
             }
             setOpen(!open);
             if (!open && unreadCount > 0) markAllAsRead();
@@ -118,10 +118,10 @@ export default function NotificationBell({ userId, userRole, dropUp = false, onN
             className="nb-dropdown"
             style={{
               position: 'fixed',
-              top: btnPos && !dropUp ? `${btnPos.bottom + 8}px` : 'unset',
-              bottom: btnPos && dropUp ? `${window.innerHeight - btnPos.top + 8}px` : 'unset',
-              right: btnPos ? `${window.innerWidth - btnPos.right}px` : '16px',
-              left: 'unset',
+              top: !dropUp ? `${(btnPos?.bottom ?? 60) + 8}px` : 'unset',
+              bottom: dropUp ? `${window.innerHeight - (btnPos?.top ?? 60) + 8}px` : 'unset',
+              left: Math.min((btnPos?.left ?? 0), window.innerWidth - 328) + 'px',
+              right: 'unset',
               zIndex: 99999,
               width: '320px',
             }}
