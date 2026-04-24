@@ -147,7 +147,7 @@ export default function LandingPage() {
       <footer className="lp-footer">
   <img src="/LOGO-LYDIA.PNG" alt="Seed English" className="lp-footer-logo" />
   <div>© 2026 · Todos os direitos reservados</div>
-  <div style={{ fontSize: '14px', color: 'var(--muted)' }}>
+  <div style={{ fontSize: '13px', color: 'var(--muted)' }}>
     Desenvolvido por <a href="https://portfolio--lincoln.vercel.app/" target="_blank" rel="noreferrer" style={{ color: 'var(--sage)', textDecoration: 'none', fontWeight: 500 }}>Lincoln</a>
   </div>
 </footer>
