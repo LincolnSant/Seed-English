@@ -5,6 +5,7 @@
 }
 
 /* ── Logo no topbar ────────────────────────────────────── */
+<<<<<<< HEAD
 .sd-root .sh-topbar {
   height: 85px;
   overflow: hidden;
@@ -16,11 +17,28 @@
 .sd-topbar-logo {
   max-height: 85px;
   height: 85px;
+=======
+.sd-topbar-logo {
+  max-height: 36px; /* logo respeita a altura do topbar */
+  height: auto;
+>>>>>>> 2bc0a225f45f33d89313ae0db51a75615fe1f032
   width: auto;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
 }
+<<<<<<< HEAD
+=======
+
+/* ── Topbar height fix ─────────────────────────────────── */
+.sd-root .sh-topbar {
+  height: 56px; /* altura fixa */
+  overflow: hidden;
+  padding: 0 48px;
+  display: flex;
+  align-items: center !important;
+}
+>>>>>>> 2bc0a225f45f33d89313ae0db51a75615fe1f032
 /* ── Tab bar below topbar ──────────────────────────────── */
 .sd-tab-bar {
   display: flex;
