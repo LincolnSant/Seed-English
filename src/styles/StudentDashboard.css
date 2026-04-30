@@ -16,7 +16,7 @@
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
   height: 56px;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 48px;
   display: flex;
   align-items: center;
