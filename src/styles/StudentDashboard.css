@@ -18,11 +18,10 @@
 .sd-root .sh-topbar {
   height: auto;
   overflow: visible;
-  padding: 20px 48px;
+  padding: 16px 48px 8px 48px; /* top | direita | bottom | esquerda */
   display: flex;
   align-items: center !important;
 }
-
 /* ── Tab bar below topbar ──────────────────────────────── */
 .sd-tab-bar {
   display: flex;
