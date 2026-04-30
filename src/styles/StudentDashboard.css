@@ -5,22 +5,21 @@
 }
 
 /* ── Logo no topbar ────────────────────────────────────── */
-.sd-topbar-logo {
+.sd-root .sh-topbar {
   height: 85px;
+  overflow: hidden;
+  padding: 0 48px;
+  display: flex;
+  align-items: center !important;
+}
+
+.sd-topbar-logo {
   max-height: 85px;
+  height: 85px;
   width: auto;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
-}
-
-/* ── Topbar height fix ─────────────────────────────────── */
-.sd-root .sh-topbar {
-  height: auto;
-  overflow: visible;
-  padding: 16px 48px 8px 48px; /* top | direita | bottom | esquerda */
-  display: flex;
-  align-items: center !important;
 }
 /* ── Tab bar below topbar ──────────────────────────────── */
 .sd-tab-bar {
