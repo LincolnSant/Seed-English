@@ -6,7 +6,7 @@
 
 /* ── Logo no topbar ────────────────────────────────────── */
 .sd-topbar-logo {
-   height: 85px; /* era 85px */
+   height: 45px; /* era 85px */
   max-height: 40px;
   width: auto;
   object-fit: contain;
