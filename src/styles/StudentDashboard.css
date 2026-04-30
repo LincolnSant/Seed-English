@@ -6,8 +6,8 @@
 
 /* ── Logo no topbar ────────────────────────────────────── */
 .sd-topbar-logo {
-  height: 85px;
-  max-height: 85px;
+  max-height: 36px; /* logo respeita a altura do topbar */
+  height: auto;
   width: auto;
   object-fit: contain;
   display: block;
@@ -16,9 +16,9 @@
 
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
-  height: auto;
-  overflow: visible;
-  padding: 16px 48px 8px 48px; /* top | direita | bottom | esquerda */
+  height: 56px; /* altura fixa */
+  overflow: hidden;
+  padding: 0 48px;
   display: flex;
   align-items: center !important;
 }
