@@ -6,8 +6,8 @@
 
 /* ── Logo no topbar ────────────────────────────────────── */
 .sd-topbar-logo {
-   height: 45px; /* era 85px */
-  max-height: 40px;
+  height: 36px;
+  max-height: 36px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -16,9 +16,9 @@
 
 /* ── Topbar height fix ─────────────────────────────────── */
 .sd-root .sh-topbar {
-  height: 56px;
+  height: auto;
   overflow: visible;
-  padding: 0 48px;
+  padding: 12px 48px;
   display: flex;
   align-items: center !important;
 }
@@ -73,16 +73,16 @@
 /* ── Mobile ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .sd-root .sh-topbar {
-    height: 56px !important;
-    overflow: hidden !important;
-    padding: 0 16px !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 10px 16px !important;
     display: flex !important;
     align-items: center !important;
   }
   .sd-topbar-logo {
-    height: 36px !important;
-    max-height: 36px !important;
-    max-width: 100px !important;
+    height: 30px !important;
+    max-height: 30px !important;
+    width: auto !important;
   }
   .sh-topbar-right {
     display: flex;
